@@ -1,0 +1,6 @@
+api/storage/*
+api/vendor/*
+storage/*
+vendor/*
+client/.env.local
+api/.env
