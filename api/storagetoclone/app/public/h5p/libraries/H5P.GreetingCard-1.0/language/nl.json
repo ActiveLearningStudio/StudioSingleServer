@@ -1,0 +1,13 @@
+{
+  "semantics":[
+    {
+      "label":"Begroetingstekst",
+      "default":"Hallo wereld!",
+      "description":"De getoonde begroetingstekst aan de eindgebruiker."
+    },
+    {
+      "label":"Kaart afbeelding",
+      "description":"Getoonde afbeelding op de kaart, optioneel. Zonder deze kaart wordt alleen de tekst getoond."
+    }
+  ]
+}

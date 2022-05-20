@@ -1,0 +1,46 @@
+.h5p-impresspresentation-editor .impress-presentation-step-dialog {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  box-sizing: border-box;
+  overflow: auto;
+  border: 1px solid black;
+  /* Needed to overlap common fields icon and preivew list */
+  z-index: 11;
+}
+
+.h5p-impresspresentation-editor .impress-presentation-step-dialog.show {
+  display: block;
+}
+
+.h5p-impresspresentation-editor .h5p-step-dialog-footer {
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  height: 4.5em;
+  padding: 1em;
+  bottom: 0;
+  border-top: 1px solid #ccc;
+  z-index: 1;
+}
+
+.h5p-impresspresentation-editor .h5p-step-dialog-footer .h5p-step-dialog-done {
+  float: right;
+}
+
+.h5p-impresspresentation-editor .h5p-step-dialog-content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: calc(100% - 4.5em);
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

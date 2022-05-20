@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "URL Facebook sivulle",
+      "description": "URL Facebook sivulle"
+    },
+    {
+      "label": "Laatikon väriskeema",
+      "options": [
+        {
+          "label": "Vaalea"
+        },
+        {
+          "label": "Tumma"
+        }
+      ],
+      "description": "Valitse mitä väriskeemaa käytetään"
+    },
+    {
+      "label": "Vain Check-in:t",
+      "description": "Määrittelee näyttää syöte sivut vai ainoastaan Check-in:t ystäviltä."
+    },
+    {
+      "label": "Näytä otsikko",
+      "description": "Määrittää näytetäänkö otsikko vai ei"
+    },
+    {
+      "label": "Näytä rajat",
+      "description": "Määrittää ovatko rajat näkyvissä vai eivät"
+    },
+    {
+      "label": "Näytä Profiilikuvat",
+      "description": "Määrittää näytetään sivusta tykkäävien henkilöiden profiilikuvat."
+    },
+    {
+      "label": "Näytä Stream-lähetykset",
+      "description": "Määrittää näytetään sivun Stream-lähetykset"
+    },
+    {
+      "label": "Korkeus",
+      "description": "Määritä Facebook syötteen korkeus"
+    },
+    {
+      "label": "Width",
+      "description": "Määritä Facebook syötteen leveys"
+    }
+  ]
+}

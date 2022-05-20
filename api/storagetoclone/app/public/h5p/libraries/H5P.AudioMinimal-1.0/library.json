@@ -1,0 +1,28 @@
+{
+  "title": "Audio Minimal",
+  "description": "Simple minimalistic audio player.",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "machineName": "H5P.AudioMinimal",
+  "license": "cc-by-sa",
+  "author": "Joubel AS",
+  "preloadedCss": [
+    {
+      "path": "css/audioMinimal.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "scripts/audioMinimal.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 1
+    }
+  ]
+}

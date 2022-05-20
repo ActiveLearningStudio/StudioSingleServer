@@ -1,0 +1,17 @@
+[ 
+    { 
+      "label": "Content Title", 
+      "name": "title", 
+      "type": "text", 
+      "default": "Content title", 
+      "description": "The title for the text to be displayed"
+    },
+    { 
+      "label": "Content", 
+      "name": "immersivecontent", 
+      "type": "text", 
+      "widget": "html",
+      "default": "Text content", 
+      "description": "The text content"
+    }
+  ]

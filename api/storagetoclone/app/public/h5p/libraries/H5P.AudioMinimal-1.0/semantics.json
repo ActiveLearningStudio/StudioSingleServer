@@ -1,0 +1,14 @@
+[
+  {
+    "name": "files",
+    "type": "audio",
+    "label": "Source files"
+  },
+  {
+    "name": "autoplay",
+    "type": "boolean",
+    "label": "Enable autoplay",
+    "description": "With autoplay the audio starts to play immediately. If autoplay is disabled the user presses a play button to start the audio.",
+    "default": false
+  }
+]

@@ -1,0 +1,124 @@
+{
+  "title": "Impress Presentation Editor",
+  "description": "Live editor for editing impressive presentations.",
+  "majorVersion": 1,
+  "minorVersion": 3,
+  "patchVersion": 0,
+  "runnable": 0,
+  "author": "Joubel AS",
+  "license": "MIT",
+  "machineName": "H5PEditor.ImpressPresentation",
+  "preloadedCss": [
+    {
+      "path": "styles/impress-editor.css"
+    },
+    {
+      "path": "styles/numeric-step-input.css"
+    },
+    {
+      "path": "styles/step-dialog.css"
+    },
+    {
+      "path": "styles/step-navigation.css"
+    },
+    {
+      "path": "styles/menu-buttons.css"
+    },
+    {
+      "path": "styles/preview-styles.css"
+    },
+    {
+      "path": "styles/step-preview-list.css"
+    },
+    {
+      "path": "styles/overview-zoom-widget.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "scripts/libs/sortable-lib.js"
+    },
+    {
+      "path": "scripts/sub-menus/step-dialog.js"
+    },
+    {
+      "path": "scripts/side-menus/step-preview-list.js"
+    },
+    {
+      "path": "scripts/side-menus/numeric-step-input.js"
+    },
+    {
+      "path": "scripts/menus/navigation-menu.js"
+    },
+    {
+      "path": "scripts/menus/sub-menu-selector.js"
+    },
+    {
+      "path": "scripts/sub-menus/core-menu.js"
+    },
+    {
+      "path": "scripts/sub-menus/ordering-menu.js"
+    },
+    {
+      "path": "scripts/sub-menus/transform-menu.js"
+    },
+    {
+      "path": "scripts/step-navigation/overview-step.js"
+    },
+    {
+      "path": "scripts/step-navigation/active-step.js"
+    },
+    {
+      "path": "scripts/step-navigation/mode-display.js"
+    },
+    {
+      "path": "scripts/step-navigation/editing-step.js"
+    },
+    {
+      "path": "scripts/menus/main-menu.js"
+    },
+    {
+      "path": "scripts/free-transform.js"
+    },
+    {
+      "path": "scripts/impress-editor.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.ImpressPresentation",
+      "majorVersion": 1,
+      "minorVersion": 3
+    },
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 2
+    },
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.AdvancedText",
+      "majorVersion": 1,
+      "minorVersion": 1
+    },
+    {
+      "machineName": "H5P.MarkTheWords",
+      "majorVersion": 1,
+      "minorVersion": 6
+    },
+    {
+      "machineName": "H5P.SingleChoiceSet",
+      "majorVersion": 1,
+      "minorVersion": 7
+    },
+    {
+      "machineName": "H5P.Blanks",
+      "majorVersion": 1,
+      "minorVersion": 7
+    }
+  ]
+}

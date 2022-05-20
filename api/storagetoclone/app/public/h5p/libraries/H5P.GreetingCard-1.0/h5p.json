@@ -1,0 +1,18 @@
+{
+  "title": "Greeting card",
+  "language": "en",
+  "author": "Tutorial user",
+  "license": "CC BY-SA",
+  "licenseVersion": "4.0",
+  "authors":[{
+    "name":"The author name",
+    "role":"Author"
+  }],
+  "preloadedDependencies": [{
+    "machineName": "H5P.GreetingCard",
+    "majorVersion": 1,
+    "minorVersion": 0 
+  }],
+  "mainLibrary": "H5P.GreetingCard",
+  "embedTypes": ["div"]
+}

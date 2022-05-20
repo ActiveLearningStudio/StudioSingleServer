@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "URL de la pàgina de Facebook",
+      "description": "URL de la pàgina de Facebook"
+    },
+    {
+      "label": "Paleta de colors del quadre",
+      "options": [
+        {
+          "label": "Llum"
+        },
+        {
+          "label": "Fosc"
+        }
+      ],
+      "description": "Indiqueu quina paleta de colors voleu utilitzar"
+    },
+    {
+      "label": "Només inicis de sessió",
+      "description": "Especifica si el tauler d’activitat conté publicacions de la pàgina o només inicis de sessió d’amics"
+    },
+    {
+      "label": "Mostra l’encapçalament",
+      "description": "Especifica si l’encapçalament ha de ser visible o no"
+    },
+    {
+      "label": "Mostra el contorn",
+      "description": "Especifica si les vores han de ser visibles o no"
+    },
+    {
+      "label": "Mostra les cares",
+      "description": "Especifica si es mostren les fotos de perfil de les persones que indiquen que els agrada la pàgina."
+    },
+    {
+      "label": "Mostra el tauler d’activitat",
+      "description": "Especifica si el tauler d’activitat de la pàgina és visible o no"
+    },
+    {
+      "label": "Alçària",
+      "description": "Establiu l’alçada de la secció de notícies de la pàgina de Facebook"
+    },
+    {
+      "label": "Amplada",
+      "description": "Establiu l’amplada de la secció de notícies de la pàgina de Facebook"
+    }
+  ]
+}

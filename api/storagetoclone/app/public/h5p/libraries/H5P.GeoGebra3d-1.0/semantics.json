@@ -1,0 +1,10 @@
+[
+  {
+    "label": "GeoGebra 3D Applet",
+    "name": "geogebra_applet_3d",
+    "type": "text",
+    "widget": "GeoGebra3DWidget",
+    "default": "",
+    "description": ""
+  }
+]

@@ -1,0 +1,84 @@
+[
+  {
+    "label": "URL to the Facebook Page",
+    "name": "fbUrl",
+    "importance": "high",
+    "type": "text",
+    "default": "https://www.facebook.com/h5ptechnology",
+    "description": "URL for the Facebook Page"
+  },
+  {
+    "label": "Color Scheme on the Box",
+    "name": "fbColorScheme",
+    "importance": "low",
+    "type": "select",
+    "default": "light",
+    "options": [
+      {
+        "value": "light",
+        "label": "Light"
+      },
+      {
+        "value": "dark",
+        "label": "Dark"
+      }
+    ],
+    "description": "Determine which color scheme to use"
+  },
+  {
+    "name": "fbForceWall",
+    "type": "boolean",
+    "importance": "low",
+    "label": "Only Check-ins",
+    "description": "Specifies whether the stream contains posts by the Page or just Check-ins from friends",
+    "default": false
+  },
+  {
+    "name": "fbHeader",
+    "type": "boolean",
+    "importance": "low",
+    "label": "Show Header",
+    "description": "Specifies whether the header should be visible or not",
+    "default": false
+  },
+  {
+    "name": "fbShowBorder",
+    "type": "boolean",
+    "importance": "low",
+    "label": "Show Border",
+    "description": "Specifies whether or not Borders should be visible",
+    "default": true
+  },
+  {
+    "name": "fbShowFaces",
+    "type": "boolean",
+    "importance": "low",
+    "label": "Show Faces",
+    "description": "Specifies whether to display profile photos of people who like the page.",
+    "default": true
+  },
+  {
+    "name": "fbStream",
+    "type": "boolean",
+    "importance": "low",
+    "label": "Show Stream",
+    "description": "specifies whether or not the Stream from the Page is visible",
+    "default": true
+  },
+  {
+    "label": "Height",
+    "name": "fbHeight",
+    "importance": "medium",
+    "type": "text",
+    "default": "500",
+    "description": "Set Height of the Faceook Page Feed"
+  },
+  {
+    "label": "Width",
+    "name": "fbWidth",
+    "importance": "medium",
+    "type": "text",
+    "default": "338",
+    "description": "Set Width of the Facebook Page Feed"
+  }
+]

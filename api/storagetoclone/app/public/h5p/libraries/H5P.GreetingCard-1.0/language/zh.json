@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "問候文字",
+      "default": "Hello world!",
+      "description": "顯示在使者用名稱後的問候文字。"
+    },
+    {
+      "label": "卡片圖像",
+      "description": "非必填，在卡片上顯示的圖像，如果沒有設定圖片，就只會顯示文字。"
+    }
+  ]
+}

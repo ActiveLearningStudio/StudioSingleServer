@@ -1,0 +1,10 @@
+[
+  {
+    "label": "GeoGebra Classic Applet",
+    "name": "geogebra_applet_classic",
+    "type": "text",
+    "widget": "GeoGebraClassicWidget",
+    "default": "",
+    "description": ""
+  }
+]

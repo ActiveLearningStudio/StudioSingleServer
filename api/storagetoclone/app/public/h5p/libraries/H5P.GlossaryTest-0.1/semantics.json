@@ -1,0 +1,105 @@
+[
+  {
+    "name": "from",
+    "type": "text",
+    "label": "From Language",
+    "maxLength": 128,
+    "default": "English"
+  },
+  {
+    "name": "to",
+    "type": "text",
+    "label": "To Language",
+    "maxLength": 128,
+    "default": "German"
+  },
+  {
+    "name": "words",
+    "type": "list",
+    "label": "Words",
+    "entity": "word",
+    "min": 1,
+    "max": 128,
+    "field": {
+      "type": "group",
+      "label": "Word",
+      "fields": [
+        {
+          "name": "original",
+          "type": "text",
+          "label": "Original",
+          "maxLength": 128
+        },
+        {
+          "name": "translation",
+          "type": "text",
+          "label": "Translation",
+          "maxLength": 128
+        }
+      ]
+    }
+  },
+  {
+    "name": "l10n",
+    "type": "group",
+    "label": "Localization",
+    "fields": [
+      {
+        "name": "translateFrom",
+        "type": "text",
+        "label": "Translate From Label",
+        "default": "Translate From",
+        "maxLength": 63
+      },
+      {
+        "name": "translateTo",
+        "type": "text",
+        "label": "Translate To Label",
+        "default": "Translate To",
+        "maxLength": 63
+      },
+      {
+        "name": "start",
+        "type": "text",
+        "label": "Start Button Label",
+        "default": "Start",
+        "maxLength": 31
+      },
+      {
+        "name": "finish",
+        "type": "text",
+        "label": "Finish Button Label",
+        "default": "Finish",
+        "maxLength": 31
+      },
+      {
+        "name": "continue",
+        "type": "text",
+        "label": "Continue Button Label",
+        "default": "Continue",
+        "maxLength": 31
+      },
+      {
+        "name": "checkAnswers",
+        "type": "text",
+        "label": "Check Answers Button Label",
+        "default": "Check Answers",
+        "maxLength": 31
+      },
+      {
+        "name": "summary",
+        "type": "text",
+        "label": "Summary Text",
+        "default": "You managed to get :num out of :total words!",
+        "maxLength": 255
+      },
+      {
+        "name": "startOVer",
+        "type": "text",
+        "label": "Start Over Button Label",
+        "default": "Start Over",
+        "maxLength": 31
+      }
+    ]
+  }
+]

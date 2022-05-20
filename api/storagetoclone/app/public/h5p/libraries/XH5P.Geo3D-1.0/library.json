@@ -1,0 +1,22 @@
+{
+  "title": "Geo 3D",
+  "description": "Displays a Geometry Algebra 3D",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "author": "Amendor AS",
+  "license": "cc-by-sa",
+  "machineName": "H5P.Geo3D",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 0
+  },
+  "preloadedJs": [
+	{ "path": "deployggb.js" },
+    { "path": "geogabra.js" }
+  ],
+  "preloadedCss": [
+    {"path": "geogabra.css"}
+  ]
+}

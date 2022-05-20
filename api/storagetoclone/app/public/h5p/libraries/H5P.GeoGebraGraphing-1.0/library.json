@@ -1,0 +1,40 @@
+{
+  "title": "GeoGebra Graphing",
+  "description": "Graph functions, investigate equations, and plot data with our free graphing app",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 2,
+  "runnable": 1,
+  "author": "Mahmood Ali Waseem",
+  "license": "cc-by-sa",
+  "machineName": "H5P.GeoGebraGraphing",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 0
+  },
+  "preloadedJs": [
+
+    {
+      "path": "scripts/geogebra.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/geogebra.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 3
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.GeoGebraGraphingWidget",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+    ]
+}

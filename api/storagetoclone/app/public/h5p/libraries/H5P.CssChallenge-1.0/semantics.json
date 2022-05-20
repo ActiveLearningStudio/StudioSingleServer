@@ -1,0 +1,70 @@
+[
+  {
+    "name": "challengeText",
+    "label": "Challenge description",
+    "type": "text"
+  },
+  {
+    "name": "existingRules",
+    "type": "list",
+    "label": "Existing rules",
+    "entity": "Rule",
+    "optional": "true",
+    "field": {
+      "name": "existingRule",
+      "type": "text",
+      "label": "Type in existing rule",
+      "optional": true
+    }
+  },
+  {
+    "name": "answerRules",
+    "type": "list",
+    "label": "Answer css rule(s)",
+    "entity": "Rule",
+    "field": {
+      "name": "answerRule",
+      "type": "group",
+      "label": "Type in answer rule",
+      "fields": [
+        {
+          "name": "mainRule",
+          "label": "Main rule",
+          "type": "text"
+        },
+        {
+          "name": "alternatives",
+          "label": "Alternatives to main rule",
+          "type": "list",
+          "optional": true,
+          "field": {
+            "name": "singleAlternative",
+            "label": "Alternative css rule",
+            "type": "text",
+            "optional": true
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "l10n",
+    "type": "group",
+    "label": "Localization",
+    "common": true,
+    "fields": [
+      {
+        "name": "inputDescription",
+        "type": "text",
+        "label": "Input description",
+        "default": "Add your css here:"
+      },
+      {
+        "name": "targetElementClass",
+        "type": "text",
+        "label": "Target element class",
+        "default": ".ball"
+      }
+    ]
+  }
+]

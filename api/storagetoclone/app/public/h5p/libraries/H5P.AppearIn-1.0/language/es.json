@@ -1,0 +1,20 @@
+{
+  "semantics": [
+    {
+      "label": "Nombre de sala",
+      "description": "Nombre de la sala appear.in"
+    },
+    {
+      "label": "Ajustar a contenedor",
+      "description": "Hacer que la sala se ajuste a su contenedor, anulará cualquier alto y ancho definidos con valores 100%."
+    },
+    {
+      "label": "Altura",
+      "description": "Configurar Altura de sala para Chat"
+    },
+    {
+      "label": "Ancho",
+      "description": "Configurar Ancho de sala para Chat"
+    }
+  ]
+}

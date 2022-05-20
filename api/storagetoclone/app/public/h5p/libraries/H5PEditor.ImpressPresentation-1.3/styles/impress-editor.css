@@ -1,0 +1,148 @@
+.h5p-impress-presentation.impress-presentation-preview {
+  height: 1px;
+  border: solid 1px #ccc;
+  overflow: hidden;
+}
+
+.h5p-impress-presentation.impress-presentation-preview .jmpress:focus {
+  outline-offset: 1px;
+}
+
+
+.h5p-impress-wrapper {
+  height: 100%;
+}
+
+.impress-presentation-buttonbar {
+  margin-top: 0.5em;
+  border: 1px solid #ccc;
+}
+
+.impress-presentation-buttonbar .joubel-simple-rounded-button {
+  margin-right: 1em;
+}
+
+.h5p-impresspresentation-editor .jmpress.hide {
+  display: none;
+}
+
+.h5p-impresspresentation-editor .impress-presentation-buttonbar .h5p-check-box {
+  display: inline-block;
+}
+
+.h5p-impresspresentation-editor .impress-presentation-buttonbar .h5p-check-box label {
+  cursor: pointer;
+}
+
+.h5p-impresspresentation-editor .impress-presentation-buttonbar .h5p-check-box label {
+  margin-right: 0.5em;
+}
+
+.h5p-impresspresentation-editor .h5p-buttonbar-top-row {
+  border-bottom: 1px solid #ccc;
+  height: 3em;
+  padding: 0.5em 1em;
+}
+
+.h5p-impresspresentation-editor .h5p-buttonbar-bottom-row {
+  position: relative;
+  height: 3.5em;
+  margin: 0 1em;
+}
+
+.h5p-impresspresentation-editor .h5p-buttonbar-bottom-row .h5p-buttonbar-sub-menu {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+}
+
+.h5p-impresspresentation-editor .h5p-buttonbar-bottom-row .h5p-buttonbar-sub-menu.show {
+  display: block;
+}
+
+.h5p-impresspresentation-editor .h5p-buttonbar-top-row .h5p-left-aligned-main-menu {
+  display: inline-block;
+}
+
+.h5p-impresspresentation-editor .h5p-buttonbar-top-row .h5p-right-aligned-submenu {
+  float: right;
+  display: inline-block;
+  line-height: 3em;
+}
+
+.h5p-impresspresentation-editor .h5p-semantics-instance {
+}
+
+.h5p-impresspresentation-editor .h5p-mode-container {
+  display: inline-block;
+}
+
+.h5p-impresspresentation-editor .h5p-mode-container.hide {
+  display: none;
+}
+
+.h5p-impresspresentation-editor .h5p-mode-title {
+  margin-right: 0.5em;
+  font-size: 0.8em;
+}
+
+.h5p-impresspresentation-editor .h5p-mode-active {
+  font-weight: bold;
+}
+
+.h5p-impresspresentation-editor .h5p-mode-container {
+  display: inline-block;
+}
+
+/* Sortable style */
+.h5p-impresspresentation-editor .h5p-route-list-help-text {
+  position: absolute;
+  background: white;
+  padding: 1em;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  height: 3.5em;
+  border-bottom: 1px solid #ccc;
+}
+
+
+.h5p-impresspresentation-editor .h5p-route-list-dialog ul.h5p-route-list {
+  list-style: none;
+  position: absolute;
+  left: 0;
+  /* Subtract header */
+  top: 3.5em;
+  height: calc(100% - 3.5em);
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.h5p-impresspresentation-editor .h5p-route-list-dialog li.h5p-route-list-element {
+  background-color: white;
+  padding: 10px 40px;
+  display: list-item;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  cursor: pointer;
+}
+
+.h5p-impresspresentation-editor .h5p-route-list-dialog li.h5p-route-list-element.hover {
+  background: #afd1e1;
+}
+
+.h5p-impresspresentation-editor .h5p-route-list-dialog li.h5p-route-list-element:last-child {
+  border-bottom: 1px solid #ccc;
+}
+
+.h5p-impresspresentation-editor .h5p-route-list-dialog li.sortable-ghost {
+  opacity: .5;
+  background: #C8EBFB;
+}

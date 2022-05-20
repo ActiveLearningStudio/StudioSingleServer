@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "URL van de Facebook pagina",
+      "description": "URL van de Facebook pagina"
+    },
+    {
+      "label": "Kleurenschema van de box",
+      "options": [
+        {
+          "label": "Licht"
+        },
+        {
+          "label": "Donker"
+        }
+      ],
+      "description": "Bepaal welk kleurenschema moet worden gebruikt"
+    },
+    {
+      "label": "Alleen Check-ins",
+      "description": "Bepaalt of de stream posts van de pagina bevat of alleen Check-ins van vrienden"
+    },
+    {
+      "label": "Toon koptekst",
+      "description": "Bepaalt of de koptekst zichtbaar moet zijn of niet"
+    },
+    {
+      "label": "Toon rand",
+      "description": "Bepaalt of de randen zichtbaar moeten zijn of niet"
+    },
+    {
+      "label": "Toon gezichten",
+      "description": "Bepaalt of de profielfoto's van mensen die de pagina geliked hebben, moeten worden weergegeven."
+    },
+    {
+      "label": "Toon stream",
+      "description": "Bepaalt of de stream van de pagina zichtbaar moet zijn of niet"
+    },
+    {
+      "label": "Hoogte",
+      "description": "Stel de hoogte van de Facebook paginafeed in"
+    },
+    {
+      "label": "Breedte",
+      "description": "Stel de breedte van de Facebook paginafeed in"
+    }
+  ]
+}

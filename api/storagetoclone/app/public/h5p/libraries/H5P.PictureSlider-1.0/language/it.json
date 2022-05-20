@@ -1,0 +1,136 @@
+{
+  "semantics": [
+    {
+      "label": "Larghezza",
+      "description": "Larghezza dello Slider in pixel."
+    },
+    {
+      "label": "Altezza",
+      "description": "Altezza dello Slider in pixel."
+    },
+    {
+      "label": "Immagini",
+      "entity": "immagine",
+      "description": "Elenco delle Immagini nello Slider.",
+      "field": {
+        "label": "Immagine",
+        "fields": [
+          {
+            "label": "Testata",
+            "description": "Testata dell'Immagine."
+          },
+          {
+            "label": "Immagine",
+            "description": "Immagine Slider."
+          },
+          {
+            "label": "Testo",
+            "description": "Informazioni testuali riguardanti l'Immagine."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Impostazioni Avanzate",
+      "fields": [
+        {
+          "label": "Circolare",
+          "description": "Determina se lo Slider deve essere circolare"
+        },
+        {
+          "label": "Infinito",
+          "description": "Determina se lo Slider deve essere infinito. Nota: E' possibile creare uno Slider non circolare e infinito, ma non è possibile creare uno Slider circolare e non-infinito. (vero o falso)"
+        },
+        {
+          "label": "Direzione",
+          "description": "La direzione di scorrimento della riproduzione, determina se lo scorrimento è in senso orizzontale o verticale e -quando impostato automaticamente- in che direzione.",
+          "options": [
+            {
+              "label": "Destra"
+            },
+            {
+              "label": "Sinistra"
+            },
+            {
+              "label": "Sù"
+            },
+            {
+              "label": "Giù"
+            }
+          ]
+        },
+        {
+          "label": "Impaginazione",
+          "description": ""
+        },
+        {
+          "label": "Impostazioni Scroll (scorrimento)",
+          "fields": [
+            {
+              "label": "Effetto Scroll",
+              "description": "Indica che effetto usare per la transizione.",
+              "options": [
+                {
+                  "label": "Nessuno"
+                },
+                {
+                  "label": "Scroll"
+                },
+                {
+                  "label": "Directscroll"
+                },
+                {
+                  "label": "Fade"
+                },
+                {
+                  "label": "Crossfade"
+                },
+                {
+                  "label": "Cover"
+                },
+                {
+                  "label": "Cover-fade"
+                },
+                {
+                  "label": "Uncover"
+                },
+                {
+                  "label": "Uncover-fade"
+                }
+              ]
+            },
+            {
+              "label": "Articoli",
+              "description": "Il numero di articoli di scorrimento."
+            },
+            {
+              "label": "Durata",
+              "description": "Determina la durata di una transizione in millisecondi. Se inferiore a 10, il numero viene interpretato come velocità (pixel/millisecondi). Questo è probabilmente il più indicato quando si riproducono oggetti con dimensioni variabili."
+            }
+          ]
+        },
+        {
+          "label": "Impostazioni Automatiche",
+          "fields": [
+            {
+              "label": "Rotazione automatica",
+              "description": "Determina se la riproduzione dello Scroll è automatica oppure no."
+            },
+            {
+              "label": "Articoli",
+              "description": "Il numero di articoli di scorrimento automatico."
+            },
+            {
+              "label": "Durata",
+              "description": "Determina la durata di una transizione in millisecondi. Se inferiore a 10, il numero viene interpretato come velocità (pixel/millisecondi). Questo è probabilmente il più indicato quando si riproducono oggetti con dimensioni variabili."
+            },
+            {
+              "label": "Pausa in hover",
+              "description": "Determina se il timeout tra le transizioni deve essere messo in pausa al passaggio del puntatore del mouse."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

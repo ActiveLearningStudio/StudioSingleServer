@@ -1,0 +1,62 @@
+[
+    {
+      "label": "Document Title",
+      "name": "title",
+      "type": "text",
+      "default": "Document Upload",
+      "description": "The title for the text to be displayed"
+    },
+    {
+      "label": "Content",
+      "name": "documentcontent",
+      "type": "text",
+      "widget": "html",
+      "description": "The text content",
+      "enterMode": "div",
+      "tags": [
+        "strong",
+        "b",
+        "i",
+        "iframe",
+        "figure",
+        "figcaption",
+        "span",
+        "style",
+        "img",
+        "additional",
+        "em",
+        "del",
+        "a",
+        "ul",
+        "ol",
+        "h1",
+        "h2",
+        "h3",
+        "hr",
+        "pre",
+        "blockquote",
+        "div",
+        "head",
+        "html",
+        "table",
+        "colgroup",
+        "col",
+        "tr",
+        "td",
+        "thead",
+        "tbody",
+        "tfoot",
+        "font",
+        "object",
+        "embed",
+        "body"
+      ],
+      "font": {
+        "size": true,
+        "color": true,
+        "background": true,
+        "family": true,
+        "height": true
+      }
+    }
+  ]

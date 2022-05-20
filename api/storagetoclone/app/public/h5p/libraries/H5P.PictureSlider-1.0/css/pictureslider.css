@@ -1,0 +1,103 @@
+/* 
+    Document   : Picture Slider
+    Created on : Feb 28, 2013, 9:56:47 PM
+    Author     : griffen
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.h5p-ps-picture-slider {
+  color: #000066;
+}
+
+/*
+    CarouFredSel
+*/
+.h5p-ps-html_carousel {
+  padding: 0px 0px 0px 0px;
+  display: inline-block;
+}
+.h5p-ps-html_carousel div.h5p-ps-slide {
+  position: absolute;
+}
+.h5p-ps-html_carousel div.h5p-ps-slide div {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  display: none;
+  position: absolute;
+  bottom: 0;
+}
+.h5p-ps-html_carousel div.h5p-ps-slide div {
+  position: absolute;
+  bottom: 4px;
+}
+.h5p-ps-html_carousel div.h5p-ps-slide h2 {
+  font-size: 35px;
+  padding: 10px 0 0 100px;
+}
+.h5p-ps-html_carousel div.h5p-ps-slide p {
+  font-size: 16px;
+  padding: 10px 0 30px 100px;
+}
+.h5p-ps-html_carousel div.h5p-ps-slide h2, .h5p-ps-html_carousel div.h5p-ps-slide p {
+  color: white;
+  margin: 0;
+}
+.h5p-ps-image_carousel {
+  padding: 15px 0 15px 40px;
+}
+.h5p-ps-image_carousel img {
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 9px;
+  margin: 7px;
+  display: block;
+  float: left;
+}
+.h5p-ps-list_carousel {
+  padding: 15px 0 15px 40px;
+}
+.h5p-ps-list_carousel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+}
+.h5p-ps-list_carousel li {
+  font-size: 30px;
+  color: #666;
+  text-align: center;
+  background-color: #f0f0f0;
+  border: 5px solid #ccc;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 6px;
+  display: block;
+  float: left;
+}
+.h5p-ps-clearfix {
+  float: none;
+  clear: both;
+}
+.h5p-ps-pager {
+  text-align: center;
+  padding-top: 10px;
+}
+.h5p-ps-pager a {
+  background: #ccc;
+  display: inline-block;
+  border-radius: 5px;
+  width: 10px;
+  height: 10px;
+  margin: 0 2px;
+}
+.h5p-ps-pager a.selected {
+  background: #999;
+}
+.h5p-ps-pager a:hover {
+  background: #666;
+}
+.h5p-ps-pager a span {
+  display: none;
+} 

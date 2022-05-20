@@ -1,0 +1,229 @@
+{
+  "semantics": [
+    {
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        },
+        {
+          "label": "Disable image zooming"
+        }
+      ]
+    },
+    {
+      "label": "Task description"
+    },
+    {
+      "label": "Text groups",
+      "entity": "text group",
+      "field": {
+        "label": "Group",
+        "fields": [
+          {
+            "label": "Group name"
+          },
+          {
+            "label": "Text segments",
+            "entity": "text segment",
+            "field": {
+              "label": "Text segment"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "label": "Overall Feedback",
+      "fields": [
+        {
+          "widgets": [
+            {
+              "label": "Default"
+            }
+          ],
+          "label": "Define custom feedback for any score range",
+          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
+          "entity": "range",
+          "field": {
+            "fields": [
+              {
+                "label": "Score Range"
+              },
+              {
+                "label": "Feedback for defined score range",
+                "placeholder": "Fill in the feedback"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Behavioural settings",
+      "description": "These options will let you control how the task behaves.",
+      "fields": [
+        {
+          "label": "Enable \"Retry\" button"
+        },
+        {
+          "label": "Enable \"Show Solution\" button"
+        },
+        {
+          "label": "Enable \"Check\" button"
+        },
+        {
+          "label": "Give one point for the whole task",
+          "description": "Set the maximum score to one point, where the point is awarded depending on the 'Pass percentage'"
+        },
+        {
+          "label": "Require answer before the solution can be viewed"
+        },
+        {
+          "label": "Show confirmation dialog on \"Check\""
+        },
+        {
+          "label": "Show confirmation dialog on \"Retry\""
+        },
+        {
+          "label": "Pass percentage",
+          "description": "This setting often won't have any effect. It is the percentage of the total score required for getting 1 point when 'Give one point for the whole task' is enabled, and for getting 'result.success' in xAPI statements."
+        }
+      ]
+    },
+    {
+      "label": "User interface",
+      "fields": [
+        {
+          "label": "Label for the group with the uncategorized words",
+          "default": "Uncategorized"
+        },
+        {
+          "label": "Aria label for the \"Move to Category\" button",
+          "default": "Move to category"
+        },
+        {
+          "label": "Hover text for the \"Move to Category\" button",
+          "default": "Move to category"
+        },
+        {
+          "label": "Aria label for the \"Collapse Category\" button",
+          "default": "Collapse category"
+        },
+        {
+          "label": "Aria label for the \"Expand Category\" button",
+          "default": "Expand category"
+        },
+        {
+          "label": "Hover text for the \"Collapse Category\" button",
+          "default": "Collapse category"
+        },
+        {
+          "label": "Hover text for the \"Expand Category\" button",
+          "default": "Expand category"
+        },
+        {
+          "label": "Help text for assigning items to category dropdown menu",
+          "default": "Assign items to this category"
+        },
+        {
+          "label": "Help text for moving items to category dropdown menu",
+          "default": "Move to:"
+        },
+        {
+          "label": "Text for \"Check\" button",
+          "default": "Check"
+        },
+        {
+          "label": "Assistive technology description for \"Check\" button",
+          "default": "Check the answers. The responses will be marked as correct, incorrect, or unanswered."
+        },
+        {
+          "label": "Text for \"Show solution\" button",
+          "default": "Show solution"
+        },
+        {
+          "label": "Assistive technology description for \"Show Solution\" button",
+          "default": "Show the solution. The correct assignment will be displayed."
+        },
+        {
+          "label": "Aria label for the correct text segments in the check answer/solution view",
+          "default": "Correct category."
+        },
+        {
+          "label": "Aria label for the incorrect text segments in the check answer/solution view",
+          "default": "Wrong category."
+        },
+        {
+          "label": "Aria label for the text segments that indicate the correct position of a text item in the solution view",
+          "default": "This item should have been placed in this category."
+        },
+        {
+          "label": "Text for \"Requires answer\" message",
+          "default": "Please answer before viewing the solution"
+        },
+        {
+          "label": "Text for \"Retry\" button",
+          "default": "Retry"
+        },
+        {
+          "label": "Assistive technology description for \"Retry\" button",
+          "default": "Retry the task. Reset all responses and start the task over again."
+        },
+        {
+          "label": "Your result",
+          "description": ":num and :total are variables and will be replaced by their respective values.",
+          "default": "You got :num out of :total points"
+        },
+        {
+          "label": "Category",
+          "description": "Placeholder text for categories without names",
+          "default": "Category"
+        },
+        {
+          "label": "Check confirmation dialog",
+          "fields": [
+            {
+              "label": "Header text",
+              "default": "Finish?"
+            },
+            {
+              "label": "Body text",
+              "default": "Are you sure you want to finish?"
+            },
+            {
+              "label": "\"Cancel\" button label",
+              "default": "Cancel"
+            },
+            {
+              "label": "\"Confirm\" button label",
+              "default": "Finish"
+            }
+          ]
+        },
+        {
+          "label": "Retry confirmation dialog",
+          "fields": [
+            {
+              "label": "Header text",
+              "default": "Retry?"
+            },
+            {
+              "label": "Body text",
+              "default": "Are you sure you wish to retry?"
+            },
+            {
+              "label": "\"Cancel\" button label",
+              "default": "Cancel"
+            },
+            {
+              "label": "\"Confirm\" button label",
+              "default": "Retry"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

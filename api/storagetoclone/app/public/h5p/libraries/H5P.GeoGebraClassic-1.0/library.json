@@ -1,0 +1,42 @@
+{
+  "title": "GeoGebra Classic",
+  "description": "Displays a Geometry Algebra Classic",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 2,
+  "runnable": 1,
+  "author": "Amendor AS",
+  "license": "cc-by-sa",
+  "machineName": "H5P.GeoGebraClassic",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 0
+  },
+  "preloadedJs": [
+    {
+      "path": "scripts/deployggb.js"
+    },
+    {
+      "path": "scripts/geogebra.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/geogebra.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 3
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.GeoGebraClassicWidget",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+    ]
+}

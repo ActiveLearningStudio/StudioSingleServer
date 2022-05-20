@@ -1,0 +1,14 @@
+{
+  "title": "H5PEditor.H5PAdvanceOptions",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 0,
+  "machineName": "H5PEditor.H5PAdvanceOptions",
+  "author": "AHMAD MUKHTAR",
+  "preloadedJs": [
+    {
+      "path": "scripts/widget.js"
+    }
+  ]
+}

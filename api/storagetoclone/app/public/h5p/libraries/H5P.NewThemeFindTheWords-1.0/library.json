@@ -1,0 +1,53 @@
+{
+  "title": "NewTheme: Find The Words",
+  "description": "NewTheme: Game to find a list of words in a given word grid",
+  "machineName": "H5P.NewThemeFindTheWords",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "embedTypes": [
+    "iframe"
+  ],
+  "runnable": 1,
+  "author": "Mehmood",
+  "license": "MIT",
+  "preloadedCss": [
+    {
+      "path": "styles/h5p-find-the-words.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "scripts/h5p-find-the-words.js"
+    },
+    {
+      "path": "scripts/h5p-find-the-words-word-grid.js"
+    },
+    {
+      "path": "scripts/h5p-find-the-words-vocabulary.js"
+    },
+    {
+      "path": "scripts/h5p-find-the-words-timer.js"
+    },
+    {
+      "path": "scripts/h5p-find-the-words-counter.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.Timer",
+      "majorVersion": 0,
+      "minorVersion": 4
+    },
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 3
+    }
+  ]
+}

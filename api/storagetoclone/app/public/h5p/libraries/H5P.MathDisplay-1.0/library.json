@@ -1,0 +1,31 @@
+{
+  "machineName": "H5P.MathDisplay",
+  "title": "MathDisplay",
+  "description": "Allows to use LaTeX.",
+  "license": "MIT",
+  "author": "Joubel",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 7,
+  "runnable": 0,
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 19
+  },
+  "preloadedJs": [
+    {
+      "path": "scripts/mathdisplay.js"
+    }
+  ],
+  "addTo": {
+    "content": {
+      "types": [
+        {
+          "text": {
+            "regex": "/\\$\\$.+\\$\\$|\\\\\\[.+\\\\\\]|\\\\\\(.+\\\\\\)/"
+          }
+        }
+      ]
+    }
+  }
+}

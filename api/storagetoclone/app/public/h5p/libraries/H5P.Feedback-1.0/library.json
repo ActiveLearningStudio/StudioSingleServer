@@ -1,0 +1,27 @@
+
+{
+  "title": "Feedback",
+  "description": "H5P content type for getting user feedback",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "author": "Tom Arild Jakobsen <tom.arild.jakobsen@joubel.com>",
+  "license": "MIT",
+  "machineName": "H5P.Feedback",
+  "embedTypes": [
+    "iframe"
+  ],
+  "preloadedJs": [
+    {
+      "path": "dist/h5p-feedback.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "dist/h5p-feedback.css"
+    }
+  ],
+  "preloadedDependencies": [],
+  "editorDependencies": []
+}

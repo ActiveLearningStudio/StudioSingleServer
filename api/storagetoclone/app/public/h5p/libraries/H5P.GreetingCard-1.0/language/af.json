@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "Groeteteks",
+      "default": "Hallo wêreld!",
+      "description": "Die groeteboodskap word vertoon aan die eindgebruiker."
+    },
+    {
+      "label": "Kaartbeeld",
+      "description": "Opsionele, prent op kaart vertoon. Sonder hierdie wys die kaart net die teks."
+    }
+  ]
+}

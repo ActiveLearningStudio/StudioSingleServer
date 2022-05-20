@@ -1,0 +1,19 @@
+.h5p-glossary-test {
+  padding: 1em;
+}
+.h5p-glossary-test-button {
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  border: 2px solid blue;
+  cursor: pointer;
+  outline: none;
+}
+.h5p-glossary-test-button:hover {
+  border-color: lightblue;
+}
+.h5p-glossary-test-button:focus {
+  border-color: red;
+}
+.h5p-glossary-test-button:active {
+  border-color: pink;
+}

@@ -1,0 +1,13 @@
+{
+  "semantics":[
+    {
+      "label":"Teksten",
+      "default":"Hello world!",
+      "description":"Teksten vises til sluttbrukeren."
+    },
+    {
+      "label":"Kortbildet",
+      "description":"Bildet vises på kort, valgfritt. Uten dette vises kortet bare teksten."
+    }
+  ]
+}

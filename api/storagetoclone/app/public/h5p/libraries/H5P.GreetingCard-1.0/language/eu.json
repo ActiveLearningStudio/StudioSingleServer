@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "Agurrerako testua",
+      "default": "Kaixo mundua!",
+      "description": "Azken erabiltzaileari erakutsitako agurrerako testua."
+    },
+    {
+      "label": "Txartelaren irudia",
+      "description": "Txartelean agertzen den irudia, aukerakoa. Hori gabe, txartelak testua bakarrik erakutsiko du."
+    }
+  ]
+}

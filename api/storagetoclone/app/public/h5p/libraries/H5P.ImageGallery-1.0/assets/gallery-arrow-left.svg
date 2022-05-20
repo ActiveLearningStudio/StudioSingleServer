@@ -1,0 +1,9 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.63 239.03">
+  <style>
+    .white{
+    fill:#fff;
+    }
+  </style>
+  <title>gallery-arrow-left</title>
+  <path class="white" d="M89.73,125.62l96.93-96.93a13.26,13.26,0,0,0,0-18.77,13.59,13.59,0,0,0-18.77,0L66.62,108.29a22.13,22.13,0,0,0-.23,31.52l101.5,101.5a13.28,13.28,0,0,0,22.43-11.87,13.94,13.94,0,0,0-4-7.25Z" transform="translate(-59.91 -6.16)"/>
+</svg>

@@ -1,0 +1,16 @@
+[ 
+  { 
+    "label": "Geo Classic", 
+    "name": "Geo Classic", 
+    "type": "text", 
+    "default": "", 
+    "description": ""
+  }, 
+  {
+    "label": "Card image",
+    "name": "image",
+    "type": "image",
+    "optional": true,
+    "description": "Image shown on card, optional. Without this the card will show just the text."
+  }
+]

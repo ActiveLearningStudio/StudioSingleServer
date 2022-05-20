@@ -1,0 +1,28 @@
+{
+  "title": "Confirmation Dialog",
+  "contentType": "API",
+  "description": "Creates a confirmation dialog.",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 0,
+  "machineName": "H5P.ConfirmationDialog",
+  "author": "Joubel AS",
+  "preloadedJs": [
+    {
+      "path": "confirmation-dialog.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "confirmation-dialog.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "Pozdravna poruka",
+      "default": "Selam alejkum, raja!",
+      "description": "Pozdrav koji će korisnicima biti prikazan."
+    },
+    {
+      "label": "Slika",
+      "description": "Slika koja će biti prikazana. Bez slike, samo će biti prikazan tekst."
+    }
+  ]
+}

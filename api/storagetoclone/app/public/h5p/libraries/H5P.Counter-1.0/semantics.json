@@ -1,0 +1,285 @@
+[
+  {
+    "label": "Counter title",
+    "name": "title",
+    "type": "text",
+    "placeholder": "Christmas countdown!",
+    "description": "Make a title for the timer.",
+    "optional": true
+  },
+  {
+    "label": "Textfield",
+    "name": "textField",
+    "type": "text",
+    "placeholder": "@counter left until christmas! Merry christmas!",
+    "description": "Text to go with the counter, @counter specifies the time variable. Other variables: @chosenDate, @months, @weeks, @days, @hours, @minutes, @seconds.",
+    "widget": "html",
+    "enterMode": "p",
+    "tags": [
+      "strong",
+      "em",
+      "u",
+      "a",
+      "ul",
+      "ol",
+      "h2",
+      "h3",
+      "hr"
+    ]
+  },
+  {
+    "name": "clockType",
+    "label": "Select type of counter",
+    "type": "select",
+    "description": "Select the type of counter to make.",
+    "options": [
+      {
+      "label": "Countdown timer",
+      "value": "countDown"
+      },
+      {
+        "label": "Count up, counter",
+        "value": "countUp"
+      },
+      {
+        "label": "Stop clock",
+        "value": "stopClock"
+      }
+    ],
+    "default": "countDown"
+  },
+  {
+    "name": "date",
+    "type": "group",
+    "label": "Date to count down to, or up from.",
+    "fields": [
+      {
+        "name": "hour",
+        "type": "number",
+        "label": "Hour",
+        "description": "Select the hour of the date, 24hour format.",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "default": 0
+      },
+      {
+        "name": "minute",
+        "type": "number",
+        "label": "Minute",
+        "description": "Select the minute of the date.",
+        "min": 0,
+        "max": 60,
+        "step": 1,
+        "default": 0
+      },
+      {
+        "name": "day",
+        "type": "number",
+        "label": "Day of month",
+        "description": "Select the day of the month.",
+        "min": 1,
+        "max": 31,
+        "step": 1,
+        "default": 24
+      },
+      {
+        "name": "month",
+        "label": "Select month",
+        "type": "select",
+        "description": "Select the month to count up from or down to.",
+        "options": [
+          {
+            "label": "January",
+            "value": "01"
+          },
+          {
+            "label": "February",
+            "value": "02"
+          },
+          {
+            "label": "Mars",
+            "value": "03"
+          },
+          {
+            "label": "April",
+            "value": "04"
+          },
+          {
+            "label": "May",
+            "value": "05"
+          },
+          {
+            "label": "June",
+            "value": "06"
+          },
+          {
+            "label": "July",
+            "value": "07"
+          },
+          {
+            "label": "August",
+            "value": "08"
+          },
+          {
+            "label": "September",
+            "value": "09"
+          },
+          {
+            "label": "October",
+            "value": "10"
+          },
+          {
+            "label": "November",
+            "value": "11"
+          },
+          {
+            "label": "December",
+            "value": "12"
+          }
+        ],
+        "default": "12"
+      },
+      {
+        "name": "year",
+        "type": "number",
+        "label": "Year",
+        "description": "Select the year to count up from or down to.",
+        "min": 0,
+        "max": 2999,
+        "step": 1,
+        "default": 2015
+      }
+    ]
+  },
+  {
+    "name": "imageGroup",
+    "type": "group",
+    "label": "Background image options.",
+    "fields": [
+      {
+        "name": "backgroundImage",
+        "type": "image",
+        "label": "Background image",
+        "description": "An optional background image for the Counter.",
+        "optional": true
+      },
+      {
+        "label": "Show text on top of picture",
+        "name": "textOverlay",
+        "type": "boolean",
+        "default": true,
+        "optional": true
+      },
+      {
+        "name": "xPos",
+        "type": "number",
+        "label": "X position of text.",
+        "description": "The X-position of the counter text relative to the picture, in percentages. F.ex: 50% to center the text.",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 10,
+        "optional": true
+      },
+      {
+        "name": "yPos",
+        "type": "number",
+        "label": "Y position of text.",
+        "description": "The Y-position of the counter text relative to the picture, in percentages. F.ex: 50% to center the text.",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "default": 10,
+        "optional": true
+      }
+    ]
+  },
+  {
+    "name": "stopClockGroup",
+    "type": "group",
+    "label": "Stop clock options.",
+    "fields": [
+      {
+        "label": "Text for \"Start\" timer button",
+        "name": "startClockButton",
+        "type": "text",
+        "default": "Start",
+        "optional": true
+      },
+      {
+        "label": "Text for \"Pause\" timer button",
+        "name": "pauseClockButton",
+        "type": "text",
+        "default": "Pause",
+        "optional": true
+      },
+      {
+        "label": "Text for \"Restart\" timer button",
+        "name": "restartClockButton",
+        "type": "text",
+        "default": "Restart",
+        "optional": true
+      }
+    ]
+  },
+  {
+    "label": "Show months",
+    "name": "enableMonths",
+    "type": "boolean",
+    "default": false,
+    "optional": true
+  },
+  {
+    "label": "Show weeks",
+    "name": "enableWeeks",
+    "type": "boolean",
+    "default": false,
+    "optional": true
+  },
+  {
+    "label": "Show days",
+    "name": "enableDays",
+    "type": "boolean",
+    "default": true,
+    "optional": true
+  },
+  {
+    "label": "Show hours",
+    "name": "enableHours",
+    "type": "boolean",
+    "default": true,
+    "optional": true
+  },
+  {
+    "label": "Show minutes",
+    "name": "enableMinutes",
+    "type": "boolean",
+    "default": true,
+    "optional": true
+  },
+  {
+    "label": "Show seconds",
+    "name": "enableSeconds",
+    "type": "boolean",
+    "default": true,
+    "optional": true
+  },
+  {
+    "label": "Short format",
+    "description": "Displays the short format for the date. For example: 2d, 3h and 4m left.",
+    "name": "enableShortFormat",
+    "type": "boolean",
+    "default": false,
+    "optional": true
+  },
+  {
+    "label": "Countdown finished text",
+    "name": "finishedText",
+    "type": "text",
+    "widget": "textarea",
+    "placeholder": "Countdown is done, hurray!",
+    "description": "This text is displayed when a countdown has finished.",
+    "optional": true
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "title": "Facebook Page Feed",
+  "description": "Displays a Facebook Page Feed",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 14,
+  "runnable": 1,
+  "author": "GGW",
+  "license": "MIT",
+  "machineName": "H5P.FacebookPageFeed",
+  "preloadedJs": [
+    {
+      "path": "fb-page-feed.js"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+[
+	{
+	  "name": "phetSimulationSource",
+	  "type": "select",
+	  "label": "PhET Simulation Source",
+	  "options": [
+			{
+				"value": "file",
+				"label": "File"
+			},
+			{
+			
+				"value": "url",
+				"label": "Url"
+			}
+		],
+		"default": "file"
+	},
+    {
+        "name": "phetSimulationFile",
+        "type": "file",
+        "label": "PhET Simulation File",
+        "optional": true,
+		"widget":"showWhen",
+		"showWhen":{
+			"detach": true,
+			"rules":[
+				{
+					"field":"phetSimulationSource",
+					"type":"select",
+					"equals": ["file"]
+				}
+			]
+		}
+    },
+	{
+        "name": "phetSimulationUrl",
+        "type": "text",
+        "label": "PhET Simulation URL",
+        "optional": true,
+		"widget": "showWhen",
+		"showWhen": {
+			"detach": true,
+			"rules" : [
+				{
+					"field": "phetSimulationSource",
+					"type": "select",
+					"equals": ["url"]
+				}
+			]
+		}
+    }
+]

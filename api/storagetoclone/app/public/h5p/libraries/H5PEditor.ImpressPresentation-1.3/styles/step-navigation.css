@@ -1,0 +1,66 @@
+.h5p-impresspresentation-editor .h5p-impress-overview-step-button,
+.h5p-impresspresentation-editor .h5p-select-go-to {
+  vertical-align: baseline;
+  margin-bottom: 0;
+  margin-left: 0;
+  border-radius: 0;
+  padding: 0 0.8em;
+  line-height: 1.4em;
+}
+
+.h5p-impress-overview-step-button:before,
+.h5p-impresspresentation-editor .h5p-select-go-to:before {
+  font-family: H5PFontAwesome4, sans-serif;
+  content: '\f061';
+  padding-right: 0;
+  font-size: 0.8em;
+}
+
+.h5p-impress-overview-step-button.active {
+  background: #104888;
+
+  -webkit-box-shadow: inset 0 4px 0 #0e407a;
+  -moz-box-shadow: inset 0 4px 0 #0e407a;
+  box-shadow: inset 0 4px 0 #0e407a;
+}
+
+.h5p-impress-overview-step-button.active:before {
+  content: '\f00e';
+}
+
+.h5p-impress-overview-step-button:before {
+  content: '\f010';
+}
+
+.h5p-active-step-wrapper .h5p-select-go-to {
+  display: inline-block;
+  margin: 0;
+}
+
+.h5p-active-step-wrapper .h5p-select-go-to:before {
+  content: '\f060';
+}
+
+.h5p-active-step-content {
+  display: inline-block;
+}
+
+.h5p-impresspresentation-editor .h5p-active-step-wrapper,
+.h5p-impresspresentation-editor .impress-presentation-buttonbar .h5p-select-container {
+  display: inline-block;
+  margin-right: 2em;
+}
+
+.h5p-impresspresentation-editor .h5p-active-step-wrapper .h5p-active-step-title,
+.h5p-impresspresentation-editor .h5p-select-container .h5p-select-title {
+  font-size: 0.8em;
+}
+
+.h5p-impresspresentation-editor .h5p-select-container .h5p-step-selector {
+  width: 10em;
+}
+
+.h5p-impresspresentation-editor .h5p-active-step-wrapper input.h5p-active-step-display {
+  width: 8.5em;
+  padding: 2px;
+}

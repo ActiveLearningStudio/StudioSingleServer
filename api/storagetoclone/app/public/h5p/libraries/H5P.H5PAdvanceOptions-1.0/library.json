@@ -1,0 +1,33 @@
+{
+  "title": "H5P Advance Options",
+  "description": "Curriki H5P for Pasting Same Format.",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "fullscreen": 1,
+  "author": "AHMAD MUKHTAR",
+  "license": "cc-by-sa",
+  "machineName": "H5P.H5PAdvanceOptions",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 0
+  },
+  "preloadedJs": [
+    {
+      "path": "scripts/H5PAdvanceOptions.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/H5PAdvanceOptions.css"
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.H5PAdvanceOptions",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

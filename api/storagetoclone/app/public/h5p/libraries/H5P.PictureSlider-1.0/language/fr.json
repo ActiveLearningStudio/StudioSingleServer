@@ -1,0 +1,136 @@
+{
+  "semantics": [
+    {
+      "label": "Largeur",
+      "description": "Largeur du diaporama en pixels."
+    },
+    {
+      "label": "Hauteur",
+      "description": "Hauteur du diaporama en pixels."
+    },
+    {
+      "label": "Images",
+      "entity": "image",
+      "description": "Liste des images du diaporama.",
+      "field": {
+        "label": "Image",
+        "fields": [
+          {
+            "label": "Légende",
+            "description": "Légende de l'image."
+          },
+          {
+            "label": "Image",
+            "description": "Image pour le diaporama."
+          },
+          {
+            "label": "Texte",
+            "description": "Texte d'information sur l'image."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Options avancées",
+      "fields": [
+        {
+          "label": "En boucle",
+          "description": "Le diaporama est diffusé en boucle"
+        },
+        {
+          "label": "Infini",
+          "description": "Diaporama diffusé à l'infini. Note: Il est possible de créer un diaporama infini et non en boucle, mais il n'est pas possible de créer un diaporama en boucle non infini. (vrai ou faux)"
+        },
+        {
+          "label": "Direction",
+          "description": "Carrousel de droite à gauche, de haut en bas ou inversement.",
+          "options": [
+            {
+              "label": "Droite"
+            },
+            {
+              "label": "Gauche"
+            },
+            {
+              "label": "En haut"
+            },
+            {
+              "label": "En bas"
+            }
+          ]
+        },
+        {
+          "label": "Pagination",
+          "description": ""
+        },
+        {
+          "label": "Options de défilement",
+          "fields": [
+            {
+              "label": "Effets de défilement",
+              "description": "Indique l'effet à utiliser pour les transitions.",
+              "options": [
+                {
+                  "label": "Aucune"
+                },
+                {
+                  "label": "Défilement"
+                },
+                {
+                  "label": "Défilement direct"
+                },
+                {
+                  "label": "Fondu"
+                },
+                {
+                  "label": "Fondu enchaîné"
+                },
+                {
+                  "label": "Remplacé"
+                },
+                {
+                  "label": "Fondu remplacé"
+                },
+                {
+                  "label": "Découvert"
+                },
+                {
+                  "label": "Fondu découvert"
+                }
+              ]
+            },
+            {
+              "label": "Items",
+              "description": "Nombre d'items dans le défilement."
+            },
+            {
+              "label": "Durée",
+              "description": "Durée de la transition en millisecondes. Si inférieur à 10, le nombre est interprété comme une vitesse (pixels/milliseconde). Souvent préférable quand on enchaîne des items avec des tailles variables."
+            }
+          ]
+        },
+        {
+          "label": "Options d'automatisation",
+          "fields": [
+            {
+              "label": "Rotation automatique",
+              "description": "Défilement automatique du carrousel ou pas."
+            },
+            {
+              "label": "Items",
+              "description": "Nombre d'items à défiler automatiquement."
+            },
+            {
+              "label": "Durée",
+              "description": "Durée de la transition en millisecondes. Si inférieur à 10, le nombre est interprété comme une vitesse (pixels/milliseconde). Souvent préférable quand on enchaîne des items avec des tailles variables."
+            },
+            {
+              "label": "Pause au survol",
+              "description": "Determine le temps de pause de la transition quand la souris survole un élément."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

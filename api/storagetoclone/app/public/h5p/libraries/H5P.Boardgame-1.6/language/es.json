@@ -1,0 +1,150 @@
+{
+  "semantics": [
+    {
+      "label": "Título del juego",
+      "description": "Cual es el título del juego que está creando."
+    },
+    {
+      "label": "Fondo del tablero",
+      "description": "Seleccionar una imagen de fondo para su juego de mesa."
+    },
+    {
+      "label": "Dimensiones del tablero",
+      "description": "Especificar cuanto espacio (en pixeles) deberá tener el juego de mesa. El reporte del formato debe corresponder al de su imagen de fondo.",
+      "fields": [
+        {},
+        {}
+      ]
+    },
+    {
+      "label": "Habilitar sombreado",
+      "description": "Habilite el sombreado alrededor del tablero. Si está habilitada, el tablero ocupa más espacio del que sugiere el tablero."
+    },
+    {
+      "label": "Introducción al juego",
+      "fields": [
+        {
+          "label": "Texto de bienvenida e instrucciones",
+          "description": "Explica lo que el usuario debe hacer y el propósito del juego."
+        },
+        {
+          "label": "Texto del botón",
+          "description": "Etiqueta del botón que el usuario debe presionar para iniciar el juego."
+        }
+      ]
+    },
+    {
+      "label": "Puntos focales",
+      "entity": "puntos focales",
+      "description": "Los puntos focales son mini-juegos que se colocan sobre el tablero. Ejem.: Quiz, Ahorcado.",
+      "field": {
+        "label": "Hotspot",
+        "fields": [
+          {
+            "label": "Título",
+            "description": "Dar un nombre a su punto focal."
+          },
+          {
+            "label": "Imagen del punto focal",
+            "description": "Imagen utilizada en el tablero para que los usuarios identifiquen el punto focal."
+          },
+          {
+            "label": "Imagen de punto de acceso - Aprobada",
+            "description": "La imagen del punto focal se modificará una vez que el usuario haya completado y aprobado un mini-juego."
+          },
+          {
+            "label": "Imagen de punto de acceso - Falló",
+            "description": "La imagen del punto focal se modificará una vez que el usuario no haya aprobado un mini-juego."
+          },
+          {
+            "label": "Posición del punto focal",
+            "description": "Coloque el punto focal en el tablero de juego usando las coordenadas en píxeles.",
+            "default": {},
+            "fields": [
+              {},
+              {}
+            ]
+          },
+          {
+            "label": "Inicio",
+            "description": "Elija el mini-juego que se iniciará cuando el usuario elija este punto focal."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Indicación de progreso",
+      "fields": [
+        {
+          "label": "Habilita la indicación de progreso"
+        },
+        {
+          "entity": "imagen",
+          "description": "Seleccionar las imágenes a utilizar para indicación de progreso. Una por cada paso de avance y una para las respuestas que aun no se han dado.",
+          "field": {
+            "label": 0
+          }
+        },
+        {
+          "label": "Posición del indicador de progreso",
+          "description": "Coloque el indicador de progreso en el tablero usando las coordenadas en píxeles.",
+          "fields": [
+            {},
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Juego completado",
+      "fields": [
+        {
+          "label": "Video finalizado",
+          "description": "El video comienza antes de que se muestren los resultados del juego."
+        },
+        {
+          "label": "Permitir omitir el video terminado."
+        },
+        {
+          "label": "Texto del botón para saltar",
+          "description": "Etiqueta para el botón que el usuario debe presionar para omitir el video terminado."
+        }
+      ]
+    },
+    {
+      "label": "Resultados del juego",
+      "fields": [
+        {
+          "label": "Texto de resultado",
+          "description": "El texto que explica la puntuación del juego. Variables: @score, @total, @percentage."
+        },
+        {
+          "label": "Texto del botón de reintento",
+          "description": "Etiqueta para el botón que el usuario debe presionar para comenzar de nuevo."
+        },
+        {
+          "label": "Botón que muestra la solución",
+          "description": "Etiqueta para el botón que el usuario debe presionar para ver las soluciones."
+        }
+      ]
+    },
+    {
+      "label": "Configuración de botones \"Mostrar solución\" y \"Reintentar\".",
+      "description": "Estas opciones le permiten anular al mostrar los botones \"Mostrar solución\" y \"Reintentar\" en el contenido H5P integrado.",
+      "fields": [
+        {
+          "label": "Activar ignorar configuraciones para \"Mostrar solución\" y \"Reintentar\".",
+          "description": "Si esta opción está habilitada, su configuración para preguntas se ignorará y se utilizará la siguiente configuración."
+        },
+        {
+          "label": "Activar botones \"Mostrar solución\".",
+          "description": "Habilitar esta opcón hará que las preguntas muestren el botón \"Mostrar solución\"."
+        },
+        {
+          "label": "Activar \"Reintentar\".",
+          "description": "Habilitar esta opcón hará que esté habilitada para el usuario la opción \"Reintentar\"."
+        }
+      ]
+    }
+  ]
+}

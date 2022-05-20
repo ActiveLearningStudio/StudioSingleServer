@@ -1,0 +1,21 @@
+{
+  "title": "Counter",
+  "description": "Set up a counter that can work as a countdown, count up or stop clock.",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "author": "Joubel AS",
+  "license": "MIT",
+  "machineName": "H5P.Counter",
+  "preloadedCss": [
+    {
+      "path": "counter.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "counter.js"
+    }
+  ]
+}

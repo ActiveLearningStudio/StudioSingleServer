@@ -1,0 +1,246 @@
+@import 'variables';
+
+.h5p-vtab-wrapper:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: ' ';
+  clear: both;
+  height: 0;
+}
+
+.h5p-vtabs {
+  float: left;
+  width: $tabs-width;
+  position: relative;
+  padding: 0;
+}
+.h5p-vtab-forms {
+  border: 1px solid $form-border-color;
+  margin-left: $tabs-width + 5px;
+}
+.h5p-vtab-form {
+  position: relative;
+  display: none;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+.h5p-vtab-form.h5p-current {
+  display: block;
+}
+.h5p-vtab-form > .field {
+  margin: 0;
+}
+.h5p-vtabs .h5p-vtab-li,
+.h5p-vtabs .h5p-placeholder {
+  position: relative;
+  padding: 0;
+  margin: 0 0 3px 0;
+}
+
+.h5p-vtab-a {
+  border: 1px solid $form-border-color;
+  background-color: $form-item-importance-low-background;
+  height: 38px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 38px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0 30px;
+  margin: 0 12px 0 0;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  outline: none;
+}
+
+.h5p-vtabs .h5p-vtab-li.h5p-current {
+  .h5p-vtab-a {
+    background: $form-item-importance-medium-background;
+    border: 1px solid $form-item-importance-medium-border-color;
+    border-right: 0;
+    color: white;
+  }
+
+  &:after,
+  &:before {
+    position: absolute;
+    left: 200px;
+    content: " ";
+    width: 0;
+    height: 0;
+  }
+
+  &:before {
+    top: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 13px solid $form-item-importance-medium-border-color;
+  }
+
+  &:after {
+    top: 1px;
+    border-top: 19px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-left: 12px solid $form-item-importance-medium-background;
+  }
+
+  > .vtab-order-wrapper {
+    > .order-up,
+    > .order-down {
+      background: $form-item-importance-medium-border-color;
+
+      &[aria-disabled="false"]:hover {
+        background: darken($form-item-importance-medium-border-color, 10%);;
+      }
+
+      &:after {
+        color: white;
+      }
+    }
+  }
+}
+
+.h5p-placeholder > .h5p-vtab-a {
+  background: $tab-dropzone-background;
+  border: dashed 2px $tab-dropzone-border;
+  height: 36px;
+}
+
+.h5p-vtabs > button {
+  float: right;
+  margin: 8px 14px 8px 8px;
+}
+
+.h5p-vtabs .h5p-moving {
+  position: absolute;
+  z-index: 1;
+
+  > .h5p-vtab-a {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
+}
+
+.vtab-order-wrapper {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+
+  > .order-up,
+  > .order-down {
+    width: 19px;
+    height: 19px;
+    background: $form-border-color;
+    font-size: 14px;
+    line-height: 19px;
+    cursor: pointer;
+    text-align: center;
+
+    &[aria-disabled="false"]:hover {
+      background-color: darken($form-border-color, 10%);
+    }
+
+    &:before {
+      right: auto;
+      left: -5px;
+    }
+
+    &[aria-disabled="true"] {
+      cursor: default;
+
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+
+  > .order-up:after {
+    font-family: "H5P";
+    content: "\e58e";
+  }
+
+  > .order-down {
+    top: auto;
+    bottom: 1px;
+
+    &:after {
+      font-family: "H5P";
+      content: "\e58f";
+    }
+  }
+}
+
+.vtab-remove-wrapper {
+  position: absolute;
+  top: 1px;
+  right: 12px;
+
+  > .remove {
+    cursor: pointer;
+    width: 1.25em;
+    height: 38px;
+    font-size: 1.75em;
+    text-align: center;
+
+    &:after {
+      font-family: "H5P";
+      content: "\e890";
+      color: #6f6f71;
+      display: inline-block;
+      line-height: 38px;
+    }
+  }
+}
+
+.h5p-current > .vtab-remove-wrapper > .remove:after {
+  color: #fff;
+}
+
+.h5peditor-button.add-entity {
+  width: 200px;
+  height: 40px;
+  background: $form-item-importance-high-background linear-gradient($form-item-importance-high-background-highlight 50%, transparent 50%, transparent);
+
+  border: 1px solid $form-item-importance-high-border-color;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  line-height: 38px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+  border-radius: 3px;
+  margin-top: 5px;
+
+  &:hover {
+    background: $form-item-importance-high-background-hover linear-gradient($form-item-importance-high-background-hover-highlight 50%, transparent 50%, transparent);
+  }
+
+  &:before {
+    font-family: "H5P";
+    content: "\e902";
+    margin-right: 6px;
+    font-weight: 400;
+    font-size: 1.5em;
+    vertical-align: bottom;
+  }
+}
+
+.h5p-vtab-form {
+  > .library,
+  > .list,
+  > .group > .content {
+    padding: 10px;
+    border: none;
+  }
+}

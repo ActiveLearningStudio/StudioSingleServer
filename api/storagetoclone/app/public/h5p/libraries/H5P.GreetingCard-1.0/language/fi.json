@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "Tervehdysteksti",
+      "default": "Hei maailma!",
+      "description": "Tämä tervehdysteksti näytetään opiskelijoille."
+    },
+    {
+      "label": "Kortin kuva",
+      "description": "Kuva joka näytetään kortissa, ei pakollinen. Ilman kuvaa näytetään vain teksti"
+    }
+  ]
+}

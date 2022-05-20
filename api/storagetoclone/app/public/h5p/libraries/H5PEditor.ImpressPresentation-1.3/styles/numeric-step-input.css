@@ -1,0 +1,108 @@
+.h5p-impress-numeric-step-input {
+  position:absolute;
+  right: 0;
+  top:0;
+  width:30%;
+  height:100%;
+  z-index: 11;
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.h5p-impress-numeric-step-input.hidden {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+.h5p-impress-numeric-step-input.hidden .h5p-impress-numeric-step-input-content {
+  visibility: hidden;
+  -webkit-transition: visibility 0.5s;
+  transition: visibility 0.5s;
+}
+.h5p-impress-numeric-step-input.hidden .h5p-impress-numeric-step-input-toggle:hover,
+.h5p-impress-numeric-step-input .h5p-impress-numeric-step-input-toggle:hover {
+  color: #333;
+  opacity: 1;
+}
+
+.h5p-impress-numeric-step-input.hidden .h5p-impress-numeric-step-input-toggle {
+  opacity: 0.8;
+}
+
+
+.h5p-impress-numeric-step-input.hidden .h5p-impress-numeric-step-input-toggle {
+  left: -1.9em;
+  padding: 0.25em 0.5em;
+}
+
+.h5p-impress-numeric-step-input .fa-angle-double-left:before {
+  content: "\f101";
+}
+
+.h5p-impress-numeric-step-input.hidden .fa-angle-double-left:before {
+  content: "\f044";
+}
+
+.h5p-impress-numeric-step-input-title {
+  border-bottom:1px solid #ccc;
+  border-left: 1px solid #ccc;
+  height: 2em;
+  line-height: 2em;
+  text-align: center;
+  box-sizing: border-box;
+  background: white;
+}
+
+.h5p-impress-numeric-step-input-toggle {
+  position: absolute;
+  top: 0.5em;
+  left: -1.75em;
+
+  z-index: -1;
+  padding: 0.25em 0.75em;
+  font-size: 1.5em;
+
+  border: 1px solid #ccc;
+  border-radius: 0.25em;
+  background: white;
+  color: #ccc;
+  cursor: pointer;
+
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+
+.h5p-impress-numeric-step-input-fields {
+  position: absolute;
+  height: calc(100% - 2em);
+  width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  background: #fff;
+  border-left: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.h5p-impress-numeric-step-input-fields-rotation,
+.h5p-impress-numeric-step-input-fields-position {
+  display: block;
+  padding: 0.5em;
+}
+
+.h5p-impress-numeric-step-input-fields input[type=number] {
+  float: right;
+  width: 6em;
+}
+
+.h5p-impress-numeric-step-input-fields-rotation input[type=range] {
+  width:100%;
+}
+
+.h5p-impress-numeric-step-input-fields label:nth-child(even) {
+  background: #eee;
+}

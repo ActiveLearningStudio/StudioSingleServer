@@ -1,0 +1,9 @@
+.env
+/api/.env
+/client/.env.local
+/client/.env
+/tsugi/config.php
+/tsugi/mod/curriki/config.php
+/trax-lrs/.env
+/backup
+setup.sh

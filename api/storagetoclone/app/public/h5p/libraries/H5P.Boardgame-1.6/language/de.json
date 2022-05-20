@@ -1,0 +1,169 @@
+{
+  "semantics": [
+    {
+      "label": "Spieltitel",
+      "placeholder": "Arktisches Wissen",
+      "description": "Dies ist der Titel des Spiels das erstellt wird."
+    },
+    {
+      "label": "Hintergrund des Spielbretts",
+      "description": "Wählen eines passenden Hintergrundbildes für das Brettspiel."
+    },
+    {
+      "label": "Spielbrettgröße",
+      "description": "Spezifikation der Größe des Spielbrettes (in px). Das Abbildungsverhältnis sollte mit dem Hintergrundbild übereinstimmen.",
+      "default": "Hintergrund",
+      "fields": [
+        {
+        },
+        {
+        }
+      ]
+    },
+    {
+      "label": "Schlagschatten aktivieren",
+      "description": "Aktivieren eines Schlagschattens um das Spielbrett herum. Wenn dies aktiviert wird, dann braucht das Spielbrett mehr Platz als die vorgeschlagene Spielbrettgröße"
+    },
+    {
+      "label": "Spieleinführung",
+      "fields": [
+        {
+          "tags": [],
+          "label": "Willkommens- und Einführungstext",
+          "placeholder": "Grüße, junger Reisender! Bist du bereit dein Wissen über die Arktis zu testen?",
+          "description": "Erklärung darüber was der Benutzer zu tun hat und was das Ziel des Spieles ist."
+        },
+        {
+          "label": "Buttontext",
+          "default": "Start",
+          "placeholder": "Start",
+          "description": "Label des Buttons den der Benutzer zum Starten des Spiels betätigen muss."
+        }
+      ]
+    },
+    {
+      "label": "Hotspots",
+      "description": "Hotspots sind Minispiele die auf dem Spielbrett platziert werden. z.B. Quiz, Hangman.",
+      "field": {
+        "label": "Hotspot",
+        "fields": [
+          {
+            "label": "Titel",
+            "description": "Hotspot benennen."
+          },
+          {
+            "label": "Hotspotbild",
+            "description": "Bild das auf dem Spielbrett verwendet wird um den Hotspot zu identifizieren."
+          },
+          {
+            "label": "Hotspotbild - Absolviert",
+            "description": "Das Hotspotbild wird sich zu diesem Bild ändern, sobald der Benutzer ein Minispiel passiert und vollendet hat."
+          },
+          {
+            "label": "Hotspotbild - Fehlgeschlagen",
+            "description": "Das Hotspotbild wird sich zu diesem Bild ändern, sobald der Benutzer gescheitert ist."
+          },
+          {
+            "label": "Hotspotposition",
+            "max": "../../size",
+            "description": "Positionieren des Hotspots auf dem Spielbrett durch die Verwendung von Koordinaten in Pixeln.",
+            "default": {
+            },
+            "fields": [
+              {
+              },
+              {
+              }
+            ]
+          },
+          {
+            "label": "Aktion",
+            "description": "Wählen des Minispiels das startet, sobald der Benutzer diesen Hotspot auswählt.",
+            "options": [
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "label": "Fortschrittsindikator",
+      "fields": [
+        {
+          "label": "Fortschrittsindikator aktivieren"
+        },
+        {
+          "description": "Wählen von Bildern die als Fortschrittsindikator verwendet werden. Einen für jeden Fortschritt, Plus einen für bisher keine abgegebenen Antworten.",
+          "field": {
+          }
+        },
+        {
+          "label": "Position des Fortschrittsindikators",
+          "description": "Positionierung des Fortschrittsindikators auf dem Spielbrett durch die Verwendung von Pixelkoordinaten.",
+          "max": "../size",
+          "fields": [
+            {
+            },
+            {
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Spiel beendet",
+      "fields": [
+        {
+          "label": "Beendendes Video",
+          "description": "Video das gezeigt wird bevor die Spielergebnisse angezeigt werden."
+        },
+        {
+          "label": "Überspringen des beendenden Videos erlauben"
+        },
+        {
+          "label": "Text des Überspringen Buttons",
+          "default": "Video überspringen",
+          "description": "Label für den Button den der Benutzer klicken muss um das beendende Video zu überspringen."
+        }
+      ]
+    },
+    {
+      "label": "Spielergebnisse",
+      "fields": [
+        {
+          "tags": [],
+          "label": "Ergebnistext",
+          "default": "Du hast @score von @total erzielt. Das sind @percentage %",
+          "description": "Der Text der den Spielstand erklärt. Variablen: @score, @total, @percentage."
+        },
+        {
+          "label": "Text des Wiederholen Buttons",
+          "default": "Nochmal versuchen",
+          "description": "Label für den Button den der Benutzer drücken muss um nochmals zu starten."
+        },
+        {
+          "label": "Zeige Lösungsbutton",
+          "default": "Lösungen",
+          "description": "Label des Buttons den der Benutzer drücken muss um die Lösungen einzusehen."
+        }
+      ]
+    },
+    {
+      "label": "Einstellungen für den \"Lösung anzeigen\" Button und \"Wiederholen\".",
+      "description": "Dies Optionen lassen die Anzeige vom \"Lösung anzeigen\" Button und \"Wiederholen\" in integriertem h5p Inhalt überschreiben.",
+      "fields": [
+        {
+          "label": "Überschreibung für \"Lösung anzeigen\" und \"Wiederholen\" Einstellungen aktivieren.",
+          "description": "Wenn dies aktiviert ist, dann werden die Einstellungen der Fragen ignoriert und stattdessen die unteren Einstellungen verwendet."
+        },
+        {
+          "label": "Aktiviere \"Lösung anzeigen\" Buttons.",
+          "description": "Das Aktivieren dieser Option wird bei Fragen den \"Lösungen anzeigen\" Button anzeigen."
+        },
+        {
+          "label": "\"Wiederholen\" aktivieren.",
+          "description": "Die Aktivierung dieser Option wird es dem Benutzer ermöglichen zu \"Wiederholen\" ."
+        }
+      ]
+    }
+  ]
+}

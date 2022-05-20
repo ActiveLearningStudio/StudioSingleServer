@@ -1,0 +1,28 @@
+.h5p-document {
+    padding: 2em;
+    color: black;
+}
+
+.h5p-document .document-title {
+    margin-bottom: 1em;
+}
+
+.h5p-document.h5p-fullscreen{
+  overflow: auto;
+}
+
+.h5p-document.h5p-fullscreen .insert-iframe{
+  width: -webkit-fill-available;
+  min-width: 60%;
+}
+iframe.insert-iframe {
+    min-height: 500px;
+}
+
+@media (max-width:992px) {
+	
+	iframe.insert-iframe {
+   	width: 100%;
+}
+
+}

@@ -1,0 +1,24 @@
+{
+  "title": "Star Rating",
+  "description": " library that get rating",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "machineName": "H5P.StarRating",
+  "author": "Qamar",
+  "preloadedJs": [
+    {
+      "path": "scripts/text.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/text.css"
+    }
+  ],
+  "metadataSettings": {
+    "disable": 0,
+    "disableExtraTitleField": 1
+  }
+}

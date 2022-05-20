@@ -1,0 +1,385 @@
+{
+  "semantics": [
+    {
+      "fields": [
+        {
+          "field": {
+            "fields": [
+              {
+                "field": {
+                  "fields": [
+                    {},
+                    {},
+                    {},
+                    {},
+                    {},
+                    {
+                      "label": "Comentaris",
+                      "description": "Els comentaris són mostrats quan l'usuari desvetlla les respostes suggerides de totes les diapositives."
+                    },
+                    {
+                      "label": "Sempre mostra els comentaris"
+                    },
+                    {
+                      "label": "Opacitat del fons"
+                    },
+                    {
+                      "label": "Mostra com a botó"
+                    },
+                    {
+                      "label": "Mida del botó",
+                      "options": [
+                        {
+                          "label": "Gran"
+                        },
+                        {
+                          "label": "Petit"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Títol"
+                    },
+                    {
+                      "label": "Ves a",
+                      "options": [
+                        {
+                          "label": "Especifica número de diapositiva"
+                        },
+                        {
+                          "label": "Diapositiva següent"
+                        },
+                        {
+                          "label": "Diapositiva anterior"
+                        }
+                      ]
+                    },
+                    {
+                      "label": "Especifica número de diapositiva",
+                      "description": "Només aplicable quan 'Especifica el número de diapositiva' està seleccionat."
+                    },
+                    {
+                      "label": "Invisible",
+                      "description": "Cursor per defecte, sense títol ni índex de pestanyes. Advertència: Els usuaris amb discapacitat o que només usen el teclat, poden tenir problemes utitlitzant aquest element."
+                    }
+                  ]
+                }
+              },
+              {},
+              {
+                "fields": [
+                  {
+                    "label": "Imatge",
+                    "description": "La imatge de fons ha de tenir una ràtio amplada-alçada de 2:1 per evitar l'allargament . Les imatges amb alta resolució es mostraran millor en pantalles grans."
+                  },
+                  {
+                    "label": "Agafa un color",
+                    "default": ""
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {},
+        {
+          "label": "Llista de paraules clau"
+        },
+        {
+          "label": "Mostra sempre"
+        },
+        {
+          "label": "Oculta automàticament"
+        },
+        {
+          "label": "Opacitat"
+        },
+        {
+          "fields": [
+            {
+              "label": "Imatge",
+              "description": "La imatge de fons ha de tenir una ràtio amplada-alçada de 2:1 per evitar l'allargament . Les imatges amb alta resolució es mostraran millor en pantalles grans."
+            },
+            {
+              "label": "Agafa un color",
+              "default": ""
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Localitza",
+      "fields": [
+        {
+          "label": "Traducció per a \"Diapositiva\"",
+          "default": "Pàgina"
+        },
+        {
+          "label": "Traducció per a \"Puntuació\"",
+          "default": "Qualificació"
+        },
+        {
+          "label": "Traducció per a \"La teva puntuació\"",
+          "default": "La teva qualificació"
+        },
+        {
+          "label": "Traducció per a \"Màxima puntuació\"",
+          "default": "Màxima qualificació"
+        },
+        {
+          "label": "TTraducció per a \"Total\"",
+          "default": "Total"
+        },
+        {
+          "label": "Traducció per a \"Puntuació total\"",
+          "default": "Qualificació total"
+        },
+        {
+          "label": "Títol pel botó de les solucions",
+          "default": "Mostra solucions"
+        },
+        {
+          "label": "Text pel botó de reintent",
+          "default": "Tornar-ho a provar"
+        },
+        {
+          "label": "Text per al botó d'exportar text",
+          "default": "Exporta text"
+        },
+        {
+          "label": "Amaga el títol del botó de llista de paraules clau",
+          "default": "Amaga la llista de paraules clau"
+        },
+        {
+          "label": "Mostra el títol del botó de llista de paraules clau",
+          "default": "Mostra la llista de paraules clau"
+        },
+        {
+          "label": "Etiqueta de pantalla completa",
+          "default": "Pantalla completa"
+        },
+        {
+          "label": "Etiqueta de sortir de paraula completa",
+          "default": "Surt de la Pantalla completa"
+        },
+        {
+          "label": "Etiqueta de diapositiva anterior",
+          "default": "Diapositiva anterior"
+        },
+        {
+          "label": "Etiqueta de diapositiva següent",
+          "default": "Diapositiva següent"
+        },
+        {
+          "label": "Etiqueta de diapositiva actual",
+          "default": "Diapositiva actual"
+        },
+        {
+          "label": "Etiqueta d'útlima diapositiva",
+          "default": "Última diapositiva"
+        },
+        {
+          "label": "Text de Sortida del mode solucionari",
+          "default": "Sortir del mode solucionari"
+        },
+        {
+          "label": "Text del Mode Solucionari",
+          "default": "Mode Solucionari"
+        },
+        {
+          "label": "Text de diverses tasques en una pàgina",
+          "default": "Diverses activitats"
+        },
+        {
+          "label": "Text del missatge de puntuació",
+          "default": "Has aconseguit:"
+        },
+        {
+          "label": "Text de Comparteix a Facebook",
+          "default": "Comparteix a Facebook"
+        },
+        {
+          "label": "Text de Comparteix a Twitter",
+          "default": "Comparteix a Twitter"
+        },
+        {
+          "label": "Text de Comparteix a Google",
+          "default": "Comparteix a Google+"
+        },
+        {
+          "label": "Títol de la diapositiva resum",
+          "default": "Resum"
+        },
+        {
+          "label": "Títol per a mostrar comentaris",
+          "default": "Mostra comentaris"
+        },
+        {
+          "label": "Títol pel botó d'imprimir",
+          "default": "Imprimir"
+        },
+        {
+          "label": "Diàleg d'impressió",
+          "default": "Esteu segurs d'imprimir aquesta presentació?"
+        },
+        {
+          "label": "Etiqueta pel botó \"Imprimeix totes les diapositives\" ",
+          "default": "Imprimeix totes les diapositives"
+        },
+        {
+          "label": "Etiqueta pel botó \"Imprimeix la diapositiva actual\" ",
+          "default": "Imprimeix la diapositiva actual"
+        },
+        {
+          "label": "Etiqueta per a les diapositives sense títol",
+          "default": "Sense títol"
+        },
+        {
+          "label": "Explicació de la navegació de diapositives per a tecnologies d'assistència",
+          "default": "Utilitzeu la fletxa esquerra i dreta per canviar la diapositiva en aquesta direcció cada vegada que seleccioneu el llenç"
+        },
+        {
+          "label": "Etiqueta de llenç per a tecnologies assistencials",
+          "default": "Presentació del llenç. Utilitzeu la fletxa esquerra i dreta per desplaçar-se entre les diapositives."
+        },
+        {
+          "label": "Etiqueta per a interaccions incompletes",
+          "default": "@slideName conté interaccions incompletes"
+        },
+        {
+          "label": "Etiqueta per a interaccions completes",
+          "default": "@slideName conté interaccions completes"
+        },
+        {
+          "label": "Etiqueta per al ccomptador de diapositives. Les variables són @index, @total",
+          "default": "Diapositiva @index de @total"
+        },
+        {
+          "label": "Etiqueta per les diapositives que només contenen respostes correctes",
+          "default": "@slideName té totes les respostes correctes"
+        },
+        {
+          "label": "Etiqueta per les diapositives que contenen respostes incorrectes",
+          "default": "@slideName te respostes incorrectes"
+        },
+        {
+          "label": "Etiqueta per a la barra Social",
+          "default": "Comparteix els resultats"
+        },
+        {
+          "label": "Anunci de puntuació total de tecnologies d'assistència",
+          "default": "Has aconseguit @score de @maxScore punts en total",
+          "description": "Les variable disponibles són @score i @maxScore"
+        },
+        {
+          "label": "Anunci d'entrada a pantalla completa per a tecnologies assistives",
+          "default": "Heu entrat a pantalla completa"
+        },
+        {
+          "label": "Anunci de sortida a pantalla completa per a tecnologies assistives",
+          "default": "Heu sortit de pantalla completa"
+        }
+      ]
+    },
+    {
+      "label": "Configuració de  la retroacció.",
+      "description": "Aquestes opcions et permeten modificar el comportament de les retroaccions.",
+      "fields": [
+        {
+          "label": "Activa el mode de superfície activa",
+          "description": "Elimina els controls de navegació per a l’usuari final. Utilitzeu 'ves a la diapositiva' per navegar."
+        },
+        {
+          "label": "Amagueu la diapositiva resum",
+          "description": "Amaga la diapositiva resum."
+        },
+        {
+          "label": "Anula el botó \"Mostra solució\"",
+          "description": "Aquesta opció determina si es mostrarà el botó \"Mostra solució\" per a totes les preguntes, desactivades, per a totes o configurades de manera individual per a cada pregunta.",
+          "options": [
+            {
+              "label": "Activat"
+            },
+            {
+              "label": "Desactivat"
+            }
+          ]
+        },
+        {
+          "label": "Anula el botó \"Reintenta\"",
+          "description": "Aquesta opció determina si es mostrarà el botó \"Reintenta\" per a totes les preguntes, desactivades, per a totes o configurades de manera individual per a cada pregunta.",
+          "options": [
+            {
+              "label": "Activat"
+            },
+            {
+              "label": "Desactivat"
+            }
+          ]
+        },
+        {
+          "label": "Mostra \"Mostra solució\" a la diapositiva del resum",
+          "description": "Si està activat, l’aprenent podrà mostrar les solucions per a totes les preguntes quan arribin a la diapositiva resum"
+        },
+        {
+          "label": "Mostra \"Reintenta\" a la diapositiva del resum",
+          "description": "Si està activat, l’aprenent podrà tornar a intentar totes les preguntes quan arribin a la diapositiva resum. Tingueu en compte que, actualitzant la pàgina, els estudiants podran tornar a intentar-ho, fins i tot si aquest botó no es mostra."
+        },
+        {
+          "label": "Activa el botó Imprimir",
+          "description": "Activa el botó Imprimir."
+        },
+        {
+          "label": "Configuració Social",
+          "description": "Aquestes opcions us permetran substituir la configuració de comportament social. Els valors buits s'emplenaran automàticament si es proporciona un enllaç, si no, es generaran tots els valors.",
+          "fields": [
+            {
+              "label": "Mostra la icona per compartir a Facebook"
+            },
+            {
+              "label": "Configuració de compartir a Facebook",
+              "fields": [
+                {
+                  "label": "Comparteix a l’enllaç de Facebook",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Comparteix a la cita de Facebook",
+                  "default": "He obtingut @score de @maxScore en una tasca a @currentpageurl."
+                }
+              ]
+            },
+            {
+              "label": "Mostra la icona per compartir a Twitter"
+            },
+            {
+              "label": "Configuració de compartir a Twitter",
+              "fields": [
+                {
+                  "label": "Declaració a Twitter",
+                  "default": "He obtingut @score de @maxScore en una tasca a @currentpageurl."
+                },
+                {
+                  "label": "Comparteix l’enllaç a Twitter",
+                  "default": "@currentpageurl"
+                },
+                {
+                  "label": "Comparteix als hashtags de Twitter",
+                  "default": "h5p, course"
+                }
+              ]
+            },
+            {
+              "label": "Mostra la icona per compartir contingut de Google+"
+            },
+            {
+              "label": "Comparteix l’enllaç a Google",
+              "default": "@currentpageurl"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "title": "Image gallery",
+  "description": "Image gallery content type with a lightbox",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "author": "Joubel",
+  "license": "MIT",
+  "machineName": "H5P.ImageGallery",
+  "preloadedJs": [
+    {
+      "path": "imageGallery.js"
+    },
+    {
+      "path": "gallery.js"
+    },
+    {
+      "path": "lightbox.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "imageGallery.css"
+    }
+  ],
+  "editorDependencies": [
+   {
+     "machineName": "H5PEditor.VerticalTabs",
+     "majorVersion": 1,
+     "minorVersion": 3
+   }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "Facebook Page 的網址",
+      "description": "Facebook Page 的網路連結位址。"
+    },
+    {
+      "label": "面板的主要色調",
+      "options": [
+        {
+          "label": "亮色調"
+        },
+        {
+          "label": "暗色調"
+        }
+      ],
+      "description": "選擇顯示面板的主要色調，以與站台的主題相符。"
+    },
+    {
+      "label": "只包含朋友的發文",
+      "description": "指定串流是否包含所有發文，還是只有朋友的發文。"
+    },
+    {
+      "label": "顯示標頭",
+      "description": "指定是否要顯示專頁的標題。"
+    },
+    {
+      "label": "顯示邊框",
+      "description": "指定是否要在面板四周顯示邊框。"
+    },
+    {
+      "label": "顯示代表圖像",
+      "description": "指定是否顯示喜歡的人的代表圖像。"
+    },
+    {
+      "label": "顯示串流",
+      "description": "顯示是否要顯示專頁的串流。"
+    },
+    {
+      "label": "面板高度",
+      "description": "設定面板的高度，例如 600px。"
+    },
+    {
+      "label": "面板寬度",
+      "description": "設定面板的寬度，例如 100%。"
+    }
+  ]
+}

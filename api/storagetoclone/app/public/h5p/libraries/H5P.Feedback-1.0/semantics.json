@@ -1,0 +1,93 @@
+[
+  {
+    "label": "Score input label",
+    "importance": "high",
+    "name": "labelScoreInput",
+    "type": "text",
+    "widget": "html",
+    "placeholder": "How satisfied are you with the product?",
+    "description": "Statement that you want the user to rate",
+    "tags": [
+      "strong",
+      "em",
+      "u",
+      "a",
+      "ul",
+      "ol",
+      "h2",
+      "h3",
+      "hr"
+    ]
+  },
+  {
+    "label": "Text input label",
+    "importance": "high",
+    "name": "labelTextInput",
+    "type": "text",
+    "widget": "html",
+    "placeholder": "How can we improve the product?",
+    "description": "Ask the user for a textual answer",
+    "tags": [
+      "strong",
+      "em",
+      "u",
+      "a",
+      "ul",
+      "ol",
+      "h2",
+      "h3",
+      "hr"
+    ]
+  },
+  {
+    "label": "Finished text",
+    "importance": "high",
+    "name": "finishedText",
+    "type": "text",
+    "widget": "html",
+    "placeholder": "Your feedback is highly appreciated!",
+    "description": "A message to show the users after they complete the survey",
+    "tags": [
+      "strong",
+      "em",
+      "u",
+      "a",
+      "ul",
+      "ol",
+      "h2",
+      "h3",
+      "hr"
+    ]
+  },
+  {
+    "label": "Localization",
+    "name": "l10n",
+    "type": "group",
+    "fields": [
+      {
+        "name": "scaleUnsatisfied",
+        "label": "Label for unsatisfied",
+        "type": "text",
+        "default": "Unsatisfied"
+      },
+      {
+        "name": "scaleNeutral",
+        "label": "Label for neutral",
+        "type": "text",
+        "default": "Neutral"
+      },
+      {
+        "name": "scaleSatisfied",
+        "label": "Label for satisfied",
+        "type": "text",
+        "default": "Satisfied"
+      },
+      {
+        "name": "scaleVerySatisfied",
+        "label": "Label for very satisfied",
+        "type": "text",
+        "default": "Very Satisfied"
+      }
+    ]
+  }
+]

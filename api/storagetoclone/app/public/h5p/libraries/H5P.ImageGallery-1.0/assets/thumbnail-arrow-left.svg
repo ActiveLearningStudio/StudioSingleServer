@@ -1,0 +1,13 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 237 237">
+  <style>
+    .white{
+    fill:#fff;
+
+    }
+  </style>
+  <title>thumbnail-arrow-left</title>
+  <g>
+    <path class="white" d="M126.5,243A118.5,118.5,0,1,0,8,124.5,118.64,118.64,0,0,0,126.5,243Zm0-15.29A103.21,103.21,0,1,1,229.71,124.5,103.33,103.33,0,0,1,126.5,227.71Z" transform="translate(-8 -6)"/>
+    <path class="white" d="M143.37,88.51a7.64,7.64,0,0,0-10.81,0L102,119.09a7.65,7.65,0,0,0,0,10.81l30.58,30.58a7.64,7.64,0,0,0,10.81-10.81L118.2,124.5l25.18-25.18A7.65,7.65,0,0,0,143.37,88.51Z" transform="translate(-8 -6)"/>
+  </g>
+</svg>

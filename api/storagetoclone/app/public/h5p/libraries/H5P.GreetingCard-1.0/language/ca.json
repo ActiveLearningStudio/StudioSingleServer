@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "Text de salutació",
+      "default": "Hola món!",
+      "description": "El text de salutació mostrat a l'usuari final."
+    },
+    {
+      "label": "Imatge de la targeta",
+      "description": "Imatge mostrada en la targeta, opcional. Sense aquesta, la targeta mostrarà només el text."
+    }
+  ]
+}

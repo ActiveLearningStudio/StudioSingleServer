@@ -1,0 +1,68 @@
+[
+  {
+    "name": "columns",
+    "type": "list",
+    "min": 1,
+    "entity": "column",
+    "label": "Columns",
+    "field": {
+      "name": "column",
+      "type": "group",
+      "label": "Column",
+      "fields": [
+        {
+          "name": "heading",
+          "type": "text",
+          "optional": true,
+          "label": "Heading for this column",
+          "description": "Optional column heading"
+        },
+        {
+          "name": "width",
+          "type": "number",
+          "label": "Width",
+          "description": "The columns width in percentage",
+          "min": 0,
+          "max": 100,
+          "default": 100
+        },
+        {
+          "name": "cssClass",
+          "type": "text",
+          "label": "CSS Class",
+          "description": "Optional CSS class to be added to the column for styling purposes",
+          "optional": true
+        },
+        {
+          "name": "column",
+          "type": "library",
+          "label": "Content",
+          "options": [
+            "H5P.Column 1.0"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "type",
+    "type": "select",
+    "label": "Type",
+    "description": "What kind of content will be in these columns?",
+    "options": [
+      {
+        "value": "div",
+        "label": "Misc (div tag will be used)"
+      },
+      {
+        "value": "section",
+        "label": "Section of an article (section tag will be used)"
+      },
+      {
+        "value": "article",
+        "label": "Self standing article (section tag will be used)"
+      }
+    ],
+    "default": "div"
+  }
+]

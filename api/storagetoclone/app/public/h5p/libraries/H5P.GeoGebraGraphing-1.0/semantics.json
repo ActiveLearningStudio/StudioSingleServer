@@ -1,0 +1,10 @@
+[
+  {
+    "label": "GeoGebra Graphing Applet",
+    "name": "geogebra_applet_graphing",
+    "type": "text",
+    "widget": "GeoGebraGraphingWidget",
+    "default": "",
+    "description": ""
+  }
+]

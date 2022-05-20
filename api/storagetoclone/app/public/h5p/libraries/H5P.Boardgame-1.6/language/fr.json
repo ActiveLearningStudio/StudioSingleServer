@@ -1,0 +1,157 @@
+{
+  "semantics": [
+    {
+      "label": "Titre du jeu",
+      "placeholder": "Vos connaissances sur l'Arctique",
+      "description": "Titre du jeu que vous créez."
+    },
+    {
+      "label": "Arrière-plan du plateau",
+      "description": "Choisissez une image d'arrière-plan appropriée pour votre plateau de jeu."
+    },
+    {
+      "label": "Taille du plateau",
+      "description": "Indiquez la taille (en px) que doit avoir le plateau de jeu. Le ratio doit correspondre à celui de votre image d'arrière-plan.",
+      "fields": [
+        {},
+        {}
+      ]
+    },
+    {
+      "label": "Afficher une ombre portée",
+      "description": "Afficher une ombre portée sur le contour du plateau de jeu. Si l'option est activée, le plateau prendra un peu plus de place que prévu."
+    },
+    {
+      "label": "Introduction du jeu",
+      "fields": [
+        {
+          "label": "Message d'accueil et instructions",
+          "placeholder": "Bonjour, jeune voyageur ! Es-tu prêt à tester tes connaissances sur l'Arctique ?",
+          "description": "Exposez à l'utilisateur ce qu'il doit faire et le but du jeu."
+        },
+        {
+          "label": "Bouton \"Commencer\"",
+          "default": "Commencer",
+          "description": "Texte du bouton qui permet à l'utilisateur de lancer le jeu."
+        }
+      ]
+    },
+    {
+      "label": "Minis-jeux",
+      "entity": "mini-jeu",
+      "description": "Ce sont les minis-jeux placés sur le plateau (exemples : quiz, pendu).",
+      "field": {
+        "label": "Mini-jeu",
+        "fields": [
+          {
+            "label": "Titre",
+            "description": "Donnez un nom à votre mini-jeu."
+          },
+          {
+            "label": "Icône du mini-jeu",
+            "description": "Image utilisée pour identifier le mini-jeu sur le plateau."
+          },
+          {
+            "label": "Icône du mini-jeu en cas de réussite",
+            "description": "Cette icône sera utilisée quand le mini-jeu aura été complété et réussi."
+          },
+          {
+            "label": "Icône du mini-jeu en cas d'échec",
+            "description": "Cette icône sera utilisée quand le mini-jeu aura été complété mais échoué."
+          },
+          {
+            "label": "Emplacement du mini-jeu",
+            "description": "Placez le mini-jeu sur le plateau en saisissant ses coordonnées en pixels.",
+            "default": {},
+            "fields": [
+              {},
+              {}
+            ]
+          },
+          {
+            "label": "Action",
+            "description": "Sélectionnez l'activité à lancer si l'utilisateur choisit ce mini-jeu."
+          }
+        ]
+      }
+    },
+    {
+      "label": "Indicateur de progression",
+      "fields": [
+        {
+          "label": "Activer l'indicateur de progression"
+        },
+        {
+          "entity": "Image",
+          "description": "Choisissez les images à utiliser pour visualiser la progression : une pour chaque étape franchie et une pour les étapes restant à franchir.",
+          "field": {
+            "label": 0
+          }
+        },
+        {
+          "label": "Emplacement de l'indicateur de progression",
+          "description": "Placez l'indicateur de progression sur le plateau en saisissant ses coordonnées en pixels.",
+          "fields": [
+            {},
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Jeu terminé",
+      "fields": [
+        {
+          "label": "Vidéo de fin",
+          "description": "Vidéo à jouer avant que les résultats du jeu ne s'affichent."
+        },
+        {
+          "label": "Permettre de passer la vidéo de fin du jeu."
+        },
+        {
+          "label": "Texte du bouton permettant de passer la vidéo",
+          "default": "Passer la vidéo",
+          "description": "Intitulé du bouton permettant à l'utilisateur de passer la vidéo de fin du jeu."
+        }
+      ]
+    },
+    {
+      "label": "Résultats du jeu",
+      "fields": [
+        {
+          "label": "Texte affiché lors des résultats du jeu",
+          "default": "Vous avez @score sur @total, soit @percentage % de réussite",
+          "description": "Ce texte explique le score au jeu. Variables disponibles : @score, @total, @percentage."
+        },
+        {
+          "label": "Texte du bouton \"Recommencer\"",
+          "default": "Recommencer",
+          "description": "Texte du bouton qui permet de faire une nouvelle tentative."
+        },
+        {
+          "label": "Texte du bouton \"Voir la correction\"",
+          "default": "Voir la correction",
+          "description": "Texte du bouton qui permet à l'utilisateur de voir la correction."
+        }
+      ]
+    },
+    {
+      "label": "Options pour les boutons \"Voir la correction\" et \"Recommencer\".",
+      "description": "Ces options vous permettent de choisir quand afficher les boutons \"Voir la correction\" et \"Recommencer\" dans vos activités h5p.",
+      "fields": [
+        {
+          "label": "Ecraser les réglages individuels des boutons \"Voir la correction\" et \"Recommencer\".",
+          "description": "Si vous activez cette option, les réglages individuels de ces boutons seront ignorés et écrasés par ce réglage, uniformément appliqué à l'ensemble des questions."
+        },
+        {
+          "label": "Activer le bouton \"Voir la correction\".",
+          "description": "Activez cette option pour afficher le bouton \"Voir la correction\" sur toutes les questions."
+        },
+        {
+          "label": "Activer le bouton \"Recommencer\".",
+          "description": "Activez cette option pour afficher le bouton \"Recommencer\" sur toutes les questions."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+.h5p-column {
+  float: left;
+  margin-left: 2%;
+}
+.h5p-column:first-child {
+  margin-left: 0;
+}
+
+aside {
+  box-sizing: border-box;
+  padding: 0.7em;
+  border: 1px solid #ccc;
+  margin-bottom: 2em;
+
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEEEEE));
+
+  /* Safari 5.1, Chrome 10+ */
+  background: -webkit-linear-gradient(top, #FFFFFF, #EEEEEE);
+
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE);
+
+  /* IE 10 */
+  background: -ms-linear-gradient(top, #FFFFFF, #EEEEEE);
+
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(top, #FFFFFF, #EEEEEE);
+}

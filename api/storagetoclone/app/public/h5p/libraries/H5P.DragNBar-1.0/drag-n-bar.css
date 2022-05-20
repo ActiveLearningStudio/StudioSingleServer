@@ -1,0 +1,17 @@
+.h5p-dragnbar-coordinates {
+  background-color: #EEEEEE;
+  border-radius: 0.7em;
+  font-size: 12px;
+  margin-top: -2.2em;
+  padding: 0 0.3em;
+  position: absolute;
+  z-index: 50;
+}
+.h5p-dragnbar-coordinates input {
+  background: none repeat scroll 0 0 transparent;
+  border: medium none;
+  width: 2em;
+}
+.h5p-dragnbar-coordinates input:focus {
+  outline: none;
+}

@@ -1,0 +1,23 @@
+{
+  "machineName": "H5P.InteractiveVideoSlider",
+  "title": "Slider video",
+  "description": "slider video",
+  "author": "Qamar",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "embedTypes": [
+    "iframe"
+  ],
+  "preloadedJs": [
+    {
+      "path": "scripts/h5p-column.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/h5p-column.css"
+    }
+  ]
+}

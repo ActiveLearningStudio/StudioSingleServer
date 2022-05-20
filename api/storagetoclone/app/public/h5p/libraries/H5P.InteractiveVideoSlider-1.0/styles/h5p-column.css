@@ -1,0 +1,243 @@
+.h5p-column-content {
+  position: relative;
+}
+.h5p-column-content.h5p-table,
+.h5p-column-content.h5p-advanced-text,
+.h5p-column-content.h5p-link {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.h5p-column-content.h5p-video > video {
+  width: 100%;
+}
+
+.h5p-column-ruler {
+  border-bottom: 2px solid #eee;
+}
+.h5p-column-space-before-n-after {
+  margin: 1em 0;
+}
+.h5p-column-space-before {
+  margin: 1em 0 0;
+}
+.h5p-column-space-after {
+  margin: 0 0 1em;
+}
+
+/* Align question texts when there's no frame */
+.h5p-no-frame > .h5p-column > div > .h5p-question > * {
+  margin-left: 0;
+  margin-right: 0;
+}
+.h5p-no-frame > .h5p-column > div > .h5p-question .h5p-question-image-wrap {
+  -webkit-transform: translate(0, 1em);
+  transform: translate(0, 1em);
+  margin: 0 0 1em 0;
+  max-width: 100%;
+}
+
+/* Special fixes for SCS */
+.h5p-no-frame > .h5p-column > div > .h5p-single-choice-set .h5p-sc-alternatives,
+.h5p-no-frame > .h5p-column > div > .h5p-single-choice-set .h5p-sc-question {
+  margin-left: 0;
+  margin-right: 0;
+}
+.h5p-no-frame > .h5p-column > div > .h5p-single-choice-set .h5p-sc-sound-control {
+  top: 0;
+  right: 0;
+}
+
+/* QS is a bit to eager... */
+.h5p-no-frame > .h5p-column > div > .h5p-column-content > .questionset .h5p-question > *:first-child {
+  margin-top: 1em;
+}
+
+/* Align text content when there's no frame */
+.h5p-no-frame > .h5p-column > div > .h5p-table,
+.h5p-no-frame > .h5p-column > div > .h5p-advanced-text,
+.h5p-no-frame > .h5p-column > div > .h5p-link {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Align accordion texts when there's no frame */
+.h5p-no-frame > .h5p-column > div > .h5p-accordion {
+  border-left: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+}
+
+/* Memory Game */
+.h5p-no-frame > .h5p-column > div > .h5p-memory-game .h5p-status {
+  padding-left: 0;
+  padding-right: 0;
+}
+.h5p-no-frame > .h5p-column > div > .h5p-memory-game .h5p-feedback {
+  margin: 0;
+}
+.h5p-no-frame > .h5p-column > div > .h5p-memory-game .h5p-memory-card {
+  margin-left: 0;
+  margin-right: 2em;
+}
+
+/* Remove fullscreen for video tags and DQ */
+.h5p-interactive-book video::-webkit-media-controls-fullscreen-button,
+.h5p-interactive-book .h5p-my-fullscreen-button-enter {
+  display: none;
+}
+.slider {
+
+}
+
+.slides {
+
+}
+
+.slide {
+
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+}
+.iframed-special{
+  height:100vh
+}
+
+
+
+
+
+
+
+
+
+
+.slider .box {
+  width: 40%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border: 2px solid #fff;
+  border-radius: 20px/50px;
+  background-clip: padding-box;
+  text-align: center;
+}
+
+.slider .button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  display: inline-block;
+}
+.slider .button:hover {
+  background: #06D85F;
+}
+
+.slider .overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 111;
+}
+.slider .overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.slider .popup {
+  margin: 40px auto;
+  padding: 5px;
+  background: #fff;
+  border-radius: 5px;
+  width: 95%;
+  position: relative;
+  transition: all 5s ease-in-out;
+  overflow: hidden;
+}
+
+.slider .popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.slider .popup .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  z-index: 11;
+  background: #fff;
+  border-radius: 15%;
+}
+.slider .popup .close:hover {
+  color: #000;
+}
+.slider .popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+.slider .popup .slide {
+  width:100% !important
+}
+
+.strictoverlay {
+  background: #b3393900;
+    position: absolute;
+    z-index: 11;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.chekd {
+  position: relative;
+}
+@media screen and (max-width: 700px){
+  .slider .box{
+    width: 70%;
+  }
+  .slider .popup{
+    width: 70%;
+  }
+}
+
+.slider-video-ib {
+ padding: 0px 15px;
+}
+
+.slider.custom- .slides {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  
+}
+
+.slider.custom- .slides .slide {
+  position: relative;
+ height: 150px;
+
+}
+
+.interactive-video-slider {
+  padding: 25px 15px;
+}

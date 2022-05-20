@@ -1,0 +1,23 @@
+{
+  "title": "Picture slider",
+  "description": "Simple Picture Slider - H5P",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 30,
+  "runnable": 1,
+  "machineName": "H5P.PictureSlider",
+  "preloadedDependencies": [
+    {"machineName": "carouFredSel", "majorVersion": 6, "minorVersion": 2}
+  ],
+  "author": "griffen",
+  "license": "MIT",
+  "preloadedCss": [
+    {"path": "css/pictureslider.css"}
+  ],
+  "preloadedJs": [
+    {"path": "js/pictureslider.js"}
+  ],
+  "w": 635,
+  "h": 500,
+  "embedTypes": ["iframe"]
+}

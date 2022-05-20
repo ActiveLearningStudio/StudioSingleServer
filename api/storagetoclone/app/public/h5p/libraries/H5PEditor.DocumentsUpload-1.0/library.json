@@ -1,0 +1,14 @@
+{
+  "title": "H5PEditor.DocumentsUpload",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 0,
+  "machineName": "H5PEditor.DocumentsUpload",
+  "author": "AHMAD MUKHTAR",
+  "preloadedJs": [
+    {
+      "path": "scripts/widget.js"
+    }
+  ]
+}

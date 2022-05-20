@@ -1,0 +1,13 @@
+.h5p-immersive {
+    padding: 2em;
+    color: black;
+}
+
+.h5p-immersive .immersive-title {
+    margin-bottom: 1em;
+}
+
+.h5p-immersive .immersive-controls {
+    margin-bottom: 1em;
+    text-align: center;
+}

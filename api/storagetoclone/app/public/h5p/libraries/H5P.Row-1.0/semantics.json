@@ -1,0 +1,77 @@
+[
+  {
+    "name": "columns",
+    "type": "list",
+    "label": "Columns",
+    "importance": "high",
+    "field": {
+      "name": "column",
+      "type": "group",
+      "importance": "high",
+      "fields": [
+        {
+          "name": "width",
+          "label": "Width",
+          "type": "number",
+          "description": "Column width in percentage"
+        },
+        {
+          "name": "paddings",
+          "label": "Paddings",
+          "type": "group",
+          "description": "Column paddings",
+          "fields": [
+            {
+              "name": "top",
+              "type": "number",
+              "label": "top",
+              "default": 10
+            },
+            {
+              "name": "right",
+              "type": "number",
+              "label": "right",
+              "default": 10
+            },
+            {
+              "name": "bottom",
+              "type": "number",
+              "label": "bottom",
+              "default": 10
+            },
+            {
+              "name": "left",
+              "type": "number",
+              "label": "left",
+              "default": 10
+            },
+            {
+              "name": "unit",
+              "type": "select",
+              "label": "Unit (px/em)",
+              "options": [
+                {
+                  "value": "px",
+                  "label": "px"
+                },
+                {
+                  "value": "em",
+                  "label": "em"
+                }
+              ],
+              "default": "px"
+            }
+          ]
+        },
+        {
+          "name": "content",
+          "label": "Column",
+          "type": "library",
+          "options": [
+            "H5P.Column 1.12"
+          ]
+        }
+      ]
+    }
+  }
+]

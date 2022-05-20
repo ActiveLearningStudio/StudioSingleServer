@@ -1,0 +1,25 @@
+.h5p-counter{
+  background-color: #FFF;
+}
+.h5p-counter-title {
+  text-align: center;
+  margin: 0 0 0.4em;
+  border-bottom: 0.1em solid #ddd;
+}
+.h5p-counter-image-background {
+  width: 100%;
+}
+.h5p-counter-image-container {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+.h5p-counter-counting-container {
+  position: relative;
+}
+.h5p-counter-on-image {
+  position: absolute;
+}
+.h5p-counter-stop-clock-bar {
+  position: relative;
+}

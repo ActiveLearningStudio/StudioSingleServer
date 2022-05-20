@@ -1,0 +1,39 @@
+{
+  "title": "Glossary List",
+  "description": "Create a list of words for the user to translate",
+  "majorVersion": 0,
+  "minorVersion": 1,
+  "patchVersion": 0,
+  "runnable": 0,
+  "author": "Joubel AS (icc)",
+  "license": "MIT",
+  "machineName": "H5P.GlossaryList",
+  "preloadedCss": [
+    {
+      "path": "h5p-glossary-list.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "h5p-glossary-list.js"
+    },
+    {
+      "path": "build/list.js"
+    },
+    {
+      "path": "build/word.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.React",
+      "majorVersion": 0,
+      "minorVersion": 14
+    }
+  ]
+}

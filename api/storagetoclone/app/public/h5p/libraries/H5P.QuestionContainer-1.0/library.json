@@ -1,0 +1,22 @@
+{
+  "title": "Question Container",
+  "description": "\"Super class\" for content types that holds questions. Makes it easy to fulfill the questiontype contract.",
+  "contentType": "container",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 0,
+  "fullscreen": 0,
+  "machineName": "H5P.QuestionContainer",
+  "author": "Joubel AS",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 1
+  },
+  "license": "MIT",
+  "preloadedJs": [
+    {
+      "path": "js/question-container.js"
+    }
+  ]
+}

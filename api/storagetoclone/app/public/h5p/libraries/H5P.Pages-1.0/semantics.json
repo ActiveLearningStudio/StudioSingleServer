@@ -1,0 +1,83 @@
+[
+  {
+    "name": "pages",
+    "label": "Pages",
+    "type": "list",
+    "widgets": [
+      {
+        "name": "HierarchicList",
+        "label": "Default"
+      }
+    ],
+    "min": 1,
+    "entity": "page",
+    "field": {
+      "name": "page",
+      "label": "page",
+      "type": "group",
+      "fields": [
+        {
+          "name": "pageTitle",
+          "label": "Title",
+          "type": "text",
+          "description": "Used as a heading for the page and also in the navigation menu"
+        },
+        {
+          "name": "pageContent",
+          "label": "Page content",
+          "type": "library",
+          "options": [
+            "H5P.Columns 1.0"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "settings",
+    "type": "group",
+    "label": "Settings",
+    "fields": [
+      {
+        "name": "navMenuEnabled",
+        "type": "boolean",
+        "label": "Navigation menu enabled",
+        "default": true,
+        "description": "Whether the navigation menu should be enabled for the end user"
+      }
+    ]
+  },
+  {
+    "name": "texts",
+    "type": "group",
+    "label": "Interface texts in smart book",
+    "common": true,
+    "fields": [
+      {
+        "name": "prevButton",
+        "type": "text",
+        "label": "Back button",
+        "default": "Previous"
+      },
+      {
+        "name": "nextButton",
+        "type": "text",
+        "label": "Next button",
+        "default": "Next"
+      },
+      {
+        "name": "finishButton",
+        "type": "text",
+        "label": "Finish button",
+        "default": "Finish"
+      },
+      {
+        "name": "textualProgress",
+        "type": "text",
+        "label": "Progress text",
+        "description": "Text used if textual progress is selected.",
+        "default": "Page @current of @total"
+      }
+    ]
+  }
+]

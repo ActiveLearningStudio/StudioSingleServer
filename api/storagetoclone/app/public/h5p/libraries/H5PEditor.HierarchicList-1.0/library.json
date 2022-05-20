@@ -1,0 +1,31 @@
+{
+  "machineName": "H5PEditor.HierarchicList",
+  "title": "H5P Editor Hierarchic List",
+  "license": "MIT",
+  "author": "Joubel AS (icc)",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 0,
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 4
+  },
+  "preloadedJs": [
+    {
+      "path": "hierarchic-list.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "hierarchic-list.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 1
+    }
+  ]
+}

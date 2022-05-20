@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "URL a la Página de Facebook",
+      "description": "URL para la Página de Facebook"
+    },
+    {
+      "label": "Esquema de Colores en la Caja",
+      "options": [
+        {
+          "label": "Claro"
+        },
+        {
+          "label": "Oscuro"
+        }
+      ],
+      "description": "Determinar cual esquema de color usar"
+    },
+    {
+      "label": "Solamente Revisiones",
+      "description": "Especificar si el canal contiene publicaciones por la Página o solamente Revisiones de amigos"
+    },
+    {
+      "label": "Mostrar Encabezado",
+      "description": "Especificar si el encabezado debería o no ser visible"
+    },
+    {
+      "label": "Mostrar Borde",
+      "description": "Especificar si los Bordes deberían o no ser visibles"
+    },
+    {
+      "label": "Mostrar Caras",
+      "description": "Especificar si mostrar o no fotos del perfil de personas a quienes les gusta la página."
+    },
+    {
+      "label": "Mostrar Canal",
+      "description": "Especificar si es visible o no el Canal de la Página"
+    },
+    {
+      "label": "Altura",
+      "description": "Configurar Altura del Canal de Página de Facebook"
+    },
+    {
+      "label": "Ancho",
+      "description": "Configurar Ancho del Canal de Página de Facebook"
+    }
+  ]
+}

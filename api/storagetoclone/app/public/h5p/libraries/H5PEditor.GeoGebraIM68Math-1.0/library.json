@@ -1,0 +1,23 @@
+
+{
+  "title": "H5PEditor.GeoGebraIM68Math",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 0,
+  "machineName": "H5PEditor.GeoGebraIM68Math",
+  "author": "AHMAD MUKHTAR",
+  "preloadedJs": [
+    {
+      "path": "scripts/deployggb.js"
+    },
+    {
+      "path": "scripts/widget.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/widget.css"
+    }
+  ]
+}

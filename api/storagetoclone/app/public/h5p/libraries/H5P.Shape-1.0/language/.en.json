@@ -1,0 +1,87 @@
+{
+  "semantics": [
+    {
+      "label": "Type",
+      "options": [
+        {
+          "label": "Rectangle"
+        },
+        {
+          "label": "Circle"
+        },
+        {
+          "label": "Vertical line"
+        },
+        {
+          "label": "Horizontal line"
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "label": "Fill color"
+        },
+        {
+          "label": "Border color"
+        },
+        {
+          "label": "Border width"
+        },
+        {
+          "label": "Border style",
+          "options": [
+            {
+              "label": "Solid"
+            },
+            {
+              "label": "Dotted"
+            },
+            {
+              "label": "Dashed"
+            },
+            {
+              "label": "Double"
+            },
+            {
+              "label": "Inset"
+            },
+            {
+              "label": "Outset"
+            }
+          ]
+        },
+        {
+          "label": "Border radius"
+        }
+      ]
+    },
+    {
+      "fields": [
+        {
+          "label": "Line color"
+        },
+        {
+          "label": "Line width"
+        },
+        {
+          "label": "Line style",
+          "options": [
+            {
+              "label": "Solid"
+            },
+            {
+              "label": "Dotted"
+            },
+            {
+              "label": "Dashed"
+            },
+            {
+              "label": "Double"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

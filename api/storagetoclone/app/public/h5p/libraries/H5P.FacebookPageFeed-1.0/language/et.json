@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "Facebooki lehe link",
+      "description": "Facebooki lehe link"
+    },
+    {
+      "label": "Värviskeem",
+      "options": [
+        {
+          "label": "Hele"
+        },
+        {
+          "label": "Tume"
+        }
+      ],
+      "description": "Määra kasutatav värviskeem"
+    },
+    {
+      "label": "Ainult Check-in'id",
+      "description": "Määrab, kas voog sisaldab Lehe poste või ainult sõprade Check-in'ne"
+    },
+    {
+      "label": "Näita päist",
+      "description": "Määrab, kas päis on nähtav või mitte"
+    },
+    {
+      "label": "Näita raami",
+      "description": "Määrab, kas raam on nähtav või mitte"
+    },
+    {
+      "label": "Näita nägusid",
+      "description": "Määrab, kas lehe meeldivaks märkinud inimeste profiilifotosid näidatakse või mitte."
+    },
+    {
+      "label": "Näita voogu",
+      "description": "Määrab, kas lehe voog on nähtav"
+    },
+    {
+      "label": "Kõrgus",
+      "description": "Määra Facebooki lehe voo kõrgus"
+    },
+    {
+      "label": "Laius",
+      "description": "Määra Facebooki lehe voo laius"
+    }
+  ]
+}

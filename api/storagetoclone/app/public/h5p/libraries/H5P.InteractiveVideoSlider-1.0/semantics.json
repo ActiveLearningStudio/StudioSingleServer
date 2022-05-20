@@ -1,0 +1,26 @@
+[
+  {
+    "name": "content",
+    "label": "List of Column Content",
+    "importance": "high",
+    "type": "list",
+    "min": 1,
+    "entity": "content",
+    "field": {
+      "name": "content",
+      "type": "group",
+      "fields": [
+        {
+          "name": "content",
+          "type": "library",
+          "importance": "high",
+          "label": "Content",
+          "options": [
+            "H5P.InteractiveVideo 1.21",
+            "H5P.Text 1.1"
+          ]
+        }
+      ]
+    }
+  }
+]

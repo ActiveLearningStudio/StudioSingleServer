@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "URL til Facebook siden",
+      "description": "URL for Facebook-siden du ønsker å linke til."
+    },
+    {
+      "label": "Fargetema",
+      "options": [
+        {
+          "label": "Lyst"
+        },
+        {
+          "label": "Mørkt"
+        }
+      ],
+      "description": "Velg hvilket fargetema du ønsker å bruke."
+    },
+    {
+      "label": "Begrens til 'innsjekkede'",
+      "description": "Alternativ for å velge å bare vise poster fra siden, eller kun 'insjekk' fra venner"
+    },
+    {
+      "label": "Vis overskrift",
+      "description": "Slå på for å vise overskrift"
+    },
+    {
+      "label": "Vis ramme",
+      "description": "Slå på for å vise ramme"
+    },
+    {
+      "label": "Vis ansikter",
+      "description": "Slå på for å vise profil bildet av de som har likt siden"
+    },
+    {
+      "label": "Vis strøm",
+      "description": "Slå på for å vise strømmen fra siden"
+    },
+    {
+      "label": "Høyde",
+      "description": "Sett høyden som skal brukes"
+    },
+    {
+      "label": "Bredde",
+      "description": "Sett bredden som skal brukes"
+    }
+  ]
+}

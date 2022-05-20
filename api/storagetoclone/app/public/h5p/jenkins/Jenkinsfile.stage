@@ -1,0 +1,12 @@
+node('currikistage') {
+    stage('Clone repository') {
+        checkout scm
+    }
+    stage ('Copy H5P to currikistage') {
+            echo 'Copy'
+            sh "yes | rm -rf /tmp/h5p-dist2"
+            sh "yes | git clone -b staging https://github.com/ActiveLearningStudio/H5P.Distribution.git /tmp/h5p-dist2"
+            sh "yes | cp -rf /tmp/h5p-dist2/* /root/curriki/api/storage/app/public/h5p/"
+            echo 'Copy completed'
+    }
+}

@@ -1,0 +1,33 @@
+{
+  "title": "Dcouments Upload",
+  "description": "Curriki H5P for documents upload.",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "fullscreen": 1,
+  "author": "AHMAD MUKHTAR",
+  "license": "cc-by-sa",
+  "machineName": "H5P.DocumentsUpload",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 0
+  },
+  "preloadedJs": [
+    {
+      "path": "scripts/DocumentsUpload.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/DocumentsUpload.css"
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.DocumentsUpload",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

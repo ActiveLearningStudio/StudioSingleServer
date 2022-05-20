@@ -1,0 +1,55 @@
+{
+  "title": "Impressive Presentation",
+  "description": "Impressive Presentation tool.",
+  "majorVersion": 1,
+  "minorVersion": 3,
+  "patchVersion": 0,
+  "runnable": 1,
+  "fullscreen": 1,
+  "author": "Thomasmars",
+  "embedTypes": [
+    "iframe"
+  ],
+  "license": "MIT",
+  "machineName": "H5P.ImpressPresentation",
+  "preloadedCss": [
+    {
+      "path": "impress-presentation.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "scripts/jmpress.js"
+    },
+    {
+      "path": "scripts/step.js"
+    },
+    {
+      "path": "scripts/impress-presentation.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 2
+    },
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.ImpressPresentation",
+      "majorVersion": 1,
+      "minorVersion": 3
+    },
+    {
+      "machineName": "H5PEditor.ColorSelector",
+      "majorVersion": 1,
+      "minorVersion": 1
+    }
+  ]
+}

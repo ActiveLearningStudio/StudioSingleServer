@@ -1,0 +1,23 @@
+{
+  "machineName": "H5PEditor.MultiLineSelect",
+  "title": "Multi Line Select",
+  "description": "Use multiple lines in a select widget.",
+  "author": "Joubel AS",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 9,
+  "runnable": 0,
+  "embedTypes": [
+    "iframe"
+  ],
+  "preloadedJs": [
+    {
+      "path": "dist/multilineselect.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "dist/h5p-editor-multiline-select.css"
+    }
+  ]
+}

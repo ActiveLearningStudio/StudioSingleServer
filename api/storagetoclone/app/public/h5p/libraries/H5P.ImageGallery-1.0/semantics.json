@@ -1,0 +1,55 @@
+[
+  {
+    "label": "Title",
+    "name": "title",
+    "type": "text",
+    "description": "Optional title for the gallery",
+    "optional": true
+  },
+  {
+    "name": "images",
+    "type": "list",
+    "widgets": [
+      {
+        "name": "VerticalTabs",
+        "label": "Default"
+      }
+    ],
+    "label": "Images",
+    "importance": "high",
+    "entity": "image",
+    "min": 1,
+    "field": {
+      "type": "group",
+      "name": "imageForGallery",
+      "label": "l",
+      "importance": "high",
+      "fields": [
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "importance": "high",
+          "ratio": 1
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "label": "Description",
+          "description": "Description for the image (alt)",
+          "maxLength": 150,
+          "default": "Image"
+        }
+    ]
+  }
+},
+  {
+    "name": "rows",
+    "type": "number",
+    "label": "Rows",
+    "description": "Number of rows to show for each page of the gallery",
+    "min": 1,
+    "step": 1,
+    "default": 4
+  }
+]

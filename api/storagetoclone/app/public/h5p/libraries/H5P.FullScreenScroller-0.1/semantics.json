@@ -1,0 +1,212 @@
+[
+  {
+    "name": "title",
+    "type": "text",
+    "label": "Title"
+  },
+  {
+    "name": "pages",
+    "type": "list",
+    "label": "Pages",
+    "entity": "page",
+    "widgets": [
+      {
+        "name": "VerticalTabs",
+        "label": "Default"
+      }
+    ],
+    "field": {
+      "name": "page",
+      "label": "Page",
+      "type": "list",
+      "entity": "page element",
+      "min": 1,
+      "max": 2,
+      "field": {
+        "name": "element",
+        "type": "group",
+        "label": "Element",
+        "fields": [
+          {
+            "name": "image",
+            "type": "image",
+            "label": "Image",
+            "optional": true
+          },
+          {
+            "name": "imageHeight",
+            "type": "number",
+            "min": 5,
+            "max": 100,
+            "default": 30,
+            "label": "Image height in percent",
+            "description": "The height using <a target=\"blank\" href=\"https://www.w3.org/TR/css3-values/#viewport-relative-lengths\">vmin unit</a>.",
+            "optional": true
+          },
+          {
+            "name": "title",
+            "type": "text",
+            "label": "Title",
+            "optional": true
+          },
+          {
+            "name": "description",
+            "optional": true,
+            "type": "text",
+            "label": "Description",
+            "widget": "html",
+            "enterMode": "div",
+            "tags": [
+              "strong",
+              "em",
+              "sub",
+              "sup",
+              "h2",
+              "h3",
+              "ul",
+              "ol",
+              "a"
+            ]
+          },
+          {
+            "name": "link",
+            "type": "group",
+            "label": "Link",
+            "fields": [
+              {
+                "name": "title",
+                "type": "text",
+                "label": "Title",
+                "optional": true
+              },
+              {
+                "name": "url",
+                "type": "group",
+                "label": "URL",
+                "importance": "high",
+                "widget": "linkWidget",
+                "optional": true,
+                "fields": [
+                  {
+                    "name": "protocol",
+                    "type": "select",
+                    "label": "Protocol",
+                    "importance": "high",
+                    "options": [
+                      {
+                        "value": "http://",
+                        "label": "http://"
+                      },
+                      {
+                        "value": "https://",
+                        "label": "https://"
+                      },
+                      {
+                        "value": "/",
+                        "label": "(root relative)"
+                      },
+                      {
+                        "value": "other",
+                        "label": "other"
+                      }
+                    ],
+                    "optional": true,
+                    "default": "http://"
+                  },
+                  {
+                    "name": "url",
+                    "type": "text",
+                    "label": "URL",
+                    "importance": "high",
+                    "optional": true
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "visuals",
+            "label": "Visuals",
+            "type": "group",
+            "fields": [
+              {
+                "name": "backgroundColor",
+                "type": "text",
+                "label": "Background color",
+                "optional": true,
+                "widget": "colorSelector",
+                "default": "#000",
+                "spectrum": {
+                  "showInput": true
+                }
+              },
+              {
+                "name": "foregroundColor",
+                "type": "text",
+                "label": "Foreground color",
+                "optional": true,
+                "widget": "colorSelector",
+                "default": "#fff",
+                "spectrum": {
+                  "showInput": true
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "settings",
+    "type": "group",
+    "label": "Settings",
+    "fields": [
+      {
+        "name": "initialFullscreen",
+        "type": "boolean",
+        "label": "Start in fullscreen mode",
+        "default": true
+      },
+      {
+        "name": "realFullscreen",
+        "type": "boolean",
+        "label": "Use browser's fullscreen mode",
+        "description": "Only applicable if <b>start in fullscreen mode</b> is disabled",
+        "default": false,
+        "widget": "showWhen",
+        "showWhen": {
+          "rules": [
+            {
+              "field": "initialFullscreen",
+              "equals": false
+            }
+          ]
+        }
+      },
+      {
+        "name": "showNavigation",
+        "type": "boolean",
+        "label": "Show navigation dots",
+        "default": true
+      },
+      {
+        "name": "zIndex",
+        "type": "number",
+        "default": 1,
+        "label": "zIndex",
+        "description": "If there are elements on your page being shown on top of this presentation, try increasing this number"
+      }
+    ]
+  },
+  {
+
+        "name": "showContent",
+        "type": "text",
+        "common": true,
+        "label": "Open content button label",
+        "default": "Show content",
+        "optional": false
+
+  }
+]

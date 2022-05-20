@@ -1,0 +1,42 @@
+{
+  "title": "GeoGebra Math Grade 6-8",
+  "description": "Middle School Math Curriculum",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 3,
+  "runnable": 1,
+  "author": "Ahmad Mukhtar",
+  "license": "cc-by-sa",
+  "machineName": "H5P.GeoGebraIM68Math",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 0
+  },
+  "preloadedJs": [
+    {
+      "path": "scripts/deployggb.js"
+    },
+    {
+      "path": "scripts/geogebra.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/geogebra.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 3
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.GeoGebraIM68Math",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+    ]
+}

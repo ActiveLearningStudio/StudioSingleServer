@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "URL zur Facebookseite",
+      "description": "URL für die Facebookseite"
+    },
+    {
+      "label": "Farbschema auf der Box",
+      "options": [
+        {
+          "label": "Hell"
+        },
+        {
+          "label": "Dunkel"
+        }
+      ],
+      "description": "Farbschema festlegen"
+    },
+    {
+      "label": "Nur Check-ins",
+      "description": "Legt fest, ob der Datenstrom Posts der Seite beinhaltet oder nur Check-ins von Freunden"
+    },
+    {
+      "label": "Header anzeigen",
+      "description": "Legt fest, ob der Header sichtbar ist oder nicht"
+    },
+    {
+      "label": "Rahmen anzeigen",
+      "description": "Legt fest, ob Rahmen angezeigt werden oder nicht"
+    },
+    {
+      "label": "Gesichter zeigen",
+      "description": "Legt fest, ob Profilbilder von Leuten, die die Seite liken, angezeigt werden oder nicht."
+    },
+    {
+      "label": "Datenstrom anzeigen",
+      "description": "Legt fest, ob der Datenstrom der Seite sichtbar ist oder nicht"
+    },
+    {
+      "label": "Höhe",
+      "description": "Höhe des Facebook-Seitenfeeds festlegen"
+    },
+    {
+      "label": "Breite",
+      "description": "Breite des Facebook-Seitenfeeds festlegen"
+    }
+  ]
+}

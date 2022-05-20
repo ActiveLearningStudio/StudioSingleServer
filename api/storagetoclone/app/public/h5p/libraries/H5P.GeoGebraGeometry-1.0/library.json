@@ -1,0 +1,42 @@
+{
+  "title": "GeoGabra Geometry",
+  "description": "Construct circles, angles, transformations and more with our free geometry tool",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 2,
+  "runnable": 1,
+  "author": "Ahmad Mukhtar",
+  "license": "cc-by-sa",
+  "machineName": "H5P.GeoGebraGeometry",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 0
+  },
+  "preloadedJs": [
+    {
+      "path": "scripts/geogebra.js"
+    },
+    {
+      "path": "scripts/deployggb.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/geogebra.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 3
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.GeoGebraGeometryWidget",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+    ]
+}

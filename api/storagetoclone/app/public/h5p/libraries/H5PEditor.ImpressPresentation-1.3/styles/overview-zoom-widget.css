@@ -1,0 +1,36 @@
+.h5p-impress-overview-step-zoom-factor {
+  position: absolute;
+  top: -1em;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  z-index: 11;
+  padding: 1.25em 1.25em 0.25em;
+  background: #eee;
+  border: 1px solid #ccc;
+
+  -webkit-transition: transform 0.5s;
+  transition: transform 0.5s;
+}
+
+.h5p-impress-overview-step-zoom-factor.hidden {
+  -webkit-transform: translate(-50%, -100%);
+  -ms-transform: translate(-50%, -100%);
+  transform: translate(-50%, -100%);
+}
+
+
+.h5p-impress-overview-step-zoom-factor-label {
+  display: inline-block;
+}
+
+.h5p-impress-overview-step-zoom-factor-input {
+  display: inline-block;
+  width: 3em;
+  margin-left: 1em;
+  vertical-align: top;
+  line-height: 1.2;
+  text-align: right;
+  border: 1px solid #ccc;
+}

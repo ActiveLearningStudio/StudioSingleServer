@@ -1,0 +1,34 @@
+{
+  "title": "Columns",
+  "description": "Content holder spreading content between columns.",
+  "contentType": "instructional",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "fullscreen": 0,
+  "machineName": "H5P.Columns",
+  "author": "Joubel AS",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 1
+  },
+  "license": "MIT",
+  "preloadedJs": [
+    {
+      "path": "js/columns.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "css/columns.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.QuestionContainer",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

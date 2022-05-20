@@ -1,0 +1,14 @@
+{
+  "title": "Css challenge",
+  "description": "A challenge that you have to complete through writing the correct css",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "author": "Thomasmars",
+  "license": "cc-by-sa",
+  "machineName": "H5P.CssChallenge",
+  "preloadedJs": [
+    {"path": "build/dist.js"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "Text pozdravu",
+      "default": "Ahoj světe!",
+      "description": "Text pozdravu zobrazený uživateli."
+    },
+    {
+      "label": "Obrázek karty",
+      "description": "Obrázek zobrazený na kartě je volitelný. Bez obrázku se na kartě zobrazí pouze text."
+    }
+  ]
+}

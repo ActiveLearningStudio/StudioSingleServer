@@ -1,0 +1,53 @@
+{
+  "title": "Glossary Test",
+  "description": "A tool for testing the user's language knowledge",
+  "majorVersion": 0,
+  "minorVersion": 1,
+  "patchVersion": 0,
+  "runnable": 1,
+  "author": "Joubel AS (icc)",
+  "license": "MIT",
+  "machineName": "H5P.GlossaryTest",
+  "preloadedCss": [
+    {
+      "path": "h5p-glossary-test.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "h5p-glossary-test.js"
+    },
+    {
+      "path": "build/test.js"
+    },
+    {
+      "path": "build/button.js"
+    },
+    {
+      "path": "build/start.js"
+    },
+    {
+      "path": "build/page.js"
+    },
+    {
+      "path": "build/summary.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.React",
+      "majorVersion": 0,
+      "minorVersion": 14
+    },
+    {
+      "machineName": "H5P.GlossaryList",
+      "majorVersion": 0,
+      "minorVersion": 1
+    }
+  ]
+}

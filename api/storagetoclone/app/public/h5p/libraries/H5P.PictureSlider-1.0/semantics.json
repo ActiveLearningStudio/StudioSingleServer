@@ -1,0 +1,205 @@
+[
+  {
+    "name": "width",
+    "type": "number",
+    "label": "Width",
+    "description": "Width of the Picture Slider in pixels."
+  },
+  {
+    "name": "height",
+    "type": "number",
+    "label": "Height",
+    "description": "Height of Picture Slider in pixels."
+  },
+  {
+    "name": "images",
+    "type": "list",
+    "label": "Images",
+    "entity": "image",
+    "description": "List of Images in the Picture Slider.",
+    "min": 1,
+    "max": 50,
+    "field": {
+      "name": "image",
+      "type": "group",
+      "label": "Image",
+      "fields": [
+        {
+          "name": "header",
+          "type": "text",
+          "label": "Header",
+          "optional": true,
+          "description": "Header of Image."
+        },
+        {
+          "name": "image",
+          "type": "image",
+          "label": "Image",
+          "description": "Image for Picture Slider."
+        },
+        {
+          "name": "text",
+          "type": "text",
+          "label": "Text",
+          "optional": true,
+          "description": "Text information about the Image."
+        }
+      ]
+    }
+  },
+  {
+    "name": "settings",
+    "type": "group",
+    "label": "Advanced Settings",
+    "fields": [
+      {
+        "name": "circular",
+        "type": "boolean",
+        "label": "Circular",
+        "description": "Determines whether the slider should be circular",
+        "default": true
+      },
+      {
+        "name": "infinite",
+        "type": "boolean",
+        "label": "Infinite",
+        "description": "Determines whether the slider should be infinite. Note: It is possible to create a non-circular, infinite slider, but it is not possible to create a circular, non-infinite slider. (true or false)",
+        "default": true
+      },
+      {
+        "name": "direction",
+        "type": "select",
+        "label": "Direction",
+        "description": "The direction to scroll the carousel, determines whether the carousel scrolls horizontal or vertical and -when the carousel scrolls automatically- in what direction.",
+        "options": [
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "up",
+            "label": "Up"
+          },
+          {
+            "value": "down",
+            "label": "Down"
+          }
+        ],
+        "default": "up"
+      },
+      {
+        "name": "pagination",
+        "type": "boolean",
+        "label": "Pagination",
+        "description": "",
+        "deafult": false
+      },
+      {
+        "name": "scroll",
+        "type": "group",
+        "label": "Scroll Settings",
+        "fields": [
+          {
+            "name": "fx",
+            "type": "select",
+            "label": "Scroll effect",
+            "description": "Indicates which effect to use for the transition.",
+            "options": [
+              {
+                "value": "none",
+                "label": "None"
+              },
+              {
+                "value": "scroll",
+                "label": "Scroll"
+              },
+              {
+                "value": "directscroll",
+                "label": "Directscroll"
+              },
+              {
+                "value": "fade",
+                "label": "Fade"
+              },
+              {
+                "value": "crossfade",
+                "label": "Crossfade"
+              },
+              {
+                "value": "cover",
+                "label": "Cover"
+              },
+              {
+                "value": "cover-fade",
+                "label": "Cover-fade"
+              },
+              {
+                "value": "uncover",
+                "label": "Uncover"
+              },
+              {
+                "value": "uncover-fade",
+                "label": "Uncover-fade"
+              }
+            ],
+            "default": "crossfade"
+          },
+          {
+            "name": "items",
+            "type": "number",
+            "label": "Items",
+            "description": "The number of items to scroll.",
+            "default": 1
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "label": "Duration",
+            "description": "Determines the duration of the transition in milliseconds. If less than 10, the number is interpreted as a speed (pixels/millisecond). This is probably desirable when scrolling items with variable sizes.",
+            "default": 1000
+          }
+        ]
+      },
+      {
+        "name": "auto",
+        "type": "group",
+        "label": "Auto Settings",
+        "fields": [
+          {
+            "name": "play",
+            "type": "boolean",
+            "label": "Automatic rotation",
+            "description": "Determines whether the carousel should scroll automatically or not.",
+            "default": true
+          },
+          {
+            "name": "items",
+            "type": "number",
+            "label": "Items",
+            "description": "The number of items to auto scroll.",
+            "default": 1
+          },
+          {
+            "name": "duration",
+            "type": "number",
+            "label": "Duration",
+            "description": "Determines the duration of the transition in milliseconds. If less than 10, the number is interpreted as a speed (pixels/millisecond). This is probably desirable when scrolling items with variable sizes.",
+            "default": 1000
+          },
+          {
+            "name": "pauseOnHover",
+            "type": "boolean",
+            "label": "Pause on hover",
+            "description": "Determines whether the timeout between transitions should be paused when mousepointer is hold over",
+            "default": true
+          }
+        ]
+      }
+
+    ]
+  }
+]

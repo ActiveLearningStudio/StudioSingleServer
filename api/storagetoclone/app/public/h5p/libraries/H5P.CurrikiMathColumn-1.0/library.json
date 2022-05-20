@@ -1,0 +1,30 @@
+{
+  "machineName": "H5P.CurrikiMathColumn",
+  "title": "Math Column",
+  "description": "Content holder displaying content in a column.",
+  "contentType": "instructional",
+  "license": "MIT",
+  "author": "AHMAD MUKHTAR",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 2,
+  "runnable": 1,
+  "fullscreen": 0,
+  "embedTypes": [
+    "iframe"
+  ],
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 19
+  },
+  "preloadedJs": [
+    {
+      "path": "scripts/h5p-math-column.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "styles/h5p-math-column.css"
+    }
+  ]
+}

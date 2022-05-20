@@ -1,0 +1,37 @@
+[
+  {
+    "name": "buttonText",
+    "type": "text",
+    "label": "Button Text",
+    "description": "The text displayed on the call to action button",
+    "hint": "Getting started"
+  },
+  {
+    "name": "actions",
+    "type": "list",
+    "label": "Actions",
+    "description": "List of actions",
+    "entity": "action",
+    "max": 100,
+    "min": 1,
+    "field": {
+      "name": "action",
+      "type": "group",
+      "label": "Action",
+      "entity": "action",
+      "fields": [
+        {
+          "name": "title",
+          "type": "text",
+          "label": "Title"
+        },
+        {
+          "name": "url",
+          "type": "text",
+          "label": "Url",
+          "description": "Url to where the user is to be sent when choosing this action"
+        }
+      ]
+    }
+  }
+]

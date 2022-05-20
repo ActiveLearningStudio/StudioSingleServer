@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "Spletna povezava (URL)",
+      "description": "Naslov do izbrane Facebook strani."
+    },
+    {
+      "label": "Barvna shema okvirja z vsebino",
+      "options": [
+        {
+          "label": "Svetla"
+        },
+        {
+          "label": "Temna"
+        }
+      ],
+      "description": "Nastavitev določi barvno shemo za prikaz vsebine."
+    },
+    {
+      "label": "Zgolj prijave prijateljev",
+      "description": "Določa prikaz celotnih objav, ali zgolj prijav (angl. check-in) prijateljev."
+    },
+    {
+      "label": "Prikaži glavo",
+      "description": "Določa prikaz glave oz. naslov vsebine."
+    },
+    {
+      "label": "Prikaži obrobo",
+      "description": "Določa prikaz obrobe."
+    },
+    {
+      "label": "Prikaži obraze",
+      "description": "Vsebini so dodane fotografije profilov oseb, ki so se odzvali na objavo."
+    },
+    {
+      "label": "Prikaži združeno",
+      "description": "Objave na strani prikaže združeno kot skupine (angl. stream)."
+    },
+    {
+      "label": "Višina",
+      "description": "Nastavitev višine okvirja Facebook strani."
+    },
+    {
+      "label": "Širina",
+      "description": "Nastavitev širine okvirja Facebook strani."
+    }
+  ]
+}

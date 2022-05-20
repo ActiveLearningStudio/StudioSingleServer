@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "Tervitustekst",
+      "default": "Tere maailm!",
+      "description": "Tervitustekst, mida näidatakse lõppkasutajale."
+    },
+    {
+      "label": "Kaardi pilt",
+      "description": "Pilt, mida näidatakse kaardil, valikuline. Ilma selle pildita näidatakse kaardil lihtsalt teksti."
+    }
+  ]
+}

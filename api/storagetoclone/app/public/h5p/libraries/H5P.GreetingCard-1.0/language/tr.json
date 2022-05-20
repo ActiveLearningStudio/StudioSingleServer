@@ -1,0 +1,13 @@
+{
+  "semantics":[
+    {
+      "label":"Tebrik metni",
+      "default":"Merhaba dünya!",
+      "description":"Son kullanıcıya gösterilecek tebrik metni."
+    },
+    {
+      "label":"Kart resmi",
+      "description":"Kartta resim gösterimi isteğe bağlıdır. Bunu kullanmazsanız tebrik kartı sadece metin olarak görünecektir."
+    }
+  ]
+}

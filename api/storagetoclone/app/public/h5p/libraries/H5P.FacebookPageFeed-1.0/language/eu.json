@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "Facebookeko orriaren URLaaa",
+      "description": "Facebookeko orriaren URLaaa"
+    },
+    {
+      "label": "Kutxaren kolore eskema",
+      "options": [
+        {
+          "label": "Argia"
+        },
+        {
+          "label": "Iluna"
+        }
+      ],
+      "description": "Zehazten du zein kolore eskema erabili behar den"
+    },
+    {
+      "label": "Soilik Check-in edo lokalizazioak",
+      "description": "Zehazten du kateak dituen orriaren mezuak edo soilik lagunen Check-in edo lokalizazioak"
+    },
+    {
+      "label": "Erakutsi titulua",
+      "description": "Zehazten du titulua ikusi behar den ala ez"
+    },
+    {
+      "label": "Erakutsi ertza",
+      "description": "Zehazten du ertzak ikusi behar diren ala ez"
+    },
+    {
+      "label": "Erakutsi aurpegiak",
+      "description": "Zehazten du erakutsi behar diren orria gustukoa duen jendearen profileko argazkiak."
+    },
+    {
+      "label": "Erakutsi jarioa",
+      "description": "zehazten du orriaren jarioa ikusi behar den ala ez"
+    },
+    {
+      "label": "Altuera",
+      "description": "Ezarri Facebook orriaren altuera"
+    },
+    {
+      "label": "Zabalera",
+      "description": "Ezarri Facebook orriaren zabalera"
+    }
+  ]
+}

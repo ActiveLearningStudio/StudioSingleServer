@@ -1,0 +1,78 @@
+{
+  "machineName": "H5P.FullScreenScroller",
+  "title": "Fullscreen scroller",
+  "description": "Create nice fullscreen pages with animations",
+  "license": "MIT",
+  "author": "Joubel",
+  "majorVersion": 0,
+  "minorVersion": 1,
+  "patchVersion": 3,
+  "runnable": 1,
+  "fullscreen": 0,
+  "embedTypes": [
+    "iframe"
+  ],
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 12
+  },
+  "preloadedCss": [
+    {
+      "path": "styles/h5p-fss.css"
+    },
+    {
+      "path": "jquery.fullpage.min.css"
+    }
+  ],
+  "preloadedJs": [
+    {
+      "path": "scripts/h5p-fss-main.js"
+    },
+    {
+      "path": "scripts/h5p-fss-page.js"
+    },
+    {
+      "path": "scripts/h5p-fss-element.js"
+    },
+    {
+      "path": "scripts/h5p-fss-progress-dots.js"
+    },
+    {
+      "path": "jquery.fullpage.min.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 5
+    },
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 2
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.VerticalTabs",
+      "majorVersion": 1,
+      "minorVersion": 3
+    },
+    {
+      "machineName": "H5PEditor.ColorSelector",
+      "majorVersion": 1,
+      "minorVersion": 2
+    },
+    {
+      "machineName": "H5PEditor.UrlField",
+      "majorVersion": 1,
+      "minorVersion": 2
+    },
+    {
+      "machineName": "H5PEditor.ShowWhen",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

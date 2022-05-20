@@ -1,0 +1,13 @@
+{
+  "semantics": [
+    {
+      "label": "Testo del saluto",
+      "default": "Ciao, mondo!",
+      "description": "Testo del saluto mostrato all'utente finale"
+    },
+    {
+      "label": "Immagine della cartolina",
+      "description": "Immagine mostrata sulla cartolina (facoltativa). Senza cartolina sarà mostrato solo il testo"
+    }
+  ]
+}

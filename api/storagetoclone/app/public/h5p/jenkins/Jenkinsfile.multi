@@ -1,0 +1,12 @@
+node('currikimultitenancy') {
+    stage('Clone repository') {               
+        checkout scm    
+    }  
+    stage ('Copy H5P to multitenancy') {
+            echo 'Copy Started'
+            sh "yes | rm -rf /tmp/h5p-dist"
+            sh "yes | git clone https://github.com/ActiveLearningStudio/H5P.Distribution.git /tmp/h5p-dist"
+            sh "yes | cp -rf /tmp/h5p-dist/* /curriki/api/storage/app/public/h5p/"
+            echo 'Copy completed'
+    }
+}

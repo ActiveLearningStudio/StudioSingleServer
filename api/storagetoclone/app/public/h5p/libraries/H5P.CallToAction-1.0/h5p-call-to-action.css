@@ -1,0 +1,13 @@
+.h5p-call-to-action-holder {
+  display: inline-block;
+}
+.h5p-actions-list {
+  display: none;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.h5p-action {
+  list-style: none !important;
+  border: 1px solid #cccccc;
+  padding: 0.5em;
+};

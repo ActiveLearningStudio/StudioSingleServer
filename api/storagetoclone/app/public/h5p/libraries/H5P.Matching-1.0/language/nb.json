@@ -1,0 +1,102 @@
+{
+  "semantics": [
+    {
+      "label": "Aktivitets type",
+      "description": "Velg en aktivitetstype",
+      "options": [
+        {
+          "label": "Kombinér en tekst med en annen tekst"
+        },
+        {
+          "label": "Kombinér en tekst med et bilde"
+        }
+      ]
+    },
+    {
+      "label": "Overskrift",
+      "default": "Kombinér teksten på venstre side med den tilhørende høyre side",
+      "description": "Beskrivelse av oppgaven"
+    },
+    {
+      "widgets": [
+        {
+          "label": "Default"
+        }
+      ],
+      "label": "Par",
+      "entity": "par",
+      "field": {
+        "label": "Par",
+        "fields": [
+          {
+            "label": "Bilde på venstre side"
+          },
+          {
+            "label": "Tekst på venstre side",
+            "description": "The text will be used as the \"alt\" attribute if matching with an image"
+          },
+          {
+            "label": "Tekst på høyre side"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Oversettelser",
+      "fields": [
+        {
+          "label": "Etikett for \"Sjekk\"-knapp",
+          "default": "Sjekk"
+        },
+        {
+          "label": "Etikett for \"Fasit\"-knapp",
+          "default": "Fasit"
+        },
+        {
+          "label": "Etikett for \"Prøv igjen\"-knappen.",
+          "default": "Prøv igjen"
+        },
+        {
+          "label": "Etikett for et riktig kombinert par",
+          "default": "Riktig!"
+        },
+        {
+          "label": "Etikett for et feil kombinert par",
+          "default": "Feil!"
+        },
+        {
+          "label": "Etikett for fasit på et par",
+          "default": "Fasit"
+        },
+        {
+          "label": "Etikett som indikerer at et valg ikke er kombinert i et par",
+          "default": "@title. Ikke kombinert"
+        },
+        {
+          "label": "Etikett som indikerer at et valg er kombinert med et annet valg",
+          "default": "@title er kombinert med @oppositeTitle"
+        },
+        {
+          "label": "Etikett for fasitløsning",
+          "default": "@title skulle vært kombinert med @oppositeTitle"
+        }
+      ]
+    },
+    {
+      "label": "Innstillinger for oppgaveoppførsel",
+      "description": "Disse instillingene lar deg bestemme hvordan oppgavetypen skal oppføre seg.",
+      "fields": [
+        {
+          "label": "Aktiver \"Prøv igjen\" knapp"
+        },
+        {
+          "label": "Aktiver \"Fasit\" knapp"
+        },
+        {
+          "label": "Pass percentage",
+          "description": "Percentage of Total score required for passing the task."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Grep Dialog",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 0,
+  "machineName": "H5P.GrepDialog",
+  "author": "Joubel AS",
+  "license": "MIT",
+  "preloadedJs": [
+    {
+      "path": "grep-api.js"
+    },
+    {
+      "path": "grep-dialog-box.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "grep-dialog-box.css"
+    }
+  ]
+}

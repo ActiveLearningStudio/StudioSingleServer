@@ -1,0 +1,10 @@
+[
+  {
+    "label": "GeoGebra Geometry Applet",
+    "name": "geogebra_applet_geometry",
+    "type": "text",
+    "widget": "GeoGebraGeometryWidget",
+    "default": "",
+    "description": ""
+  }
+]

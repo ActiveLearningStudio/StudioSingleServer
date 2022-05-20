@@ -1,0 +1,23 @@
+{
+    "title": "Immersive reader",
+    "description": "Displays a text that can be read using Microsoft's Immersive Reader",
+    "majorVersion": 1,
+    "minorVersion": 0,
+    "patchVersion": 9,
+    "runnable": 1,
+    "author": "Antonio Etayo",
+    "license": "cc-by-sa",
+    "machineName": "H5P.ImmersiveReader",
+    "coreApi": {
+      "majorVersion": 1,
+      "minorVersion": 0
+    },
+    "preloadedJs": [
+      { "path": "axios.min.js" },
+      { "path": "immersive-reader-sdk.1.0.0.js" },
+      { "path": "immersive.js" }
+    ],
+    "preloadedCss": [
+      {"path": "immersive.css"}
+    ]
+  }

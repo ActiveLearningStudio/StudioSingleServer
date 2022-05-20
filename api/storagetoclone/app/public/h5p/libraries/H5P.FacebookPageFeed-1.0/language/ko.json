@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "페이스북 페이지 URL",
+      "description": "페이스북 페이지 URL"
+    },
+    {
+      "label": "박스에 대한 색 구성",
+      "options": [
+        {
+          "label": "밝은색"
+        },
+        {
+          "label": "어두운 색"
+        }
+      ],
+      "description": "사용할 색 구성표 결정"
+    },
+    {
+      "label": "체크인만",
+      "description": "스트림에 페이지별 게시물이 포함되어 있는지 아니면 친구로부터 체크인만 받고 있는지 명시"
+    },
+    {
+      "label": "머릿말 표시",
+      "description": "머릿말 표시 여부 지정"
+    },
+    {
+      "label": "경계 표시",
+      "description": "경계 표시 여부 지정"
+    },
+    {
+      "label": "얼굴 보이기",
+      "description": "페이지를 좋아하는 사람의 프로필 사진을 표시할지 여부를 명시한다."
+    },
+    {
+      "label": "스트림 표시",
+      "description": "페이지의 스트림 표시 여부 지정"
+    },
+    {
+      "label": "높이",
+      "description": "페이스북 페이지 피드의 높이 설정"
+    },
+    {
+      "label": "너비",
+      "description": "페이스북 페이지 피드의 너비 설정"
+    }
+  ]
+}

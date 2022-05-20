@@ -1,0 +1,293 @@
+@font-face {
+  font-family: 'H5PFSS';
+  src:  url('../fonts/fss.eot?x4rr6z');
+  src:  url('../fonts/fss.eot?x4rr6z#iefix') format('embedded-opentype'),
+    url('../fonts/fss.ttf?x4rr6z') format('truetype'),
+    url('../fonts/fss.woff?x4rr6z') format('woff'),
+    url('../fonts/fss.svg?x4rr6z#h5p') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.h5p-fss-intro {
+  height: 100%;
+  font-size: 5em;
+  background-color: pink;
+}
+.h5p-fss-page {
+  line-height: 1;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+  opacity: .5;
+  transition: opacity 2s;
+  font-family: 'Open Sans', sans-serif;
+}
+.h5p-fss-element {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.h5p-fss-page.double-page .h5p-fss-element {
+  width: 50%;
+  font-size: 0.75em;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.h5p-fss-page.double-page .h5p-fss-element:first-child {
+  left: 0;
+}
+.h5p-fss-page.double-page .h5p-fss-element:nth-child(2) {
+  right: 0;
+}
+/* Portrait */
+.h5p-fss-portrait .double-page .h5p-fss-element {
+  width: 100%;
+  height: 50%;
+}
+.h5p-fss-portrait .double-page .h5p-fss-element:nth-child(2) {
+  left: 0;
+  top: auto;
+  bottom: 0;
+}
+.h5p-fss-portrait .double-page .h5p-fss-element-image {
+  margin-bottom: 0;
+}
+.h5p-fss-element-inner {
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+  margin: 0 1.5em;
+  box-sizing: border-box;
+  -webkit-backface-visibility: hidden;
+}
+.h5p-fss-page.fadein {
+  opacity: 1;
+}
+.h5p-fss-dot-wrapper {
+  position: fixed;
+  right: 1em;
+  z-index: 1;
+  font-size: 0.5em;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+  color: #fff;
+  overflow: visible;
+  transition: color 0.6s;
+  text-align: center;
+}
+.h5p-fss-dot {
+  font-family: H5PFontAwesome4;
+  font-size: 1em;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  overflow: visible;
+  float: left;
+  clear: both;
+  margin-bottom: 1em;
+  cursor: pointer;
+  transition: all 0.6s;
+  text-align: center;
+  border: 1em solid transparent;
+  background-clip: padding-box;
+  border-radius: 50%;
+  position: relative;
+}
+.h5p-fss-close-button {
+  font-family: H5PFSS;
+  cursor: pointer;
+  transition: transform 0.3s, color 1s;;
+  z-index: 1;
+  position: fixed;
+  left: 1.5em;
+  top: 1.5em;
+  line-height: 1;
+  color: #fff;
+  font-size: calc(10px + 0.5em);
+}
+.h5p-fss-close-button:before {
+  content: '\e906';
+  opacity: 1;
+  line-height: 1;
+}
+.h5p-fss-close-button:hover {
+  transform: rotate(90deg) scale(1.5);
+}
+.h5p-fss-presentation {
+  font-size: calc(5px + 1vmin);
+}
+.h5p-fss-loading .h5p-fss-small-screen,
+.h5p-fss-loaded .h5p-fss-small-screen,
+.h5p-fss-presentation {
+  display: none;
+}
+.h5p-fss-small-screen,
+.h5p-fss-loaded .h5p-fss-presentation {
+  display: block;
+}
+
+.h5p-fss-loading-page {
+  display: none;
+  font-family: H5PFontAwesome4;
+  font-size: 4em;
+  width: 100%;
+  height: 100%;
+}
+.h5p-fss-loading-icon {
+  animation: fa-spin 2s infinite linear;
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+  width: 100%;
+  text-align: center;
+}
+.h5p-fss-loading-icon:before {
+  content: '\f110';
+}
+.h5p-fss-loading .h5p-fss-loading-page
+{
+  display: inline-block;
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+.h5p-fss-small-screen {
+  font-size: 1em;
+  background: #fff;
+  color: #333;
+  padding: 2em;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+.h5p-fss-small-screen-title {
+  font-size: 2.5em;
+  margin-bottom: 1em;
+  line-height: 1.1;
+}
+.h5p-fss-start-button {
+  margin: 0 !important;
+}
+.h5p-fss-start-button:before {
+  font-family: H5PFontAwesome4;
+  content: '\f0b2';
+}
+.h5p-fss-start-button:hover {
+  border-radius: 2em;
+  background-image: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.h5p-fss-element-arrow,
+.h5p-fss-element-mouse {
+  font-family: H5PFSS;
+  font-size: 0.8em;
+  color: #fff;
+  position: absolute;
+  height: 1em;
+  bottom: 1em;
+  left: 0;
+  width: 100%;
+}
+.h5p-fss-element-arrow {
+  cursor: pointer;
+}
+.fadein .h5p-fss-element-arrow {
+  animation: bounce 2s 3;
+}
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+	40% {
+    transform: translateY(-30px);
+  }
+	60% {
+    transform: translateY(-15px);
+  }
+}
+.h5p-fss-element-arrow:before {
+  content: '\e905';
+  font-size: 0.5em
+}
+.h5p-fss-page:last-child .h5p-fss-element-arrow {
+  display: none;
+}
+.h5p-fss-element-mouse {
+  bottom: 3em;
+}
+.h5p-fss-element-mouse:after {
+  content: '\e907';
+}
+.h5p-fss-element-image {
+  margin-bottom: 2em;
+  width: auto;
+  border: none !important;
+  transform: translateY(4em);
+  transition: transform 1s;
+}
+.h5p-fss-element-title {
+  font-weight: 800;
+  letter-spacing: -0.07em;
+  font-size: 3.5em;
+  margin-bottom: .4em;
+  transform: translateY(2em);
+  transition: transform 1s;
+}
+.h5p-fss-element-description {
+  margin-bottom: 2em;
+  transform: translateY(6em);
+  transition: transform 1s;
+
+}
+.h5p-fss-element-description a {
+  color: inherit !important;
+  text-decoration: underline !important;
+}
+.h5p-fss-element-link {
+  font-size: 0.8em;
+  position: relative;
+  transform: translateY(3em);
+  transition: transform 1s, color .3s, background .3s;
+}
+.h5p-fss-element-anchor {
+  border-radius: 0.25em;
+  cursor: pointer;
+  border: 1px solid #fff;
+  padding: 0.5em 1em;
+  background: transparent;
+  text-decoration: none;
+  box-shadow: none;
+}
+.h5p-fss-element-anchor:after {
+  font-family: H5PFontAwesome4;
+  content: '\f178';
+  margin-left: 1em;
+}
+.h5p-fss-page p {
+  padding: 0 !important;
+  margin: 0 0 0.5em 0 !important;
+}
+.h5p-fss-page p:last-child {
+  margin-bottom: 0 !important;
+}
+.fadein .h5p-fss-element-image,
+.fadein .h5p-fss-element-title,
+.fadein .h5p-fss-element-description,
+.fadein .h5p-fss-element-link {
+  transform: translateY(0);
+}
+.h5p-fss-inner {
+  font-size: 1.7em;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}

@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "URL de la page Facebook",
+      "description": "Saisir l'adresse de la page Facebook"
+    },
+    {
+      "label": "Design (couleurs) de la boîte",
+      "options": [
+        {
+          "label": "Clair"
+        },
+        {
+          "label": "Sombre"
+        }
+      ],
+      "description": "Détermine quel design (couleurs) utiliser"
+    },
+    {
+      "label": "Seulement ceux des amis",
+      "description": "Le flux doit-il contenir tous les posts ou seulement ceux des amis ?"
+    },
+    {
+      "label": "Afficher l'entête",
+      "description": "L'entête doit-il être visible ?"
+    },
+    {
+      "label": "Afficher les bordures",
+      "description": "Les bordures doivent-elles être visibles ?"
+    },
+    {
+      "label": "Afficher les photos de profil",
+      "description": "Les photos des profils des gens qui aiment la page doivent-elles être visibles ?"
+    },
+    {
+      "label": "Afficher le flux de la page",
+      "description": "Le flux de la page doit-il être visible ?"
+    },
+    {
+      "label": "Hauteur",
+      "description": "Régler la hauteur de la boîte Facebook"
+    },
+    {
+      "label": "Largeur",
+      "description": "Régler la largeur de la boîte Facebook"
+    }
+  ]
+}

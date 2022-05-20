@@ -1,0 +1,29 @@
+{
+  "title": "Call to action",
+  "contentType": "navigation",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "embedTypes": [
+    "div"
+  ],
+  "runnable": 1,
+  "fullscreen": 0,
+  "machineName": "H5P.CallToAction",
+  "author": "Joubel AS",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 5
+  },
+  "license": "MIT",
+  "preloadedJs": [
+    {
+      "path": "h5p-call-to-action.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "h5p-call-to-action.css"
+    }
+  ]
+}

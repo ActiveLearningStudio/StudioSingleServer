@@ -1,0 +1,22 @@
+[
+  {
+    "label": "Unit Title",
+    "name": "geogebra_unit_title",
+    "type": "text",
+    "default": ""
+  },
+  {
+    "label": "Unit Material ID",
+    "name": "geogebra_unit_material",
+    "type": "text",
+    "default": ""
+  },
+  {
+    "label": "GeoGebra Math Applet",
+    "name": "geogebra_applet_math",
+    "type": "text",
+    "widget": "GeoGebraIM68Math",
+    "default": "",
+    "description": ""
+  }
+]

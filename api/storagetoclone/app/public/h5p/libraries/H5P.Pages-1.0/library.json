@@ -1,0 +1,46 @@
+{
+  "title": "Pages",
+  "description": "Flexible content type where content may be devided out over pages and columns on those pages.",
+  "contentType": "instructional",
+  "majorVersion": 1,
+  "minorVersion": 0,
+  "patchVersion": 0,
+  "runnable": 1,
+  "fullscreen": 0,
+  "machineName": "H5P.Pages",
+  "author": "Joubel AS",
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 1
+  },
+  "license": "MIT",
+  "preloadedJs": [
+    {
+      "path": "js/pages.js"
+    }
+  ],
+  "preloadedCss": [
+    {
+      "path": "css/pages.css"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "H5P.JoubelUI",
+      "majorVersion": 1,
+      "minorVersion": 1
+    },
+    {
+      "machineName": "H5P.QuestionContainer",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ],
+  "editorDependencies": [
+    {
+      "machineName": "H5PEditor.HierarchicList",
+      "majorVersion": 1,
+      "minorVersion": 0
+    }
+  ]
+}

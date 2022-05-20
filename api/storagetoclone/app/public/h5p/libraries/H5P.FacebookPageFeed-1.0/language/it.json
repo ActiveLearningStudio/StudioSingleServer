@@ -1,0 +1,48 @@
+{
+  "semantics": [
+    {
+      "label": "URL della pagina Facebook",
+      "description": "URL di collegamento alla pagina Facebook"
+    },
+    {
+      "label": "Schema di colori del blocco (box)",
+      "options": [
+        {
+          "label": "Chiaro (light)"
+        },
+        {
+          "label": "Scuro (dark)"
+        }
+      ],
+      "description": "Stabilisci quale schema di colori usare"
+    },
+    {
+      "label": "Solo controlli (check-in)",
+      "description": "Specifica se il flusso contiene i messaggi della pagina o semplicemente il controllo da parte degli amici"
+    },
+    {
+      "label": "Mostra l'intestazione",
+      "description": "Specifica se l'intestazione debba essere o meno visibile"
+    },
+    {
+      "label": "Mostra il bordo",
+      "description": "Specifica se i bordi debbano essere o meno visibili"
+    },
+    {
+      "label": "Mostra la foto del profilo",
+      "description": "Specifica se mostrare le foto del profilo di persone a cui piace la pagina"
+    },
+    {
+      "label": "Mostra il flusso",
+      "description": "Specifica se il flusso della pagina debba essere o meno visibile"
+    },
+    {
+      "label": "Altezza",
+      "description": "Imposta l'altezza della pagina dei feed di Facebook"
+    },
+    {
+      "label": "Larghezza",
+      "description": "Imposta la larghezza della pagina dei feed di Facebook"
+    }
+  ]
+}
