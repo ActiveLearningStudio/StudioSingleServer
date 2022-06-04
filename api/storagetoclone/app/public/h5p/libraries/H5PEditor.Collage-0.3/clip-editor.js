@@ -91,7 +91,15 @@
       else {
         self.$wrapper.removeClass('h5p-collage-loading').addClass('h5p-collage-empty');
         $changeButton.attr('aria-label', H5PEditor.t('H5PEditor.Collage', 'addImage'));
-        alert(CollageEditor.t('uploadError'));
+
+        CollageEditor.showConfirmationDialog(self.$wrapper, {
+          headerText: H5PEditor.t('core', 'uploadError'),
+          dialogText: CollageEditor.t('uploadError'),
+          confirmText: H5PEditor.t('core', 'ok'),
+        });
+      }
+      if (self.content.image === null) {
+        delete self.content.image; // Prevent validation issues when saving
       }
     });
 

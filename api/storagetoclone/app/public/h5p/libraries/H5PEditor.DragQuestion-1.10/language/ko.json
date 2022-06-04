@@ -11,6 +11,10 @@
     "advancedtext":"텍스트",
     "dropzone":"드랍 영역",
     "selectAll":"모두 선택",
-    "deselectAll":"모두 선택하지 않기"
+    "deselectAll":"모두 선택하지 않기",
+    "deleteTaskTitle": "Deleting task",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

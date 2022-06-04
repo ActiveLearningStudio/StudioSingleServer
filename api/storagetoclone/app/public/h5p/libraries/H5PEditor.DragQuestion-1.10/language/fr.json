@@ -11,6 +11,10 @@
     "advancedtext":"Texte",
     "dropzone":"Zone De Dépôt",
     "selectAll":"Sélectionner tout ",
-    "deselectAll":"Désélectionner tout"
+    "deselectAll":"Désélectionner tout",
+    "deleteTaskTitle": "Deleting task",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

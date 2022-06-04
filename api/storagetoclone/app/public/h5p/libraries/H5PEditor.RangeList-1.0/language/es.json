@@ -1,6 +1,6 @@
 {
   "libraryStrings": {
-    "distributeButtonLabel": "Distribuir Parejo",
+    "distributeButtonLabel": "Distribuir Uniformemente",
     "distributeButtonWarning": "Los valores serán cambiados para todos los rangos. ¿Desea proseguir?",
     "rangeOutOfSequenceWarning": "Los rangos de puntaje están fuera de secuencia"
   }

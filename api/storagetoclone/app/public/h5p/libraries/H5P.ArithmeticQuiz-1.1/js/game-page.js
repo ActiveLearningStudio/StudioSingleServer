@@ -1,7 +1,7 @@
 /**
  * Defines the H5P.ArithmeticQuiz.GamePage class
  */
-H5P.ArithmeticQuiz.GamePage = (function ($, UI, QuizType) {
+ H5P.ArithmeticQuiz.GamePage = (function ($, UI, QuizType) {
 
   /**
    * Creates a new GamePage instance
@@ -26,6 +26,7 @@ H5P.ArithmeticQuiz.GamePage = (function ($, UI, QuizType) {
     self.maxQuestions = options.maxQuestions;
     self.sliding = false;
 
+    self.userInputwa = [];
     self.$gamepage = $('<div>', {
       'class': 'h5p-baq-game counting-down'
     });
@@ -56,7 +57,7 @@ H5P.ArithmeticQuiz.GamePage = (function ($, UI, QuizType) {
 
     // Shuffle quizzes:
     self.quizzes = self.questionsGenerator.get();
-
+    localStorage.setItem("quizzes",  JSON.stringify(self.quizzes));
     var numQuestions = self.quizzes.length;
     for (var i = 0; i < numQuestions; i++) {
       self.slider.addSlide(self.createSlide(self.quizzes[i], i));
@@ -69,21 +70,26 @@ H5P.ArithmeticQuiz.GamePage = (function ($, UI, QuizType) {
     self.progressbar.appendTo(self.$gamepage);
 
     // Add result page:
-    self.resultPage = new H5P.ArithmeticQuiz.ResultPage(numQuestions, self.translations);
+    
+    self.resultPage = new H5P.ArithmeticQuiz.ResultPage(numQuestions, self.translations, options);
     self.slider.addSlide(self.resultPage.create());
 
     self.resultPage.on('retry', function () {
       self.reset();
       self.slider.first();
+      self.userInputwa.length = 0;
     });
 
     self.slider.on('last-slide', function () {
       self.resultPage.update(self.score, self.timer.pause());
       self.$gamepage.addClass('result-page');
+      localStorage.setItem('userInputwa', JSON.stringify(self.userInputwa));
       self.trigger('last-slide', {
         score: self.score,
-        numQuestions: numQuestions
+        numQuestions: numQuestions,
+        duration: self.timer.getTime()
       });
+      
     });
 
     self.slider.on('first-slide', function () {
@@ -101,6 +107,15 @@ H5P.ArithmeticQuiz.GamePage = (function ($, UI, QuizType) {
       if ($button) {
         $button.focus();
       }
+
+      // Set focus to all
+      setTimeout(function () {
+        var $allButtons = self.$gamepage.find('.current .h5p-joubelui-button');
+        if ($allButtons) {
+          $allButtons.focus();
+        }
+      }, 1000);
+
     });
 
     self.slider.attach(self.$gamepage);
@@ -271,7 +286,8 @@ H5P.ArithmeticQuiz.GamePage = (function ($, UI, QuizType) {
       alternative.on('nextOption', handleNextOption);
       alternative.appendTo($alternatives);
       alternative.on('answered', function () {
-
+        self.userInputwa.push(alternative.number);
+        
         // Ignore clicks if in the middle of something else:
         if (self.sliding) {
           return;

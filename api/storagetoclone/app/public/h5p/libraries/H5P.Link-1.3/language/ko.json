@@ -1,12 +1,12 @@
 {
   "semantics": [
     {
-      "label": "Title"
+      "label": "제목"
     },
     {
       "fields": [
         {
-          "label": "Protocol",
+          "label": "프로토콜",
           "options": [
             {
               "label": "http://"
@@ -18,7 +18,7 @@
               "label": "(root relative)"
             },
             {
-              "label": "other"
+              "label": "기타"
             }
           ]
         },

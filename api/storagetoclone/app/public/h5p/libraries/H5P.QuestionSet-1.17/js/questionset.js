@@ -19,6 +19,11 @@ H5P.QuestionSet = function (options, contentId, contentData) {
   var $ = H5P.jQuery;
   var self = this;
   this.contentId = contentId;
+  this.contentData = contentData;
+  // to set parent in self if present in content data
+  if (self.parent === undefined && contentData && contentData.parent) {
+    self.parent = contentData.parent;
+  }
 
   var defaults = {
     initialQuestion: 0,
@@ -57,12 +62,19 @@ H5P.QuestionSet = function (options, contentId, contentData) {
       finishButtonText: 'Finish',
       solutionButtonText: 'Show solution',
       retryButtonText: 'Retry',
+      submitButtonText: 'Submit',
       showAnimations: false,
       skipButtonText: 'Skip video',
       showSolutionButton: true,
       showRetryButton: true
     },
     override: {},
+    currikisettings: {
+      disableSubmitButton: false,
+      currikil10n: {
+        submitAnswer: "Submit"
+      }
+    },
     disableBackwardsNavigation: false
   };
   var params = $.extend(true, {}, defaults, options);
@@ -116,6 +128,10 @@ H5P.QuestionSet = function (options, contentId, contentData) {
     '    <button type="button" class="h5p-joubelui-button h5p-button qs-retrybutton"><%= retryButtonText %></button>':
     '';
 
+  var submitButtonTemplate='';
+    if( typeof self.parent == "undefined" && !params.currikisettings.disableSubmitButton)
+      submitButtonTemplate = '<button type="button" class="h5p-joubelui-button h5p-button qs-submitbutton"><%= submitButtonText %></button>';
+
   var resulttemplate =
           '<div class="questionset-results">' +
           '  <div class="greeting"><%= message %></div>' +
@@ -132,6 +148,7 @@ H5P.QuestionSet = function (options, contentId, contentData) {
           '  <div class="buttons">' +
           solutionButtonTemplate +
           retryButtonTemplate +
+           submitButtonTemplate +
           '  </div>' +
           '</div>';
 
@@ -378,6 +395,8 @@ H5P.QuestionSet = function (options, contentId, contentData) {
       // Trigger resize on question in case the size of the QS has changed.
       var instance = questionInstances[questionNumber];
       instance.setActivityStarted();
+      // reset instance activity start time
+      instance.activityStartTime = Date.now();
       if (instance.$ !== undefined) {
         instance.trigger('resize');
       }
@@ -497,6 +516,7 @@ H5P.QuestionSet = function (options, contentId, contentData) {
    * @public
    */
   var resetTask = function () {
+    H5P.jQuery('.submit-answer-feedback').hide();
 
     // Clear previous state to ensure questions are created cleanly
     contentData.previousState = [];
@@ -565,6 +585,29 @@ H5P.QuestionSet = function (options, contentId, contentData) {
       randomizeQuestions();
     }
 
+    // reset instance start time
+    if (self.activityStartTime) {
+      self.activityStartTime = Date.now();
+    }
+  };
+
+  this.resetTask = function () {
+    resetTask();
+    $myDom.children().hide();
+    var $intro = $('.intro-page', $myDom);
+    if ($intro.length) {
+      // Show intro
+      $('.intro-page', $myDom).show();
+      $('.qs-startbutton', $myDom).focus();
+    } else {
+      // Show first question
+      $('.questionset', $myDom).show();
+      _showQuestion(params.initialQuestion);
+    }
+    // reset instance start time
+    if (this.activityStartTime) {
+      this.activityStartTime = Date.now();
+    }
   };
 
   var rendered = false;
@@ -752,7 +795,8 @@ H5P.QuestionSet = function (options, contentId, contentData) {
         resulttext: params.endGame.showResultPage ? (success ? params.endGame.oldFeedback.successComment : params.endGame.oldFeedback.failComment) : undefined,
         finishButtonText: params.endGame.finishButtonText,
         solutionButtonText: params.endGame.solutionButtonText,
-        retryButtonText: params.endGame.retryButtonText
+        retryButtonText: params.endGame.retryButtonText,
+        submitButtonText: params.currikisettings.currikil10n.submitAnswer
       };
 
       // Show result page.
@@ -763,6 +807,7 @@ H5P.QuestionSet = function (options, contentId, contentData) {
         hookUpButton('.qs-solutionbutton', function () {
           showSolutions();
           $myDom.children().hide().filter('.questionset').show();
+          H5P.jQuery('.submit-answer-feedback').hide();
           _showQuestion(params.initialQuestion);
         });
         hookUpButton('.qs-retrybutton', function () {
@@ -780,6 +825,12 @@ H5P.QuestionSet = function (options, contentId, contentData) {
             $('.questionset', $myDom).show();
             _showQuestion(params.initialQuestion);
           }
+        });
+        hookUpButton('.qs-submitbutton', function () {
+          self.triggerXAPIScored(self.getScore(), self.getMaxScore(), "answered");
+          self.triggerXAPIScored(self.getScore(), self.getMaxScore(), "submitted-curriki");
+           var $submit_message = '<div class="submit-answer-feedback" style = "color: red">Result has been submitted successfully</div>';
+          H5P.jQuery('.qs-submitbutton').after($submit_message);
         });
 
         if (scoreBar === undefined) {
@@ -1036,7 +1087,10 @@ H5P.QuestionSet = function (options, contentId, contentData) {
     _updateButtons();
 
     this.trigger('resize');
-
+    // initialize activity start time if root activity
+    if (self.isRoot()) {
+      self.activityStartTime = Date.now();
+    }
     return this;
   };
 
@@ -1238,6 +1292,18 @@ H5P.QuestionSet = function (options, contentId, contentData) {
     return {
       statement: xAPIEvent.data.statement,
       children: getXAPIDataFromChildren(this)
+    };
+  };
+
+  /**
+   * Get context data.
+   * Contract used for confusion report.
+   */
+  this.getContext = function () {
+    // Get question index and add 1, count starts from 0
+    return {
+      type: 'question',
+      value: (currentQuestion + 1)
     };
   };
 };

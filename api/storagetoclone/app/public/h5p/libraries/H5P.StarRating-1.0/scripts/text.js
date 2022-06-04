@@ -5,12 +5,15 @@ H5P.StarRating  = (function (EventDispatcher, $) {
   /**
    * @extends H5P.EventDispatcher
    * @param {Object} params
+   * @param {Number} contentId
+   * @param {Object} extras
    */
-  function Rating(params) {
+  function Rating(params, contentId, extras) {
   
     this.text = params.text === undefined ? '<p>New text</p>' : params.text;
     this.icon = params.icontype === undefined ? 'star' : params.icontype;
     this.starcounter = params.starcounter === undefined ? 6 : params.starcounter+1
+    this.title = extras && extras.hasOwnProperty("metadata") && extras.metadata.hasOwnProperty("title") ? extras.metadata.title : 'Star Rating';
     var self = this;
     var startco =   params.starcounter
     // Initialize event inheritance
@@ -55,14 +58,17 @@ H5P.StarRating  = (function (EventDispatcher, $) {
       nodehtml.innerHTML = self.text;
       Object.assign(completedEvent.data.statement.object.definition,{
         description: {
-          'en-US':nodehtml.innerText,
+          'en-US': nodehtml.innerText,
+        },
+        name: {
+          'en-US': self.title
         },
         type: 'http://adlnet.gov/expapi/activities/cmi.interaction',
         interactionType: 'numeric',
         "correctResponsesPattern": [
           "[:]"+startco
         ]
-      })
+      });
       self.trigger(completedEvent);
       // alert(`You have submitted ${checkCount} rating out of ${startco}`)
   }

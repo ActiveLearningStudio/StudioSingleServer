@@ -5,7 +5,7 @@
     },
     {
       "label": "Texto alternativo",
-      "description": "Necesario. Si el navegador no puede cargar la imagen este texto será mostrado en su lugar. También es usado por lectores de  \"texto-hablado\"."
+      "description": "Necesario. Si el navegador no puede cargar la imagen este texto será mostrado en su lugar. También es usado por lectores de \"texto-hablado\"."
     },
     {
       "label": "Texto al pasar el ratón encima",

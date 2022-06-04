@@ -1,16 +1,16 @@
 {
   "semantics": [
     {
-      "label": "Label",
-      "description": "Label/heading for answer when user exports all answers"
+      "label": "Etiket",
+      "description": "Etiket/opskrif vir antwoorde wanneer gebruiker alle antwoorde uitvoer"
     },
     {},
     {
-      "label": "Export not supported label",
-      "default": "Export not supported on your device"
+      "label": "Uitvoer nie ondersteun nie etiket",
+      "default": "Uitvoer word nie ondersteun op jou toestel nie"
     },
     {
-      "label": "Include comments in the exported document"
+      "label": "Voeg kommentaar by in die uitgevoerde dokument"
     }
   ]
 }

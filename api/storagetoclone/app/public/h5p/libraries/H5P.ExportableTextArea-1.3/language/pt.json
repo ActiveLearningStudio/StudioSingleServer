@@ -1,8 +1,8 @@
 {
   "semantics": [
     {
-      "label": "Label",
-      "description": "Label/heading for answer when user exports all answers"
+      "label": "Etiqueta",
+      "description": "Etiqueta/cabeçalho para resposta quando o usuário exporta todas as respostas"
     },
     {},
     {

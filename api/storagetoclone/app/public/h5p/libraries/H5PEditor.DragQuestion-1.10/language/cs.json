@@ -11,6 +11,10 @@
     "advancedtext":"Text",
     "dropzone":"Místo umístění",
     "selectAll":"Vybrat vše",
-    "deselectAll":"Odznačit vše"
+    "deselectAll":"Odznačit vše",
+    "deleteTaskTitle": "Deleting task",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

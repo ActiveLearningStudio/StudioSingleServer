@@ -3,7 +3,7 @@
   "description": "Displays a Twitter User Feed",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 19,
+  "patchVersion": 20,
   "runnable": 1,
   "author": "Joubel",
   "license": "MIT",

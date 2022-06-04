@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "etiqueta",
+      "label": "Etiqueta",
       "description": "Etiqueta/encabezado para respuesta cuando el usuario exporta todas las respuestas"
     },
     {},

@@ -354,6 +354,7 @@
 
     // Add back image for card
     if (backImage) {
+      //var backgroundImage = "background-image:url('" + backImage + "')";
       var backgroundImage = 'background-image:url(' + backImage + ')';
 
       styles.front += backgroundImage;

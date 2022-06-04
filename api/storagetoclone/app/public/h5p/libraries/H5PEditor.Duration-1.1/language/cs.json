@@ -1,7 +1,7 @@
 {
   "libraryStrings": {
     "exceedsMin": "\":property\" překračuje minimální hodnotu :min.",
-    "fromBiggerThanTo": "\"From\" musí být dříve než \"To\".",
+    "fromBiggerThanTo": "\"Od\" musí být dříve než \"Do\".",
     "invalidTime": "\":property\" obsahuje neplatný formát času."
   }
 }

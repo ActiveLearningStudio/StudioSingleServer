@@ -30,9 +30,75 @@ H5P.CurrikiMathColumn = (function (EventDispatcher) {
         var instances = [];
         var instanceContainers = [];
 
+        // Number of tasks that has been completed
+        var numTasksCompleted = 0;
+
         // Keep track of last content's margin state
         var previousHasMargin;
 
+        // Keep track of result for each task
+        var tasksResultEvent = [];
+
+        var skipped = [];
+
+        // Number of tasks among instances
+        var numTasks = 0;
+
+
+        /**
+     * Calculate score and trigger completed event.
+     *
+     * @private
+     */
+    var completed = function () {
+        // Sum all scores
+        var raw = 0;
+        var max = 0;
+  
+        for (var i = 0; i < tasksResultEvent.length; i++) {
+          var event = tasksResultEvent[i];
+          raw += event.getScore();
+          max += event.getMaxScore();
+        }
+  
+        self.triggerXAPIScored(raw, max, 'completed');
+      };
+  
+      /**
+       * Generates an event handler for the given task index.
+       *
+       * @private
+       * @param {number} taskIndex
+       * @return {function} xAPI event handler
+       */
+      var trackScoring = function (taskIndex) {
+        return function (event) {
+          if (event.getScore() === null) {
+            return; // Skip, not relevant
+          }
+  
+          if (tasksResultEvent[taskIndex] === undefined) {
+            // Update number of completed tasks
+            numTasksCompleted++;
+          }
+  
+          // Keep track of latest event with result
+          tasksResultEvent[taskIndex] = event;
+  
+          // Track progress
+          var progressed = self.createXAPIEventTemplate('progressed');
+          progressed.data.statement.object.definition.extensions['http://id.tincanapi.com/extension/ending-point'] = taskIndex + 1;
+          self.trigger(progressed);
+  
+          // Check to see if we're done
+          if (numTasksCompleted === numTasks) {
+            // Run this after the current event is sent
+            setTimeout(function () {
+              completed(); // Done
+            }, 0);
+          }
+        };
+      };
 
         /**
          * Creates a new content instance from the given content parameters and
@@ -59,6 +125,14 @@ H5P.CurrikiMathColumn = (function (EventDispatcher) {
 
             // Bubble resize events
             bubbleUp(instance, 'resize', self);
+
+                    // Check if instance is a task
+            if (CurrikiMathColumn.isTask(instance)) {
+                // Tasks requires completion
+
+                instance.on('xAPI', trackScoring(numTasks));
+                numTasks++;
+            }
 
             if (library === 'H5P.Image' || library === 'H5P.GeoGebraIM68Math') {
                 // Resize when images are loaded
@@ -189,6 +263,66 @@ H5P.CurrikiMathColumn = (function (EventDispatcher) {
             // Create wrapper
             wrapper = document.createElement('div');
 
+
+            if(typeof data.parent == "undefined") {
+                H5P.JoubelUI.createButton({
+                  class: "view-summary  h5p-column-summary",
+                  html: 'View Summary',
+                  on: {
+                      click: function () {
+                        H5P.jQuery('.custom-summary-section').remove();
+                        H5P.jQuery('.submit-answers').remove();
+                        
+                          var confirmationDialog = new H5P.ConfirmationDialog({
+                            headerText: 'Column Layout Summary',
+                            dialogText: createSummary(wrapper,tasksResultEvent),
+                            cancelText: 'Cancel',
+                            confirmText: "Submit Answers"
+                          });
+                          confirmationDialog.on('confirmed', function () {
+                            //self.removeGoal($removeContainer);
+                            // Set focus to add new goal button
+                            //self.$createGoalButton.focus();
+                            var rawwa = 0;
+                            var maxwa = 0;
+                            //console.log(tasksResultEvent);
+                            for (var m = 0; m < tasksResultEvent.length; m++) {
+                              var eventwa = tasksResultEvent[m];
+                              if(typeof eventwa != "undefined"){
+                                rawwa += eventwa.getScore();
+                                maxwa += eventwa.getMaxScore();
+                              }
+                              
+                            }
+                            if(maxwa === rawwa) {
+                              maxwa += 1;
+                            }
+                            self.triggerXAPIScored(rawwa, maxwa, 'submitted-curriki');
+                            //console.log(skipped);
+                            for(skip_rec of skipped) {
+                              //console.log('skipped');
+                              //skip_rec.triggerXAPIScored(rawwa, maxwa, 'skipped');
+                              const customProgressedEvent = skip_rec.createXAPIEventTemplate('skipped');
+                    
+                              if (customProgressedEvent.data.statement.object) {
+                                //customProgressedEvent.data.statement.object.definition['name'] = {'en-US': skip_rec.contentData.metadata.title};
+                                //console.log(customProgressedEvent);
+                                //section.instance.triggerXAPIScored(0,1,customProgressedEvent);
+                                skip_rec.trigger(customProgressedEvent);
+                              }
+        
+                            }
+                          });
+                  
+                          confirmationDialog.appendTo(parent.document.body);
+                          confirmationDialog.show();
+                          //H5P.jQuery(window.parent).scrollTop(0); 
+                          H5P.jQuery(".h5p-confirmation-dialog-popup").css("top", "80%");
+                      },
+                  },
+                  appendTo: document.body,
+              });
+            }
             // Go though all contents
             for (var i = 0; i < params.content.length; i++) {
                 var content = params.content[i];
@@ -394,6 +528,128 @@ H5P.CurrikiMathColumn = (function (EventDispatcher) {
             return definition;
         };
 
+        var createSummary = function (wrapper,tasksResultEvent) {
+        
+            var table_content = '<tbody>';
+          
+            var i=0;
+            for(const inst of instances) {
+              
+              var param_content = params.content[i];
+              var content_type = param_content.content.metadata.contentType;
+              
+              if( typeof inst.getAnswerGiven == "function" && !inst.getAnswerGiven()){
+                skipped.push(inst);
+                table_content += printSkippedTr(param_content.content.metadata.title);
+                
+                i++;
+                continue;
+              }
+              
+              if(content_type == "Course Presentation" || content_type == "Interactive Video" || content_type == "Questionnaire") {
+                
+                    var cpTaskDone = checkSkippedStatus(inst,content_type);
+                    
+                    if(!cpTaskDone) {
+                      skipped.push(inst);
+                      table_content +=printSkippedTr(param_content.content.metadata.title);
+                      i++;
+                      continue;
+                    }
+              }
+    
+            if(typeof inst.getScore == "undefined") {
+                var cust_score = 0;
+                var cust_max_score = 0;
+    
+            }else {
+              var cust_score = inst.getScore();
+              var cust_max_score = inst.getMaxScore();
+            }
+            table_content += '<tr >';
+            table_content += '<td>'+param_content.content.metadata.title+'</td>';
+            table_content += '<td style="text-align: right !important;">'+cust_score+'/'+cust_max_score+'</td>';
+            table_content += '</tr>';
+            i++;
+          } 
+          table_content += '</tbody>';
+         
+          var summary_html = '<div class="custom-summary-section"><div class="h5p-summary-table-pages"><table class="h5p-score-table-custom" style="min-height:100px;width:100%;"><thead><tr><th>Content</th><th style="text-align: right !important;">Score/Total</th></tr></thead>'+table_content+'</table></div></div>';
+          
+          return summary_html;
+          
+          
+        };
+    
+        /**
+         * To print the skipped elem tr
+         * @param {*} title 
+         */
+        function printSkippedTr(title) {
+          
+              var table_content = '<tr >';
+              table_content += '<td>'+title+'  (Skipped) </td>';
+              table_content += '<td style="text-align: right !important;">0/0</td>';
+              table_content += '</tr>';
+             return table_content;
+             
+        }
+    
+    
+        /**
+         * To check if the instances has been skipped or not
+         * @param {*} instances 
+         * @param {*} type 
+         */
+        function checkSkippedStatus(instances, type) {
+          if(type == "Interactive Video") {
+            for (const iv_interaction of instances.interactions) {
+              if(typeof iv_interaction.getLastXAPIVerb() != "undefined") {
+                //console.log(iv_interaction.getLastXAPIVerb());
+                return true;
+              }
+            }
+            return false;
+    
+          }else if(type == "Course Presentation") {
+            //console.log(instances.slidesWithSolutions);
+            for (const slide of instances.slidesWithSolutions) {
+              if(typeof slide === "undefined" || slide == ""){
+                continue;
+              }
+              for(const item of slide) {
+                if(typeof item.getAnswerGiven === "function" && item.getAnswerGiven()){
+                  
+                  return true;
+                }else if(typeof item.getAnswerGiven == 'undefined'  ) {
+                  var flag = 0;
+                  item.interactions.forEach(function(pp,mm){ 
+                      //console.log(pp.getLastXAPIVerb());
+                      if(pp.getLastXAPIVerb() !== undefined) {
+                          flag = 1;
+                      }
+                  })
+                if(flag == 0) {  
+                  return true;
+                }
+    
+              }
+              }
+            }
+            return false;
+          } else if(type == "Questionnaire") {
+            for (const elem of instances.state.questionnaireElements) {
+          
+              if(elem.answered){
+                //console.log(elem.answered);
+                return true;
+              }
+            
+          }
+          return false;
+          }
+        }
+
         /**
          * Get xAPI data from sub content types
          *
@@ -465,6 +721,50 @@ H5P.CurrikiMathColumn = (function (EventDispatcher) {
         });
     }
 
+
+
+    /**
+   * Definition of which content types are tasks
+   */
+  var isTasks = [
+    'H5P.ImageHotspotQuestion',
+    'H5P.Blanks',
+    'H5P.Essay',
+    'H5P.SingleChoiceSet',
+    'H5P.MultiChoice',
+    'H5P.TrueFalse',
+    'H5P.DragQuestion',
+    'H5P.Summary',
+    'H5P.DragText',
+    'H5P.MarkTheWords',
+    'H5P.MemoryGame',
+    'H5P.QuestionSet',
+    'H5P.InteractiveVideo',
+    'H5P.CoursePresentation',
+    'H5P.DocumentationTool'
+  ];
+
+  /**
+   * Check if the given content instance is a task (will give a score)
+   *
+   * @param {Object} instance
+   * @return {boolean}
+   */
+   CurrikiMathColumn.isTask = function (instance) {
+    if (instance.isTask !== undefined) {
+      return instance.isTask; // Content will determine self if it's a task
+    }
+
+    // Go through the valid task names
+    for (var i = 0; i < isTasks.length; i++) {
+      // Check against library info. (instanceof is broken in H5P.newRunnable)
+      if (instance.libraryInfo.machineName === isTasks[i]) {
+        return true;
+      }
+    }
+
+    return false;
+  }
 
 
     /**

@@ -1,14 +1,14 @@
 {
   "semantics": [
     {
-      "label": "Text d'introducció",
+      "label": "Text d’introducció",
       "default": "Selecciona la frase correcta.",
       "description": "Es mostrarà sobre el resum de la tasca."
     },
     {
       "widgets": [
         {
-          "label": "Per defecte"
+          "label": "Opció predeterminada"
         },
         {
           "label": "Textual"
@@ -17,10 +17,10 @@
       "label": "Resum",
       "entity": "enunciats",
       "field": {
-        "label": "Conjunt d'enunciats",
+        "label": "Conjunt d’enunciats",
         "fields": [
           {
-            "label": "Llistat de frases pel resum - la primera frase és correcta.",
+            "label": "Llista d’afirmacions per al resum; la primera és la correcta.",
             "entity": "frase",
             "field": {
               "label": "Frase"
@@ -38,26 +38,26 @@
       }
     },
     {
-      "label": "Overall Feedback",
+      "label": "Suggeriment general",
       "fields": [
         {
           "widgets": [
             {
-              "label": "Per defecte"
+              "label": "Opció predeterminada"
             }
           ],
-          "label": "Define custom feedback for any score range",
-          "description": "Click the \"Add range\" button to add as many ranges as you need. Example: 0-20% Bad score, 21-91% Average Score, 91-100% Great Score!",
-          "entity": "range",
+          "label": "Defineix una valoració per cada rang de puntuació",
+          "description": "Feu clic al botó \"Afegeix un rang\" per afegir tants rangs com necessiteu. Exemple: 0-20 % per a puntuació baixa, 21-91 % per a puntuació mitjana, 91-100 % per a puntuació excel·lent",
+          "entity": "rang",
           "field": {
             "fields": [
               {
-                "label": "Score Range"
+                "label": "Rang de puntuació"
               },
               {},
               {
-                "label": "Feedback for defined score range",
-                "placeholder": "Fill in the feedback"
+                "label": "Retroacció per al rang de puntuació definit",
+                "placeholder": "Introduïu el suggeriment"
               }
             ]
           }
@@ -65,49 +65,49 @@
       ]
     },
     {
-      "label": "Text displayed before number of statements solved in the summary task.",
-      "default": "Progress:",
-      "description": "Will be displayed above the statements. Example: 'Progress: 2/5'"
+      "label": "Text que es mostra abans del nombre d’afirmacions resoltes a la tasca de resum.",
+      "default": "Progrés:",
+      "description": "Es mostrarà a sobre de les afirmacions. Exemple: \"Progrés: 2/5\""
     },
     {
-      "label": "Text displayed before number of wrong statements selected in the summary task.",
-      "default": "Wrong answers:",
-      "description": "Will be displayed above the statements. Example: 'Wrong answers: 4'"
+      "label": "Text que es mostra abans del nombre d’afirmacions incorrectes solucionades a la tasca de resum.",
+      "default": "Respostes incorrectes:",
+      "description": "Es mostrarà a sobre de les afirmacions. Exemple: \"Respostes incorrectes: 4\""
     },
     {
-      "label": "Summary feedback header",
-      "default": "Your result",
-      "description": "Will be displayed above the summary feedback."
+      "label": "Títol del resum de suggeriments",
+      "default": "El seu resultat",
+      "description": "Es mostrarà a sobre dels suggeriments de resum."
     },
     {
-      "label": "Readspeaker text for correct answer",
-      "default": "Correct."
+      "label": "Text de l’altaveu de lectura per a una resposta correcta",
+      "default": "Correcte."
     },
     {
-      "label": "Readspeaker text for announcing incorrect answer",
-      "default": "Incorrect! Please try again."
+      "label": "Text de l’altaveu de lectura per anunciar una resposta incorrecta",
+      "default": "Incorrecte. Torna-ho a provar."
     },
     {
-      "label": "Readspeaker label for incorrect answer",
-      "default": "Incorrect"
+      "label": "Etiqueta de l’altaveu de lectura per a resposta incorrecta",
+      "default": "Incorrecte"
     },
     {
-      "label": "Label list of correct answers",
-      "default": "Correct answers."
+      "label": "Llista d’etiquetes de respostes correctes",
+      "default": "Respostes correctes."
     },
     {
-      "label": "Label for the show tip button",
-      "default": "Show tip"
+      "label": "Etiqueta del botó \"Mostra la pista\"",
+      "default": "Mostra la pista"
     },
     {
-      "label": "Textual representation of the score bar for those using a readspeaker",
-      "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "You got :num out of :total points"
+      "label": "Representació textual de la barra de puntuació pera als que utilitzen un altaveu de lectura",
+      "description": ":num i :total són paraules clau especials que s’actualitzen automàticament",
+      "default": "Heu fet :num de :total punts"
     },
     {
-      "label": "Text used for readspeakers to communicate progress",
-      "description": ":num and :total are special keywords which are programmatically updated",
-      "default": "Progress :num of :total"
+      "label": "Text que s’utilitza per comunicar el progrés amb altaveus de lectura",
+      "description": ":num i :total són paraules clau especials que s’actualitzen automàticament",
+      "default": "Progrés :num of :total"
     }
   ]
 }

@@ -11,6 +11,10 @@
     "advancedtext": "Text",
     "dropzone": "Zona on deixar anar",
     "selectAll": "Selecciona-ho tot",
-    "deselectAll": "Desmarca-ho tot"
+    "deselectAll": "Desmarca-ho tot",
+    "deleteTaskTitle": "Deleting task",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

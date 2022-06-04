@@ -13,9 +13,7 @@ H5P.DragNBarContextMenu = (function ($, EventDispatcher) {
    * @param {boolean} [hasCoordinates] Decides if coordinates will be displayed
    * @param {boolean} [disableResize] No input for dimensions
    * @param {boolean} [disableCopy] Disable copy button
-   * @param {string} [directionLock] Which way to lock resizing. Possible values:
-   *  - 'vertical'
-   *  - 'horizontal'
+   * @param {'vertical' | 'horizontal'} [directionLock] Which way to lock resizing
    */
   function ContextMenu($container, DragNBarElement, hasCoordinates, disableResize, disableCopy, directionLock) {
     var self = this;

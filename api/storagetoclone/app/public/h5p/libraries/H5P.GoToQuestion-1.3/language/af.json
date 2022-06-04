@@ -1,32 +1,32 @@
 {
   "semantics": [
     {
-      "label": "Question Text",
-      "description": "The question that the user will make a choice based upon."
+      "label": "Vraagteks",
+      "description": "Die vraag op grond waarvan die gebruiker 'n keuse sal maak."
     },
     {
-      "label": "Choices",
-      "entity": "choice",
+      "label": "Keuses",
+      "entity": "keuse",
       "field": {
         "fields": [
           {
-            "label": "Choice Text",
-            "description": "The label that will displayed on the choice button."
+            "label": "Keuseteks",
+            "description": "Die etiket wat vertoon word op die keuseknoppie."
           },
           {
-            "label": "Go To",
-            "description": "The target time the user will be taken to upon pressing the choice button. Enter timecode in the format M:SS."
+            "label": "Gaan na",
+            "description": "Die teikentyd wat die gebruiker geneem het wanneer die keuse knoppie gedruk word. Voer tydkode in die formaat M:SS in."
           },
           {
-            "label": "If Chosen Text",
-            "description": "An optional confirmation text that will be displayed after the user has pressed the choice button."
+            "label": "Indien geskies teks",
+            "description": "'n Opsionele bevestigingsteks wat vertoon word nadat die gebruiker op die keuse-knoppie gedruk het."
           }
         ]
       }
     },
     {
-      "label": "Continue Button Label",
-      "default": "Continue"
+      "label": "Gaan voort knoppie-etiket",
+      "default": "Gaan voort"
     }
   ]
 }

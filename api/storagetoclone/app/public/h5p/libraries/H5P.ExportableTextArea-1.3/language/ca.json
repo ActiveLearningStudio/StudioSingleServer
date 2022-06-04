@@ -1,16 +1,16 @@
 {
   "semantics": [
     {
-      "label": "Label",
-      "description": "Label/heading for answer when user exports all answers"
+      "label": "Etiqueta",
+      "description": "Etiqueta o encapçalament d’una resposta quan l’usuari exporta totes les respostes"
     },
     {},
     {
-      "label": "Export not supported label",
-      "default": "Export not supported on your device"
+      "label": "Etiqueta que indica que l’exportació no s’admet",
+      "default": "L’exportació no s’admet al vostre dispositiu"
     },
     {
-      "label": "Include comments in the exported document"
+      "label": "Inclou els comentaris al document exportat"
     }
   ]
 }

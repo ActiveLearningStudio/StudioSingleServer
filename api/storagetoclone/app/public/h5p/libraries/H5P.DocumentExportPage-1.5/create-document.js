@@ -21,6 +21,14 @@ H5P.DocumentExportPage.CreateDocument = (function ($, ExportPage, EventDispatche
     this.params = params;
     this.title = title;
     this.submitEnabled = submitEnabled;
+
+    this.hasAssessedGoals = this.inputGoals.inputArray.some(function (inputGoalPage) {
+      return inputGoalPage.some(function (inputGoal) {
+        return inputGoal.goalAnswer() !== -1;
+      });
+    });
+
+    this.exportableGoalsList = this.createExportableGoalsList();
   }
 
   // Setting up inheritance
@@ -61,40 +69,69 @@ H5P.DocumentExportPage.CreateDocument = (function ($, ExportPage, EventDispatche
   };
 
   /**
+   * Create a generic structure holding the goals list, which is used when
+   * generating both the HTML and the docx file
+   *
+   * @returns {Array}
+   */
+  CreateDocument.prototype.createExportableGoalsList = function () {
+    if (this.inputGoals === undefined || !this.inputGoals.inputArray || this.inputGoals.inputArray.length === 0) {
+      return;
+    }
+
+    const goalsList = [];
+
+    if (this.hasAssessedGoals) {
+      this.inputGoals.inputArray.forEach(function (inputGoalPage) {
+        inputGoalPage.forEach(function (inputGoal) {
+          // Do not include unassessed goals
+          if (inputGoal.goalAnswer() === -1) {
+            return;
+          }
+          var goalCategoryExists = false;
+          var listIndex = -1;
+          goalsList.forEach(function (sortedGoalEntry, entryIndex) {
+            if (inputGoal.goalAnswer() === sortedGoalEntry.goalAnswer) {
+              listIndex = entryIndex;
+              goalCategoryExists = true;
+            }
+          });
+          if (!goalCategoryExists) {
+            goalsList.push({label: '', goalArray: [], goalAnswer: inputGoal.goalAnswer()});
+            listIndex = goalsList.length - 1;
+            if (inputGoal.getTextualAnswer().length) {
+              goalsList[listIndex].label = inputGoal.getTextualAnswer();
+            }
+          }
+
+          if (inputGoal.goalText().length && inputGoal.getTextualAnswer().length) {
+            goalsList[listIndex].goalArray.push({text: inputGoal.goalText()});
+          }
+        });
+      });
+    }
+    else {
+      const goals = [];
+      this.inputGoals.inputArray.forEach(function (inputGoalPage) {
+        inputGoalPage.forEach(function (inputGoal) {
+          goals.push({text: inputGoal.goalText()});
+        });
+      });
+
+      goalsList.push({
+        label: '',
+        goalArray: goals
+      });
+    }
+
+    return goalsList;
+  };
+
+  /**
    * Generate export object that will be applied to the export template
    * @returns {Object} exportObject Exportable content for filling template
    */
   CreateDocument.prototype.getExportObject = function () {
-    var sortedGoalsList = [];
-
-    this.inputGoals.inputArray.forEach(function (inputGoalPage) {
-      inputGoalPage.forEach(function (inputGoal) {
-        // Do not include unassessed goals
-        if (inputGoal.goalAnswer() === -1) {
-          return;
-        }
-        var goalCategoryExists = false;
-        var listIndex = -1;
-        sortedGoalsList.forEach(function (sortedGoalEntry, entryIndex) {
-          if (inputGoal.goalAnswer() === sortedGoalEntry.goalAnswer) {
-            listIndex = entryIndex;
-            goalCategoryExists = true;
-          }
-        });
-        if (!goalCategoryExists) {
-          sortedGoalsList.push({label: '', goalArray: [], goalAnswer: inputGoal.goalAnswer()});
-          listIndex = sortedGoalsList.length - 1;
-          if (inputGoal.getTextualAnswer().length) {
-            sortedGoalsList[listIndex].label = inputGoal.getTextualAnswer();
-          }
-        }
-
-        if (inputGoal.goalText().length && inputGoal.getTextualAnswer().length) {
-          sortedGoalsList[listIndex].goalArray.push({text: inputGoal.goalText()});
-        }
-      });
-    });
-
     var flatInputsList = [];
     this.inputFields.forEach(function (inputFieldPage) {
       if (inputFieldPage.inputArray && inputFieldPage.inputArray.length) {
@@ -113,7 +150,7 @@ H5P.DocumentExportPage.CreateDocument = (function ($, ExportPage, EventDispatche
       title: this.title,
       goalsTitle: this.inputGoals.title,
       flatInputList: flatInputsList,
-      sortedGoalsList: sortedGoalsList
+      sortedGoalsList: this.exportableGoalsList
     };
 
     return exportObject;
@@ -166,48 +203,29 @@ H5P.DocumentExportPage.CreateDocument = (function ($, ExportPage, EventDispatche
    * @returns {string} goalsOutputString Html string from all goals
    */
   CreateDocument.prototype.createGoalsOutput = function () {
-
-    var goalsOutputString = '<div class="goals-output">';
-
-    if (this.inputGoals === undefined || !this.inputGoals.inputArray || this.inputGoals.inputArray.length === 0) {
-      return;
+    if (this.exportableGoalsList === undefined || this.exportableGoalsList.length === 0) {
+      return '';
     }
 
-    if (this.inputGoals.title.length) {
-      goalsOutputString +=
-        '<h2>' + this.inputGoals.title + '</h2>';
+    let output = '<div class="goals-output">';
+
+    if (this.inputGoals.title !== undefined && this.inputGoals.title.length) {
+      output += '<h2>' + this.inputGoals.title + '</h2>';
     }
 
-    this.inputGoals.inputArray.forEach(function (inputGoalPage) {
-      var goalOutputArray = [];
-
-      inputGoalPage.forEach(function (inputGoalInstance) {
-        if (inputGoalInstance !== undefined && inputGoalInstance.goalAnswer() > -1) {
-          // Sort goals on answer
-          var htmlString = '';
-          if (goalOutputArray[inputGoalInstance.goalAnswer()] === undefined) {
-            goalOutputArray[inputGoalInstance.goalAnswer()] = [];
-            var answerStringTitle = '<p class="category"><strong>' + inputGoalInstance.getTextualAnswer() + ':</strong></p><ul>';
-            goalOutputArray[inputGoalInstance.goalAnswer()].push(answerStringTitle);
-          }
-          htmlString += '<li>' + inputGoalInstance.text + '</li>';
-          goalOutputArray[inputGoalInstance.goalAnswer()].push(htmlString);
-        }
+    this.exportableGoalsList.forEach(function (page) {
+      if (page.label !== undefined && page.label.length) {
+        output += '<p class="category"><strong>' + page.label + ':</strong></p>';
+      }
+      output += '<ul>';
+      page.goalArray.forEach(function (goal) {
+        output += '<li>' + goal.text + '</li>';
       });
-
-      goalOutputArray.forEach(function (goalOutput) {
-        goalOutput.forEach(function (goalString) {
-          goalsOutputString += goalString;
-        });
-        if (goalOutput.length) {
-          goalsOutputString += '</ul>';
-        }
-      });
+      output += '</ul>';
     });
 
-    goalsOutputString += '</div>';
-
-    return goalsOutputString;
+    output += '</div>';
+    return output;
   };
 
   return CreateDocument;

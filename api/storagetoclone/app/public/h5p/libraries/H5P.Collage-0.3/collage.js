@@ -79,7 +79,12 @@ H5P.Collage = (function ($, EventDispatcher) {
      * @param {H5P.jQuery} $container
      */
     self.attach = function ($container) {
+      // trigger consumed
       this.triggerConsumed();
+      if(typeof self.parent == "undefined") {
+        // trigger completed
+        this.triggerCompleted();
+      }
       if ($wrapper === undefined) {
         createHtml();
         var $parent = $container.parent();
@@ -110,6 +115,20 @@ H5P.Collage = (function ($, EventDispatcher) {
       });
       this.trigger(xAPIEvent);
     };
+
+    /**
+     * Trigger the 'completed' xAPI event when this commences
+     *
+     * (Will be more sophisticated in future version)
+     */
+    this.triggerCompleted = function () {
+      var xAPIEvent = this.createXAPIEventTemplate('completed');
+      xAPIEvent.data.statement.result = {
+        'completion': true
+      };
+      this.trigger(xAPIEvent);
+    };
+
 
     /**
      * Set a new collage layout.

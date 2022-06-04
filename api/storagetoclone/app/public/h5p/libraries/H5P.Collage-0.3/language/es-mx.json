@@ -2,7 +2,7 @@
   "semantics": [
     {
       "label": "Previsualización",
-      "description": "Usted puede mover (pan) las imágenes al arrastrarlas. También puede seleccionar una imagen y entonces usar kas teclas + o - en su teclado para acercarse o simplemente mantener oprimida la tecla Z mientras mueve su rueda del ratón.",
+      "description": "Usted puede mover (pan) las imágenes al arrastrarlas. También puede seleccionar una imagen y entonces usar las teclas + o - en su teclado para acercarse o simplemente mantener oprimida la tecla Z mientras mueve su rueda del ratón.",
       "fields": [
         {
           "label": "Diseño",
@@ -58,7 +58,7 @@
         },
         {
           "label": "Recortes",
-          "entity": "clip",
+          "entity": "recorte",
           "field": {
             "label": "Recorte",
             "fields": [
@@ -78,11 +78,11 @@
               },
               {
                 "label": "Texto alternativo",
-                "description": "Requerido. Si el navegador no puede cargar la imagen este texto será mostrado en su lugar. También usado por Lectores de voz."
+                "description": "Requerido. Si el navegador no puede cargar la imagen este texto será mostrado en su lugar. También usado por Lectores de texto en voz alta."
               },
               {
                 "label": "Texto al pasar ratón encima",
-                "description": "Opcional. Este texto es mostrado cuando el usurio pasa su puntero del ratón sobre la imagen."
+                "description": "Opcional. Este texto es mostrado cuando el usuario pasa su puntero del ratón sobre la imagen."
               },
               {
                 "label": "Escala"

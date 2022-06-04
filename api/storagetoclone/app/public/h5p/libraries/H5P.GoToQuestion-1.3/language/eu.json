@@ -11,7 +11,7 @@
         "fields": [
           {
             "label": "Aukeraren testua",
-            "description": "Aukera botoian erakutsiko den testua."
+            "description": "Aukeratzeko botoian erakutsiko den etiketa."
           },
           {
             "label": "Joan hona",

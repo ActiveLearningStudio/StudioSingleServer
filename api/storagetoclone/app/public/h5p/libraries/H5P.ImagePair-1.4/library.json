@@ -18,6 +18,9 @@
 	],
 	"preloadedJs": [
 		{
+			"path": "h5p-image-pair-stop-watch.js"
+		},
+		{
 			"path": "h5p-image-pair.js"
 		},
 		{

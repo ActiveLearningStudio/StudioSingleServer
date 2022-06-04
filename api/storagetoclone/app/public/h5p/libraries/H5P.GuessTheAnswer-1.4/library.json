@@ -3,7 +3,7 @@
   "description": "Set up a task where the user will just click to see the answer. No input.",
   "majorVersion": 1,
   "minorVersion": 4,
-  "patchVersion": 8,
+  "patchVersion": 10,
   "runnable": 1,
   "coreApi": {
     "majorVersion": 1,

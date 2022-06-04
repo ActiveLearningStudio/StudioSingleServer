@@ -15,6 +15,11 @@
       "path": "scripts/app.js"
     }
   ],
+  "preloadedCss": [
+    {
+      "path": "css/nonscoreabledragquestion.css"
+    }
+  ],
   "metadataSettings": {
     "disable": 0,
     "disableExtraTitleField": 1

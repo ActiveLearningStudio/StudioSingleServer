@@ -20,8 +20,9 @@ H5P.ImageHotspots = (function ($, EventDispatcher) {
    * @namespace H5P
    * @param {Object} options
    * @param {number} id
+   * @param {Object} contentData
    */
-  function ImageHotspots(options, id) {
+  function ImageHotspots(options, id, contentData) {
     EventDispatcher.call(this);
 
     // Extend defaults with provided options
@@ -36,6 +37,7 @@ H5P.ImageHotspots = (function ($, EventDispatcher) {
     // Keep provided id.
     this.id = id;
     this.isSmallDevice = false;
+    this.contentData = contentData;
   }
   // Extends the event dispatcher
   ImageHotspots.prototype = Object.create(EventDispatcher.prototype);
@@ -51,6 +53,9 @@ H5P.ImageHotspots = (function ($, EventDispatcher) {
   ImageHotspots.prototype.attach = function ($container) {
     var self = this;
     self.$container = $container;
+
+    // Mark as consumed
+    self.triggerConsumed();
 
     if (this.options.image === null || this.options.image === undefined) {
       $container.append('<div class="background-image-missing">Missing required background image</div>');
@@ -91,6 +96,7 @@ H5P.ImageHotspots = (function ($, EventDispatcher) {
     // Add hotspots
     var numHotspots = this.options.hotspots.length;
     this.hotspots = [];
+    this.completed = false;
 
     this.options.hotspots.sort(function (a, b) {
       // Sanity checks, move data to the back if invalid
@@ -148,6 +154,25 @@ H5P.ImageHotspots = (function ($, EventDispatcher) {
       self.toggleTrapFocus(false);
     });
   };
+
+  ImageHotspots.prototype.checkAllConsumed = function () {
+    if (!this.completed && this.isRoot() && isAllConsumed(this.hotspots)) {
+      this.triggerCompleted();
+      this.completed = true;
+    }
+  };
+
+  var isAllConsumed = function (hotspots) {
+    var result = true;
+    for (var i = 0; i < hotspots.length; i++) {
+      if (hotspots[i].consumed === false) {
+        result = false;
+        break;
+      }
+    }
+    return result;
+  };
+
 
   /**
    * Toggle trap focus between hotspots
@@ -250,6 +275,44 @@ H5P.ImageHotspots = (function ($, EventDispatcher) {
     });
 
     self.isSmallDevice = (containerWidth / parseFloat($("body").css("font-size")) < 40);
+  };
+
+  /**
+   * Trigger the 'consumed' xAPI event when this commences
+   *
+   * (Will be more sophisticated in future version)
+   */
+  ImageHotspots.prototype.triggerConsumed = function () {
+    var xAPIEvent = this.createXAPIEventTemplate({
+      id: 'http://activitystrea.ms/schema/1.0/consume',
+      display: {
+        'en-US': 'consumed'
+      }
+    }, {
+      result: {
+        completion: true
+      }
+    });
+    this.trigger(xAPIEvent);
+  };
+
+  /**
+   * Trigger the 'completed' xAPI event when this commences
+   *
+   * (Will be more sophisticated in future version)
+   */
+  ImageHotspots.prototype.triggerCompleted = function () {
+    var xAPIEvent = this.createXAPIEventTemplate('completed');
+    this.trigger(xAPIEvent);
+  };
+
+  /**
+   * Get title, e.g. for xAPI.
+   *
+   * @return {string} Title.
+   */
+  ImageHotspots.prototype.getTitle = function () {
+    return H5P.createTitle((this.contentData && this.contentData.metadata && this.contentData.metadata.title) ? this.contentData.metadata.title : 'Image Hotspots');
   };
 
   return ImageHotspots;

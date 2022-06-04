@@ -33,6 +33,18 @@
     {
       "label": "Sisesta täiendav abiteave",
       "description": "Siin saad sisestada kasutaja jaoks täiendava abiteabe."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

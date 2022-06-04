@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Description",
+      "label": "תיאור",
       "description": "Description of the export page.",
       "default": "בעמוד זה ביכולתכם לבחור את תוכן הייצור, המטרות והערכת המטרות."
     },
@@ -11,9 +11,9 @@
       "default": "יצירת מסמך"
     },
     {
-      "label": "Submit text button",
+      "label": "תוית כפתור שמירה",
       "description": "Text that will be displayed on the \"Submit\"-button.",
-      "default": "Submit"
+      "default": "שליחה"
     },
     {
       "label": "Submit success label",
@@ -27,10 +27,10 @@
     {
       "label": "Export text button label",
       "description": "תוכן שיוצג על כפתור \"ייצוא תוכן\".",
-      "default": "Export"
+      "default": "יצוא"
     },
     {
-      "label": "Label for help text",
+      "label": "תווית למלל עזרה",
       "description": "Label for showing additional helpful information to the user.",
       "default": "More information"
     },

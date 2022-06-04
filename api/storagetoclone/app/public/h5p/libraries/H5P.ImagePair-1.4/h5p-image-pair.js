@@ -1,4 +1,4 @@
-H5P.ImagePair = (function(EventDispatcher, $, UI) {
+H5P.ImagePair = (function(EventDispatcher, $, UI, StopWatch) {
 
   /**
    * Image Pair Constructor
@@ -16,15 +16,28 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
     var cards = [],
       mates = [];
     var clicked;
+    var submitted = false;
+    var solutionMode = false;
+    var stopWatch;
+    self.score = 0;
 
+    parameters = $.extend(true, {}, {
+      currikisettings:{
+        disableSubmitButton: false,
+        currikil10n: {
+          submitAnswer: 'Submit'
+        }
+      }
+    }, parameters);
     /**
      * pushing the cards and mates to appropriate arrays and
      * defining various events on which each card should respondTo
      * @private
      * @param {H5P.ImagePair.Card} card
      * @param {H5P.ImagePair.Card} mate
+     * @param {Number} index
      */
-    var addCard = function(card, mate) {
+    var addCard = function(card, mate, index) {
 
       // while clicking on a card on cardList
       card.on('selected', function() {
@@ -270,6 +283,7 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
       // while user decides to unpair the mate with its attached pair
       mate.on('unpair', function() {
         mate.pairingStatus = undefined;
+        mate.currentPair = undefined;
       });
 
       // check whether the attached card is the correct pair
@@ -279,6 +293,7 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
         } else {
           mate.pairingStatus = false;
         }
+        mate.currentPair = pair.data;
       });
 
       // attach  mate with the clicked card
@@ -289,6 +304,9 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
         mate.pair(card);
         mate.setSolved();
       });
+      card.index = index;
+      mate.index = index;
+      mate.correctPair = card;
       cards.push(card);
       mates.push(mate);
     };
@@ -299,16 +317,34 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
      * @private
      */
     var prepareResult = function() {
-      var score = 0;
+      self.score = 0;
       for (var i = 0; i < mates.length; i++) {
         if (mates[i].pairingStatus === true) {
           mates[i].setCorrect();
-          score++;
+          self.score++;
         } else if (mates[i].pairingStatus === false) {
           mates[i].setIncorrect();
         }
       }
-      return score;
+      return self.score;
+    };
+
+    /**
+     *  getScore - Return the score obtained.
+     *
+     * @return {number}
+     */
+    var getScore = function () {
+      return self.score;
+    };
+
+    /**
+     * Turn the maximum possible score that can be obtained.
+     *
+     * @return {number}
+     */
+    var getMaxScore = function () {
+      return cards.length;
     };
 
     /**
@@ -320,7 +356,7 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
      */
     var createButton = function(callback, icon, name) {
       return UI.createButton({
-        title: 'Submit',
+        title: name,
         click: function(event) {
           callback();
         },
@@ -403,12 +439,26 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
     };
 
     /**
+     * display the checkResult button
+     * @public
+     */
+    self.showSubmitButton = function () {
+      self.$submitButton = createButton(self.submitAnswer, 'fa-submit',
+          parameters.currikisettings.currikil10n.submitAnswer);
+      self.$submitButton.appendTo(self.$footer);
+    };
+
+    /**
      * triggerd when showSolution button is clicked
      * @public
      */
     self.showSolution = function() {
-
       self.$showSolutionButton.remove();
+      self.solutionMode = true;
+      if(self.submitted) {
+        self.$submitButton.remove();
+        self.removeSubmitAnswerFeedback();
+      }
       for (var i = 0; i < mates.length; i++) {
 
         //if it is incorrectly paired or not paired at all
@@ -426,7 +476,12 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
     self.retry = function() {
       // empty the game footer
       self.$footer.empty();
+      self.submitted = false;
+      self.solutionMode = false;
+      self.score = 0;
+      self.removeSubmitAnswerFeedback();
       self.showCheckButton();
+      self.resetStopWatch();
       for (var i = 0; i < mates.length; i++) {
         if (mates[i].isPaired === true) {
           mates[i].detach();
@@ -447,12 +502,30 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
         'h5p-image-pair-item-disabled');
     };
 
+    self.submitAnswer = function () {
+      self.$submitButton.remove();
+      self.submitted = true;
+      if (self.solutionMode) {
+        self.$showSolutionButton.remove();
+      }
+      // trigger submitted-curriki XAPI
+      self.triggerXAPIScored(getScore(), getMaxScore(), 'submitted-curriki');
+      var $submit_message = '<div class="submit-answer-feedback" style = "color: red">Result has been submitted successfully</div>';
+      self.$footer.append($submit_message);
+    };
+
+    /**
+     * Remove submit answer feedback div
+     */
+    self.removeSubmitAnswerFeedback = function () {
+      H5P.jQuery('.submit-answer-feedback').remove();
+    };
     /**
      * triggerd when user clicks the check button
      * @public
      */
     self.displayResult = function() {
-
+      self.stopStopWatch();
       var result = prepareResult();
       self.$wrapper.find('.event-enabled').removeClass('event-enabled').addClass(
         'event-disabled');
@@ -475,6 +548,10 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
         self.$retryButton.appendTo(self.$footer);
       }
 
+      if(!parameters.currikisettings.disableSubmitButton) {
+        self.showSubmitButton();
+      }
+
       // if all cards are not correctly paired
       if (result != cards.length) {
         self.$showSolutionButton = createButton(self.showSolution,
@@ -482,10 +559,16 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
         self.$showSolutionButton.appendTo(self.$footer);
       }
 
+      // trigger answered XAPI event
+      self.triggerAnswered(result, cards.length, parameters);
+
       var completedEvent = self.createXAPIEventTemplate('completed');
       completedEvent.setScoredResult(result, cards.length, self, true,
         result === cards.length);
       self.trigger(completedEvent);
+
+
+
 
       // set focus on the first button in the footer
       self.$footer.children('button').first().focus();
@@ -514,7 +597,7 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
         }
 
         // Add cards to card list for shuffeling
-        addCard(cardOne, cardTwo);
+        addCard(cardOne, cardTwo, i);
       }
     }
 
@@ -622,14 +705,119 @@ H5P.ImagePair = (function(EventDispatcher, $, UI) {
         self.$gameContainer.appendTo($container);
         self.$footer.appendTo($container);
       }
+      // start stop watch
+      self.startStopWatch();
     };
+
+
+    /**
+     * Trigger xAPI answered event
+     */
+    self.triggerAnswered = function (score, maxScore) {
+      let xAPIEvent = self.createXAPIEventTemplate('answered');
+      self.addQuestionToXAPI(xAPIEvent);
+      self.addResponseToXAPI(xAPIEvent, score, maxScore);
+      self.trigger(xAPIEvent);
+    };
+
+    /**
+     * addQuestionToXAPI - Add the question to the definition part of an xAPIEvent
+     *
+     * @param {H5P.XAPIEvent} xAPIEvent
+     */
+    self.addQuestionToXAPI = function (xAPIEvent) {
+      const definition = xAPIEvent.getVerifiedStatementValue(
+          ['object', 'definition']
+      );
+      definition.description = {
+        'en-US': parameters.taskDescription
+      };
+      definition.type =
+          'http://adlnet.gov/expapi/activities/cmi.interaction';
+      definition.interactionType = 'matching';
+      definition.correctResponsesPattern = [];
+      definition.source = [];
+      definition.target = [];
+
+      // set the target and source
+      mates.forEach(function (mate, index) {
+        definition.source[index] = {
+          'id': 'item_' + mate.correctPair.index + '',
+          'description': {
+            'en-US': mate.correctPair.getImageAlt()
+          }
+        };
+        definition.target[index] = {
+          'id': 'item_' + mate.index + '',
+          'description': {
+            'en-US': mate.getImageAlt()
+          }
+        };
+        if (index === 0) {
+          definition.correctResponsesPattern[0] = 'item_' + mate.correctPair.index + '[.]' + 'item_' + mate.index + '[,]';
+        } else if (index === mates.length - 1) {
+          definition.correctResponsesPattern[0] += 'item_' + mate.correctPair.index + '[.]' + 'item_' + mate.index;
+        } else {
+          definition.correctResponsesPattern[0] += 'item_' + mate.correctPair.index + '[.]' + 'item_' + mate.index + '[,]';
+        }
+      });
+    };
+
+    /**
+     * Add the response part to an xAPI event
+     *
+     * @param {H5P.XAPIEvent} xAPIEvent
+     *  The xAPI event we will add a response to
+     */
+    self.addResponseToXAPI = function (xAPIEvent, score, maxScore) {
+      const success = (score === maxScore);
+      let response = '';
+      mates.forEach(function (mate, index) {
+        if (mate.currentPair) {
+          if (response !== '') {
+            response += '[,]';
+          }
+          response += 'item_' + mate.currentPair.index + '[.]' + 'item_' + mate.index;
+        }
+      });
+      xAPIEvent.setScoredResult(score, maxScore, this, true, success);
+      xAPIEvent.data.statement.result.response = response;
+      xAPIEvent.data.statement.result.duration = 'PT' + self.stopWatch.passedTime() + 'S';
+    };
+
+    /**
+     * Starts a stopwatch
+     */
+    self.startStopWatch = function () {
+      self.stopWatch = self.stopWatch || new StopWatch();
+      self.stopWatch.start();
+    };
+
+    /**
+     * Stops a stopwatch
+     *
+     */
+    self.stopStopWatch = function () {
+      if (self.stopWatch) {
+        self.stopWatch.stop();
+      }
+    };
+
+    /**
+     * Resets a stopwatch
+     *
+     */
+    self.resetStopWatch = function () {
+      if (self.stopWatch) {
+        self.stopWatch.reset();
+      }
+    };
+
   }
-
-
-  // Extends the event dispatcher
+    // Extends the event dispatcher
   ImagePair.prototype = Object.create(EventDispatcher.prototype);
   ImagePair.prototype.constructor = ImagePair;
 
   return ImagePair;
 
-})(H5P.EventDispatcher, H5P.jQuery, H5P.JoubelUI);
+})(H5P.EventDispatcher, H5P.jQuery, H5P.JoubelUI, H5P.ImagePair.StopWatch);

@@ -13,8 +13,9 @@ H5P.Chart = (function ($, EventDispatcher) {
    * @class
    * @param {Object} params Behavior settings
    * @param {Number} id Content identification
+   * @param {Object} contentData content Data
    */
-  function Chart(params) {
+  function Chart(params, id, contentData) {
     var self = this;
 
     // Inheritance
@@ -60,6 +61,9 @@ H5P.Chart = (function ($, EventDispatcher) {
 
     // Keep track of type.
     self.type = (self.params.graphMode === 'pieChart' ? 'Pie' : 'Bar');
+
+    // Keep content Data
+    self.contentData = contentData;
   }
 
   // Inheritance
@@ -101,6 +105,14 @@ H5P.Chart = (function ($, EventDispatcher) {
   Chart.prototype.attach = function ($container) {
     var self = this;
 
+    // Mark as consumed
+    self.triggerConsumed();
+
+    if(self.isRoot()) {
+      // Mark as completed
+      self.triggerCompleted();
+    }
+
     // Create chart on first attach
     if (self.$wrapper === undefined) {
       self.$wrapper = $('<div/>', {
@@ -137,6 +149,38 @@ H5P.Chart = (function ($, EventDispatcher) {
       // Resize existing chart
       self.chart.resize();
     });
+  };
+
+  /**
+   * Trigger the 'consumed' xAPI event when this commences
+   *
+   * (Will be more sophisticated in future version)
+   */
+  Chart.prototype.triggerConsumed = function () {
+    var xAPIEvent = this.createXAPIEventTemplate({
+      id: 'http://activitystrea.ms/schema/1.0/consume',
+      display: {
+        'en-US': 'consumed'
+      }
+    });
+    this.trigger(xAPIEvent);
+  };
+
+  /**
+   * Trigger the 'completed' xAPI event when this commences
+   *
+   * (Will be more sophisticated in future version)
+   */
+  Chart.prototype.triggerCompleted = function () {
+    var xAPIEvent = this.createXAPIEventTemplate('completed');
+    xAPIEvent.data.statement.result = {
+      'completion': true
+    };
+    this.trigger(xAPIEvent);
+  };
+
+  Chart.prototype.getTitle = function () {
+    return H5P.createTitle(this.contentData && this.contentData.metadata && this.contentData.metadata.title ? this.contentData.metadata.title : 'Chart');
   };
 
   return Chart;

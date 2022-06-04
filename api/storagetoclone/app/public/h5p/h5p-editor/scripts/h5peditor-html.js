@@ -404,6 +404,10 @@ ns.Html.prototype.appendTo = function ($wrapper) {
           var y = itemPos.y + (itemPos.height / 2) - (dialogSize.height / 2);
 
           this.move(x, y, true);
+          // To Adjust the dialog position of link
+          if (dialogName === 'link') {
+            this.layout();
+          }
         };
       });
       ns.Html.first = false;

@@ -1,5 +1,5 @@
 {
-  "semantics":[
+  "semantics": [
     {
       "label": "Περιγραφή",
       "description": "Περιγραφή της σελίδας αξιολόγησης στόχων.",
@@ -33,7 +33,18 @@
     {
       "label": "Συμπληρώστε πρόσθετες χρήσιμες πληροφορίες",
       "description": "Εδώ μπορείτε να συμπληρώσετε πρόσθετες χρήσιμες πληροφορίες για τον χρήστη."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }
-

@@ -11,6 +11,10 @@
     "advancedtext":"Text",
     "dropzone":"Drop Zone",
     "selectAll":"Select all",
-    "deselectAll":"Deselect all"
+    "deselectAll":"Deselect all",
+    "deleteTaskTitle": "Deleting task",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

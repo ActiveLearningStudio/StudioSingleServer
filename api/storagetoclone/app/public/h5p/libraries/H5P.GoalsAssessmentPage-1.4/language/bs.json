@@ -33,6 +33,18 @@
     {
       "label": "Dopuni sa dodatnim informacijama.",
       "description": "Ovdje možete dodati informacije koje će korisniku biti od pomoći."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

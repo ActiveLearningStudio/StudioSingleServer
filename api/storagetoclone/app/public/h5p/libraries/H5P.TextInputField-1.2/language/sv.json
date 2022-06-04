@@ -5,7 +5,7 @@
       "description": "Beskrivning av vad användaren ska mata in."
     },
     {
-      "label": "Platshållartext",
+      "label": "Text för platshållare",
       "description": "En platshållartext för användaren."
     },
     {

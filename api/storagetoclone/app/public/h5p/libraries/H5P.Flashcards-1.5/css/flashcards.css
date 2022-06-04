@@ -241,7 +241,7 @@
   display: inline-block;
   border: none;
   border-radius: 0 2em 2em 0;
-  background: #2abee8;
+  background: #2A64E8;
   padding: 0.5em 1em;
   box-shadow: none;
   top: 0;
@@ -350,7 +350,7 @@
   right: 1em;
   top: 1em;
   line-height: 1em;
-  color: #5dae45;
+  color: #437C31;
   transition: opacity 2s;
   opacity: 1;
   outline: none;
@@ -611,6 +611,26 @@ button::-moz-focus-inner {
   margin-right: 0.5em;
 }
 
+.h5p-flashcards .h5p-results-button {
+  display: block;
+  margin: 0 auto;
+  width: 9em;
+  padding: 0.87em;
+  color: #adb6c7;
+  background: none;
+  border: 1px solid #414d66;
+}
+
+.h5p-flashcards .h5p-results-button:hover {
+  background-color: #414d66;
+}
+
+.h5p-flashcards .h5p-results-button:before {
+  font-family: "H5PFontAwesome4";
+  /* content: "\f01e"; */
+  margin-right: 0.5em;
+}
+
 .h5p-flashcards .h5p-results-score {
   position: absolute;
   color: #adb6c7;
@@ -643,22 +663,29 @@ button::-moz-focus-inner {
 }
 
 .h5p-flashcards .h5p-results-image-holder {
-  width: 5em;
-  height: 4em;
+  width: 4.5em;
+  height: 3.5em;
   overflow: hidden;
   border-radius: 1em;
   position: relative;
   float: left;
   margin-right: 2em;
-  background-size: cover;
+  background-size: contain;
   background-position: center center;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  padding: 0.25em;
 }
-
+.h5p-flashcards .h5p-results-image-holder.no-image {
+  background-color: #c8e0e3;
+  text-align: center;
+}
 .h5p-flashcards .h5p-results-image-holder.no-image:after {
   font-family: 'H5PFontAwesome4';
   content: "\f03e";
-  font-size: 4.5em;
-  line-height: 1em;
+  font-size: 2em;
+  line-height: 1.8em;
   color: #a3b7be;
 }
 
@@ -920,4 +947,14 @@ button::-moz-focus-inner {
   top: 0;
   left: 0;
   overflow: hidden;
+}
+.outer-div
+{
+    width:100%;
+    text-align: center;
+}
+.inner-div
+{
+    display: inline-block !important;
+    margin: 15px !important;
 }

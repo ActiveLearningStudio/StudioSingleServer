@@ -23,7 +23,8 @@ H5P.TrueFalse = (function ($, Question) {
   var Button = Object.freeze({
     CHECK: 'check-answer',
     TRYAGAIN: 'try-again',
-    SHOW_SOLUTION: 'show-solution'
+    SHOW_SOLUTION: 'show-solution',
+    SUBMIT_ANSWER: 'submit-answers'
   });
 
   /**
@@ -49,6 +50,7 @@ H5P.TrueFalse = (function ($, Question) {
         falseText: 'False',
         score: 'You got @score of @total points',
         checkAnswer: 'Check',
+        //submitAnswer: "Submit",
         showSolutionButton: 'Show solution',
         tryAgain: 'Retry',
         wrongAnswerMessage: 'Wrong answer',
@@ -62,10 +64,16 @@ H5P.TrueFalse = (function ($, Question) {
         enableRetry: true,
         enableSolutionsButton: true,
         enableCheckButton: true,
+        //disableSubmitButton: true,
         confirmCheckDialog: false,
         confirmRetryDialog: false,
         autoCheck: false
-      }
+      },currikisettings: {
+        disableSubmitButton: false,
+        currikil10n: {
+          submitAnswer: "Submit"
+        }
+      },
     }, options);
 
     // Counter used to create unique id for this question
@@ -136,11 +144,29 @@ H5P.TrueFalse = (function ($, Question) {
         });
       }
 
+      // submit button
+      if (!params.currikisettings.disableSubmitButton && typeof self.parent == "undefined") {
+        self.addButton(Button.SUBMIT_ANSWER, params.currikisettings.currikil10n.submitAnswer, function () {
+          
+          H5P.jQuery('.h5p-question-submit-answers').hide();
+          toggleButtonState(State.FINISHED_WRONG);
+          self.triggerXAPIScored(self.getScore(), self.getMaxScore(), 'completed');
+          self.triggerXAPIScored(self.getScore(), self.getMaxScore(), 'submitted-curriki');
+          // var $submit_message = '<div class="submit-answer-feedback" style = "color: red">Result has been submitted successfully</div>';
+          // H5P.jQuery('.h5p-question-buttons').after($submit_message);
+        }, false, {
+          'aria-label': params.l10n.a11yCheck
+        });
+
+      }
+
       // Check button
       if (!params.behaviour.autoCheck && params.behaviour.enableCheckButton) {
         self.addButton(Button.CHECK, params.l10n.checkAnswer, function () {
           checkAnswer();
           triggerXAPIAnswered();
+          H5P.jQuery('.h5p-question-submit-answers').show();
+          
         }, true, {
           'aria-label': params.l10n.a11yCheck
         }, {
@@ -152,6 +178,10 @@ H5P.TrueFalse = (function ($, Question) {
           }
         });
       }
+
+
+      
+      
 
       // Try again button
       if (params.behaviour.enableRetry === true) {
@@ -266,6 +296,7 @@ H5P.TrueFalse = (function ($, Question) {
      */
     var toggleButtonState = function (state) {
       toggleButtonVisibility(Button.SHOW_SOLUTION, state === State.FINISHED_WRONG);
+      toggleButtonVisibility(Button.SUBMIT_ANSWER, state === State.FINISHED_WRONG || state === State.FINISHED_CORRECT);
       toggleButtonVisibility(Button.CHECK, state === State.ONGOING);
       toggleButtonVisibility(Button.TRYAGAIN, state === State.FINISHED_WRONG || state === State.INTERNAL_SOLUTION);
     };
@@ -339,6 +370,11 @@ H5P.TrueFalse = (function ($, Question) {
 
       // ... and buttons
       registerButtons();
+
+      // for xapi duration
+      if(!self.activityStartTime) {
+        self.activityStartTime = Date.now();
+      }
     };
 
     /**
@@ -409,6 +445,7 @@ H5P.TrueFalse = (function ($, Question) {
     self.showSolutions = function (internal) {
       checkAnswer();
       answerGroup.showSolution();
+      H5P.jQuery('.submit-answer-feedback').hide();
       toggleButtonState(internal ? State.INTERNAL_SOLUTION : State.EXTERNAL_SOLUTION);
     };
 
@@ -422,7 +459,9 @@ H5P.TrueFalse = (function ($, Question) {
     self.resetTask = function () {
       answerGroup.reset();
       self.removeFeedback();
+      H5P.jQuery('.submit-answer-feedback').hide();
       toggleButtonState(State.ONGOING);
+      self.activityStartTime = Date.now();
     };
 
     /**

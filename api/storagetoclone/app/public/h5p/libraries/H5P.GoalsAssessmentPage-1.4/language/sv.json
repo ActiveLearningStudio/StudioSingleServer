@@ -33,6 +33,18 @@
     {
       "label": "Fyll i hjälpinformation",
       "description": "Här kan du fylla i hjälpinformation till användaren."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

@@ -11,7 +11,7 @@
       "default": "He aprés molt poc"
     },
     {
-      "label": "Text per a una puntuació mitjana.",
+      "label": "Text per a una puntuació mitjana",
       "description": "Text per a una puntuació mitjana.",
       "default": "He aprés força"
     },
@@ -33,6 +33,18 @@
     {
       "label": "Omple la informació addicional d’ajuda",
       "description": "Aquí pots completar la informació addicional útil per l’usuari."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

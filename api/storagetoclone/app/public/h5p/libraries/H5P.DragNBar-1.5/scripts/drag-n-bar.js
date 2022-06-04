@@ -656,6 +656,38 @@ H5P.DragNBar.prototype.attach = function ($wrapper) {
     else {
       this.$pasteButton.appendTo($list);
     }
+
+    // Existing activity search button
+    this.$existingButton = H5P.jQuery(
+      '<li class="h5p-dragnbar-li existing-button">' +
+        '<a href="#" class="h5p-dragnbar-a h5p-dragnbar-existing-button" />' +
+      '</li>'
+    );
+
+    H5P.jQuery('<span>', {
+      'class': 'h5p-dragnbar-tooltip',
+      'text': 'Existing Activity'
+    }).appendTo(this.$existingButton);
+
+    this.$existingButton.find('.h5p-dragnbar-existing-button').click(function (e) {
+      e.preventDefault(); // Avoid anchor click making window scroll
+      let libraries = [];
+      for (var i = 0; i < self.libraries.length; i++) {
+        libraries.push(self.libraries[i].uberName);
+      }
+      const data = {
+        libraries,
+        callback: (activityData) => {
+          H5P.setClipboard(activityData);
+          self.pasteHandler();
+        }
+      };
+      const event = new CustomEvent('launchExistingActivitySearch', { detail: data } );
+      window.parent.dispatchEvent(event);
+      return;
+    });
+
+    this.$existingButton.appendTo($list);
   }
 
   this.containTooltips();

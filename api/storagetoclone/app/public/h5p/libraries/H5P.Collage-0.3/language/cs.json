@@ -78,7 +78,7 @@
               },
               {
                 "label": "Alternativní text",
-                "description": "Povinné. Pokud prohlížeč nemůže načíst obrázek, zobrazí se místo toho tento text. Používá se také pro čtení."
+                "description": "Povinné. Pokud prohlížeč nemůže načíst obrázek, zobrazí se místo toho tento text. Používá se také pro čtecí zařízení."
               },
               {
                 "label": "Text při najetí kurzoru",

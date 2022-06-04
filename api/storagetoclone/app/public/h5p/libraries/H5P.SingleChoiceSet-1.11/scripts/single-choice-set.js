@@ -28,10 +28,18 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
         enableRetry: true,
         enableSolutionsButton: true,
         passPercentage: 100
+      },
+      currikisettings:{
+        disableSubmitButton: false,
+        currikil10n: {
+          submitAnswer: 'Submit'
+        }
       }
     }, options);
     if (contentData && contentData.previousState !== undefined) {
-      this.currentIndex = contentData.previousState.progress;
+      // progress refers completed. so we need to show next slide
+      var progress = contentData.previousState.progress;
+      this.currentIndex = this.options.choices.length >  progress ? progress + 1 : progress;
       this.results = contentData.previousState.answers;
     }
     this.currentIndex = this.currentIndex || 0;
@@ -57,6 +65,12 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
      * @type {number[]}
      */
     this.userResponses = [];
+
+    /**
+     * variable to hold whether user submitted answers or not
+     * @type {boolean}
+     */
+    this.submitted = false;
 
     this.muted = (this.options.behaviour.soundEffectsEnabled === false);
 
@@ -234,11 +248,16 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
     self.user_answers[self.options.choices[index].question] = (event.data.correct) ? "correct" : "In correct";
     console.log(self.user_answers);
     // trigger answered event
-    var duration = this.stopStopWatch(index);
+    this.stopStopWatch(index);
+    var duration = this.timePassedInStopWatch(index);
     var xapiEvent = self.createXApiAnsweredEvent(self.options.choices[index], userResponse, duration);
 
     self.trigger(xapiEvent);
 
+    // Trigger Question is finished
+    if ((self.options.choices.length - 1) === this.currentIndex) {
+      self.trigger('question-finished');
+    }
     self.continue();
   };
 
@@ -410,13 +429,8 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
     self.handleQueuedButtonChanges();
     self.scoreTimeout = undefined;
 
-    if (!noXAPI) {
-      if( typeof this.parent == 'undefined') { 
+    if (!noXAPI && typeof this.parent == 'undefined') {
         self.triggerXAPIScored(score, self.options.choices.length, 'completed', true, (100 * score / self.options.choices.length) >= self.options.behaviour.passPercentage);
-      }else{
-        self.triggerXAPIScored(score, self.options.choices.length, 'answered', true, (100 * score / self.options.choices.length) >= self.options.behaviour.passPercentage);
-      } 
-      
     }
 
     self.trigger('resize');
@@ -449,6 +463,7 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
 
     self.solutionView.show();
     self.toggleAriaVisibility(false);
+    self.removeSubmitAnswerFeedback();
   };
 
   /**
@@ -510,32 +525,14 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
       }, self.results.corrects !== self.options.choices.length, {
         'aria-label': this.l10n.a11yShowSolution,
       });
-      if( typeof this.parent == 'undefined') {
-        this.addButton('view-summary', 'View Summary', function () {
-          //self.showSolutions();
-          var confirmationDialog = new H5P.ConfirmationDialog({
-            headerText: 'Single Choice Set Summary',
-            dialogText: viewSummary(self),
-            cancelText: 'Cancel',
-            confirmText: "Submit Answers"
-          });
-          
-          confirmationDialog.on('confirmed', function () {
-            self.triggerXAPIScored(0, 1, 'submitted-curriki');
-            //confirmationDialog.hide();
-            H5P.jQuery('.h5p-question-show-solution').click();
-            
-          });
-          
-          
-          confirmationDialog.appendTo(parent.document.body);
-          confirmationDialog.show();
-
-
-
-        });
-      }
     }
+
+    if(!this.options.currikisettings.disableSubmitButton && typeof this.parent == 'undefined') {
+      this.addButton('submit-answer', this.options.currikisettings.currikil10n.submitAnswer, function() {
+        self.handleSubmitAnswer();
+      });
+    }
+
   };
 
 
@@ -872,7 +869,9 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
    */
   SingleChoiceSet.prototype.resetTask = function () {
     var self = this;
+    this.submitted = false;
 
+    this.showButton('submit-answer');
     // Close solution view if visible:
     this.solutionView.hide();
 
@@ -902,6 +901,9 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
     H5P.Transition.onTransitionEnd(this.$choices, function () {
       self.removeFeedback();
     }, 600);
+
+    // remove submit answer feedback
+    self.removeSubmitAnswerFeedback();
   };
 
   /**
@@ -939,6 +941,25 @@ H5P.SingleChoiceSet = (function ($, UI, Question, SingleChoice, SolutionView, Re
 
     return '';
   };
+
+  /**
+   * This method is used to handle submit
+   */
+  SingleChoiceSet.prototype.handleSubmitAnswer = function () {
+    this.submitted = true;
+    this.hideButton('submit-answer');
+    this.triggerXAPIScored(this.getScore(), this.getMaxScore(), 'submitted-curriki');
+    // var $submit_message = '<div class="submit-answer-feedback" style = "color: red">Result has been submitted successfully</div>';
+    // this.resultSlide.$feedbackContainer.after($submit_message);
+  };
+
+  /**
+   * Remove submit answer feedback div
+   */
+  SingleChoiceSet.prototype.removeSubmitAnswerFeedback = function () {
+    H5P.jQuery('.submit-answer-feedback').remove();
+  };
+
 
   return SingleChoiceSet;
 })(H5P.jQuery, H5P.JoubelUI, H5P.Question, H5P.SingleChoiceSet.SingleChoice, H5P.SingleChoiceSet.SolutionView, H5P.SingleChoiceSet.ResultSlide, H5P.SingleChoiceSet.SoundEffects, H5P.SingleChoiceSet.XApiEventBuilder, H5P.SingleChoiceSet.StopWatch);

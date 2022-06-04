@@ -33,6 +33,18 @@
     {
       "label": "Vul aanvullende help informatie in",
       "description": "Hier kun je aanvullende nuttige informatie invullen voor de gebruiker."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

@@ -38,7 +38,7 @@
   border-radius: 1em;
 }
 .h5p-ivhotspot-invisible {
-  color: transparent;
+  color: transparent !important;
 }
 .blinking-hotspot {
   position: absolute;

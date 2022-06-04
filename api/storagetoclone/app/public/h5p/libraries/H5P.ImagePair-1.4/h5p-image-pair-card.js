@@ -39,6 +39,14 @@
     }
 
     /**
+     * get the image alt of the current card
+     * @public
+     */
+    self.getImageAlt = function() {
+      return alt;
+    };
+
+    /**
      * get the image element of the current card
      * @public
      */

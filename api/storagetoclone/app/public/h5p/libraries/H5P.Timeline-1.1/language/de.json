@@ -13,7 +13,7 @@
         },
         {
           "label": "Standard-Zoomstufe",
-          "description": "Der Zahlenwert enstpricht dem mehrmaligen Drücken des Buttons zum Hinein- oder Herauszoomen. Negative Zahlen zoomenen heraus. Voreinstellung ist 0."
+          "description": "Der Zahlenwert enstpricht dem mehrmaligen Drücken des Buttons zum Hinein- oder Herauszoomen. Negative Zahlen zoomen heraus. Voreinstellung ist 0."
         },
         {
           "label": "Hintergrundbild",
@@ -118,7 +118,7 @@
               },
               {
                 "label": "Kategorie",
-                "description": "Wenn eine Kategorie eingegeben wird, wird die Epoche nur in der jeweiligen Zeile angezeigt.  Es muss keine Kategorie angegeben werden."
+                "description": "Wenn eine Kategorie eingegeben wird, wird die Epoche nur in der jeweiligen Zeile angezeigt. Es muss keine Kategorie angegeben werden."
               }
             ]
           }

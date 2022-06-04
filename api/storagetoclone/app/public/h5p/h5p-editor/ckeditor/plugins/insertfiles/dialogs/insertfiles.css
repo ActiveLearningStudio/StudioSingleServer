@@ -2,3 +2,66 @@
   width: 390px;
   height: 200px !important;
 }
+
+.cke_dialog_contents,.cke_dialog_footer {
+  background-color: #fff !important;
+}
+
+.cke_dialog_title  {
+  color: #084892;
+}
+
+a.cke_dialog_tab {
+  color: #084892;
+  background: none !important;
+}
+
+a.cke_dialog_tab_selected {
+  border-bottom: 3px solid #084892 !important;
+}
+
+.cke_dialog_ui_input_text {
+  border-radius: 2px !important;
+}
+
+.cke_dialog_ui_labeled_label {
+  font-weight: lighter !important;
+}
+
+.cke_dialog_ui_text {
+  margin-top: 5px;
+}
+
+.cke_dialog_ui_button_cancel {
+    background: none !important;
+    border: 1px solid #084892 !important;
+    border-radius: 24px !important;
+    color: #084892 !important;
+    
+}
+
+.cke_dialog_ui_button_ok {
+    background: none !important;
+    border: 1px solid #084892 !important;
+    border-radius: 24px !important;
+    background-color: #204892 !important;
+    color: #fff !important;
+}
+
+.cke_dialog_ui_button_ok  span{
+  background: none !important;
+}
+
+.cke_dialog_ui_button_ok > .cke_dialog_ui_button {
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+.cke_dialog_ui_button_cancel > .cke_dialog_ui_button {
+  color: #204892 !important;
+  font-weight: bold !important;
+}
+
+a.cke_dialog_ui_button_cancel span {
+  background: none !important;
+}

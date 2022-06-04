@@ -47,7 +47,7 @@
             }
           ],
           "label": "Definujte vlastní zpětnou vazbu pro jakýkoli rozsah skóre",
-          "description": "Klepnutím na tlačítko \"Add range\" přidejte libovolný počet rozsahů. Příklad: 0-20% špatné skóre, 21-91% průměrné skóre, 91-100% výborné skóre!",
+          "description": "Klikněte na tlačítko \"Přidat rozsah\" pro přidání tolika rozsahů, kolik potřebujete. Například: 0-20% špatný výsledek, 21-91% průměrný výsledek, 91-100% výborný výsledek!",
           "entity": "rozsah",
           "field": {
             "fields": [
@@ -57,7 +57,7 @@
               {},
               {
                 "label": "Zpětná vazba pro definovaný rozsah skóre",
-                "placeholder": "Vyplňte zpětnou vazbu"
+                "placeholder": "Vyplňte ve zpětné vazbě"
               }
             ]
           }
@@ -67,12 +67,12 @@
     {
       "label": "Text zobrazený před počtem příkazů vyřešených v souhrnu úlohy.",
       "default": "Pokrok:",
-      "description": "Zobrazí se nad výpisy. Příklad: 'Pokrok: 2/5'"
+      "description": "Zobrazí se nad výpisy. Příklad: \"Pokrok: 2/5\""
     },
     {
       "label": "Text zobrazený před počtem nesprávných příkazů vybraných v souhrnu úlohy.",
       "default": "Špatné odpovědi:",
-      "description": "Zobrazí se nad výpisy. Příklad: 'Špatné odpovědi: 4'"
+      "description": "Zobrazí se nad výpisy. Příklad: \"Špatné odpovědi: 4\""
     },
     {
       "label": "Záhlaví souhrnu zpětné vazby",
@@ -97,7 +97,7 @@
     },
     {
       "label": "Popisek tlačítka zobrazení tipu",
-      "default": "Zobrazit tip"
+      "default": "Zobrazení nápovědy"
     },
     {
       "label": "Textové znázornění výsledkové lišty pro ty, kteří používají čtecí zařízení",

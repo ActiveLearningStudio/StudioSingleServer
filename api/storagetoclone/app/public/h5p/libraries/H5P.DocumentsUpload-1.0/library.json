@@ -9,6 +9,9 @@
   "author": "AHMAD MUKHTAR",
   "license": "cc-by-sa",
   "machineName": "H5P.DocumentsUpload",
+  "embedTypes": [
+    "iframe"
+  ],
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 0

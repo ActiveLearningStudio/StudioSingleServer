@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Quiz introduktion",
+      "label": "Introduktion",
       "fields": [
         {
           "label": "Visa introduktion"
@@ -220,16 +220,16 @@
         },
         {
           "label": "Ej godkänt-video",
-          "description": "Denna video kommer att visas om användaren har misslyckats med att nå godkänt på denna quiz."
+          "description": "Denna video kommer att visas om användaren misslyckas med att nå godkänt på denna quiz."
         }
       ]
     },
     {
-      "label": "Inställningar för knapparna \"Visa rätt svar\" och \"Försök igen\"",
+      "label": "Inställningar för knapparna \"Visa lösning\" och \"Försök igen\"",
       "fields": [
         {
-          "label": "Visa \"Rätta\" knappar",
-          "description": "Denna inställning avgör om knappen \"Rätta\" ska visas på alla frågor."
+          "label": "Visa \"Svara\"-knappar",
+          "description": "Denna inställning avgör om knappen \"Svara\" (som visar om svaret var korrekt eller ej) ska visas på alla frågor."
         },
         {
           "label": "Ignorera knapp \"Visa rätt svar\"",
@@ -244,8 +244,8 @@
           ]
         },
         {
-          "label": "Ignorera knapp \"Försök igen\" ",
-          "description": "Denna inställning avgör om knappen \"Försök igen\" ska visas på alla frågor, vara inaktiverad för alla frågor, eller konfigureras individuellt per fråga",
+          "label": "Ignorera knapp \"Försök igen\"",
+          "description": "Denna inställning avgör om knappen \"Försök igen\" ska visas på alla frågor, vara inaktiverad för alla frågor, eller konfigureras individuellt per fråga.",
           "options": [
             {
               "label": "Aktiverad"

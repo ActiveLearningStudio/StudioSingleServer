@@ -4,7 +4,7 @@
  * Mark The Words module
  * @external {jQuery} $ H5P.jQuery
  */
-H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
+ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
   /**
    * Initialize module.
    *
@@ -38,6 +38,7 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
       checkAnswerButton: "Check",
       tryAgainButton: "Retry",
       showSolutionButton: "Show solution",
+      viewSummary: "View Summary",
       correctAnswer: "Correct!",
       incorrectAnswer: "Incorrect!",
       missedAnswer: "Answer not found!",
@@ -50,6 +51,12 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
       a11yCheck: 'Check the answers. The responses will be marked as correct, incorrect, or unanswered.',
       a11yShowSolution: 'Show the solution. The task will be marked with its correct solution.',
       a11yRetry: 'Retry the task. Reset all responses and start the task over again.',
+      currikisettings: {
+        disableSubmitButton: false,
+        currikil10n: {
+          submitAnswer: "Submit"
+        }
+      },
     }, params);
 
     this.contentData = contentData;
@@ -76,6 +83,17 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
 
     // Set user state
     this.setH5PUserState();
+
+    // check is parent is IV or QS, if so then on open then activity will be started
+    const isEmbedInComplexActivity = this.contentData && this.contentData.parent && this.contentData.parent.contentData
+      && this.contentData.parent.contentData.metadata && this.contentData.parent.contentData.metadata.contentType
+        && ['Interactive Video', 'Brightcove Interactive Video', 'Question Set'].includes(this.contentData.parent.contentData.metadata.contentType);
+
+    if(!isEmbedInComplexActivity) {
+      // for XAPI duration
+      this.activityStartTime = Date.now();
+    }
+
   };
 
   /**
@@ -279,10 +297,11 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
     });
 
     if (this.params.behaviour.enableCheckButton) {
-      this.addButton('check-answer', this.params.checkAnswerButton, function () {
+      this.addButton('check-answer', "Check Answers", function () {
         self.isAnswered = true;
         var answers = self.calculateScore();
         self.feedbackSelectedWords();
+        var txt = "";
 
         if (!self.showEvaluation(answers)) {
           // Only show if a correct answer was not found.
@@ -293,16 +312,58 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
             self.showButton('try-again');
           }
         }
+
+        if (!self.params.currikisettings.disableSubmitButton && typeof self.parent == "undefined") {
+          self.showButton('submit-answer');
+        }
+
         // Set focus to start of text
         self.$a11yClickableTextLabel.html(self.params.a11yCheckingHeader + ' - ' + self.params.a11yClickableTextLabel);
         self.$a11yClickableTextLabel.focus();
 
         self.hideButton('check-answer');
         self.trigger(self.XapiGenerator.generateAnsweredEvent());
+
+        if (typeof self.parent == "undefined") {
+          self.triggerXAPICompleted(self.getScore(), self.getMaxScore());
+        }
         self.toggleSelectable(true);
       }, true, {
         'aria-label': this.params.a11yCheck,
       });
+      /* start code addd by dev_ln*/
+      /*if(typeof this.parent == "undefined") {
+        this.addButton('view-summary', this.params.viewSummary, function () { 
+            var answers = self.calculateScore();
+            var total_score = self.getMaxScore();
+            var scored_result = self.getScore();
+
+            var user_response = self.XapiGenerator.generateAnsweredEvent().data.statement.result.responsetext;
+            var correct_response = self.XapiGenerator.generateAnsweredEvent().data.statement.object.definition.getCorrectResponsesPatternText;
+            console.log(correct_response);
+            var confirmationDialog = new H5P.ConfirmationDialog({
+              headerText: 'Marks the word summary',
+              dialogText: showSummary(this,answers,total_score,scored_result,user_response,correct_response),
+              cancelText: 'Cancel',
+              confirmText: "Submit Answers"
+            });
+            
+            confirmationDialog.on('confirmed', function () {
+               self.triggerXAPIScored(0, 1, 'submitted-curriki');
+              //confirmationDialog.hide();
+              H5P.jQuery('.h5p-question-check-answer').click();
+              
+            });
+
+            confirmationDialog.appendTo(parent.document.body);
+            confirmationDialog.show();
+          // console.log(self.trigger(self.XapiGenerator.generateAnsweredEvent()));
+        }, true, {
+          'aria-label': this.params.a11yCheck,
+        });
+        
+      }*/
+      /*end code addd by dev_ln*/
     }
 
     this.addButton('try-again', this.params.tryAgainButton, this.resetTask.bind(this), false, {
@@ -312,6 +373,7 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
     this.addButton('show-solution', this.params.showSolutionButton, function () {
       self.setAllMarks();
 
+      self.solutionMode = true;
       self.$a11yClickableTextLabel.html(self.params.a11ySolutionModeHeader + ' - ' + self.params.a11yClickableTextLabel);
       self.$a11yClickableTextLabel.focus();
 
@@ -321,12 +383,100 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
       self.hideButton('check-answer');
       self.hideButton('show-solution');
 
+      if(self.isSubmitted) {
+        self.hideButton('submit-answer');
+        self.removeSubmitAnswerFeedback();
+      }
+
       self.read(self.params.displaySolutionDescription);
       self.toggleSelectable(true);
     }, false, {
       'aria-label': this.params.a11yShowSolution,
     });
+
+    if (!this.params.currikisettings.disableSubmitButton && typeof self.parent == "undefined") {
+      this.addButton('submit-answer', this.params.currikisettings.currikil10n.submitAnswer, function () {
+        self.isSubmitted = true;
+        self.hideButton('submit-answer');
+        if(self.solutionMode) {
+          self.hideButton('show-solution');
+        }
+        self.triggerXAPIScored(self.getScore(), self.getMaxScore(), 'submitted-curriki');
+        // var $submit_message = '<div class="submit-answer-feedback" style = "color: red">Result has been submitted successfully</div>';
+        // H5P.jQuery('.h5p-question-buttons').after($submit_message);
+      }, false);
+    }
   };
+
+   /**
+    * Remove submit answer feedback div
+    */
+   MarkTheWords.prototype.removeSubmitAnswerFeedback = function () {
+     H5P.jQuery('.submit-answer-feedback').remove();
+   };
+
+  /*started code by dev_ln */
+  function showSummary(self,answers,total_score,scored_result,user_response,correct_response) {
+
+      var table_content = '<tbody>';
+      var correct_response_rst = correct_response[0];
+      var result = correct_response_rst.split("[,]");
+      var res = user_response.split("[,]");
+    
+      var res = user_response.split("[,]");
+      if(user_response.length > 0){
+        for (var m =0; m < res.length; m++){
+          
+          var is_correct = $.inArray( res[m], result );
+          if(is_correct == -1){
+            var is_correct = "InCorrect";
+          }else{
+            var is_correct = "Correct";
+          }
+          table_content += '<tr>';
+          table_content += '<td>'+res[m]+'</td>';
+          table_content += '<td>'+is_correct+'</td>';
+          table_content += '</tr>';
+
+        
+        
+        }
+        var summary_html = '<div class="custom-summary-section"><div class="h5p-summary-table-pages"><table class="h5p-score-table-custom" style="min-height:100px;width:100%"><thead><tr><th>Ans</th><th>Correct</th></tr></thead>'+table_content+'</table></div></div>';
+        var table_content_overall_score = '<tbody>';
+        table_content_overall_score += '<tr>';
+        table_content_overall_score += '<td>'+answers.correct+'</td>';
+        table_content_overall_score += '<td>'+answers.missed+'</td>';
+        table_content_overall_score += '<td>'+answers.wrong+'</td>';
+        table_content_overall_score += '<td>'+scored_result+'/ '+total_score+'</td>';
+        table_content_overall_score += '</tr>';
+       
+        var overall_summary_html = '<div class="custom-summary-section"><div class="h5p-summary-table-pages"><table class="h5p-score-table-custom" style="min-height:100px;width:100%"><thead><tr><th>Correct Ans</th><th>Missed Qus</th><th>Wrong Attempt</th><th>Score</th></tr></thead>'+table_content_overall_score+'</table></div></div>';
+        
+        var correct_option_list_html = '<div class="custom-summary-section"><h1>Correct Words:</h1>';
+        for (var m =0; m < result.length; m++){
+          if(m == 0){
+            correct_option_list_html += result[m];
+          }else{
+            correct_option_list_html += ','+result[m];
+          }
+          
+        }  
+        correct_option_list_html += '</div';
+
+        var summary_html = summary_html.concat(overall_summary_html);
+        var summary_html = summary_html.concat(correct_option_list_html);
+
+
+
+      }else{
+        var summary_html = '<div class="custom-summary-section"><b>Users not mark any word yet.</b></div>';
+      }  
+
+    
+    // var summary_html = '<div class="custom-summary-section"><div class="h5p-summary-table-pages"><table class="h5p-score-table-custom" style="min-height:100px;width:100%"><thead><tr><th>Correct Ans</th><th>Missed Qus</th><th>Wrong Attempt</th><th>Score</th></tr></thead>'+table_content+'</table></div></div>';
+    return summary_html;
+  }
+  /*end code by dev_ln */
 
   /**
    * Toggle whether words can be selected
@@ -352,6 +502,13 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
         .attr('role', 'listbox');
     }
   };
+
+   /**
+    * Trigger xAPI completed event
+    */
+   MarkTheWords.prototype.triggerXAPICompleted = function (score, maxScore) {
+     this.triggerXAPIScored(score, maxScore, 'completed');
+   };
 
   /**
    * Get Xapi Data.
@@ -464,6 +621,7 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
 
     // iterate over words, and calculate score
     var answers = self.selectableWords.reduce(function (result, word) {
+      
       if (word.isCorrect()) {
         result.correct++;
       }
@@ -484,7 +642,7 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
 
     // no negative score
     answers.score = Math.max(answers.correct - answers.wrong, 0);
-
+    
     return answers;
   };
 
@@ -568,10 +726,16 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
    */
   MarkTheWords.prototype.resetTask = function () {
     this.isAnswered = false;
+    this.isSubmitted = false;
+    this.solutionMode = false;
     this.clearAllMarks();
     this.hideEvaluation();
+    this.removeSubmitAnswerFeedback();
+    /* XAPI restart the activityStartTime */
+    this.activityStartTime = Date.now();
     this.hideButton('try-again');
     this.hideButton('show-solution');
+    this.hideButton('submit-answer');
     this.showButton('check-answer');
     this.$a11yClickableTextLabel.html(this.params.a11yClickableTextLabel);
 
@@ -660,3 +824,133 @@ H5P.MarkTheWords = (function ($, Question, Word, KeyboardNav, XapiGenerator) {
 
   return MarkTheWords;
 }(H5P.jQuery, H5P.Question, H5P.MarkTheWords.Word, H5P.KeyboardNav, H5P.MarkTheWords.XapiGenerator));
+
+/**
+ * Static utility method for parsing H5P.MarkTheWords content item questions
+ * into format useful for generating reports.
+ * 
+ * Example input: "<p lang=\"en\">I like *pizza* and *burgers*.</p>"
+ * 
+ * Produces the following:
+ * [
+ *   {
+ *     type: 'text',
+ *     content: 'I like '
+ *   },
+ *   {
+ *     type: 'answer',
+ *     correct: 'pizza',
+ *   },
+ *   {
+ *     type: 'text',
+ *     content: ' and ',
+ *   },
+ *   {
+ *     type: 'answer',
+ *     correct: 'burgers'
+ *   },
+ *   {
+ *     type: 'text',
+ *     content: '.'
+ *   }
+ * ]
+ * 
+ * @param {string} question MarkTheWords textField (html)
+ */
+H5P.MarkTheWords.parseText = function (question) {
+
+  /**
+   * Separate all words surrounded by a space and an asterisk and any other
+   * sequence of non-whitespace characters from str into an array.
+   * 
+   * @param {string} str 
+   * @returns {string[]} array of all words in the given string
+   */
+  function getWords(str) { 
+    return str.match(/ \*[^\*]+\* |[^\s]+/g);
+  }
+
+  /**
+   * Replace each HTML tag in str with the provided value and return the resulting string
+   * 
+   * Regexp expression explained:
+   *   <     - first character is '<'
+   *   [^>]* - followed by zero or more occurences of any character except '>'
+   *   >     - last character is '>'
+   **/ 
+  function replaceHtmlTags(str, value) {
+    return str.replace(/<[^>]*>/g, value);
+  }
+
+  function startsAndEndsWith(char, str) {
+    return str.startsWith(char) && str.endsWith(char);
+  };
+
+  function removeLeadingPunctuation(str) {
+    return str.replace(/^[\[\({⟨¿¡“"«„]+/, '');
+  };
+
+  function removeTrailingPunctuation(str) {
+    return str.replace(/[",….:;?!\]\)}⟩»”]+$/, '');
+  };
+
+  /**
+   * Escape double asterisks ** = *, and remove single asterisk.
+   * @param {string} str 
+   */
+  function handleAsterisks(str) {
+    var asteriskIndex = str.indexOf('*');
+
+    while (asteriskIndex !== -1) {
+      str = str.slice(0, asteriskIndex) + str.slice(asteriskIndex + 1, str.length);
+      asteriskIndex = str.indexOf('*', asteriskIndex + 1);
+    }
+    return str;
+  };
+
+  /**
+   * Decode HTML entities (e.g. &nbsp;) from the given string using the DOM API
+   * @param {string} str 
+   */
+  function decodeHtmlEntities(str) {
+    const el = document.createElement('textarea');
+    el.innerHTML = str;
+    return el.value;
+  };
+
+  const wordsWithAsterisksNotRemovedYet = getWords(replaceHtmlTags(decodeHtmlEntities(question), ' '))
+    .map(function(w) { return w.trim(); })
+    .map(function(w) { return removeLeadingPunctuation(w); })
+    .map(function(w) { return removeTrailingPunctuation(w); });
+  
+  const allSelectableWords = wordsWithAsterisksNotRemovedYet
+    .map(function(w) { return handleAsterisks(w); });
+
+  const correctWordIndexes = [];
+
+  const correctWords = wordsWithAsterisksNotRemovedYet
+    .filter(function(w, i) { 
+      if (startsAndEndsWith('*', w)) {
+        correctWordIndexes.push(i);
+        return true;
+      }
+      return false;
+    })
+    .map(function(w) { return handleAsterisks(w); });
+  
+  const printableQuestion = replaceHtmlTags(decodeHtmlEntities(question), '')
+    .replace('\xa0', '\x20');
+
+  return {
+    alternatives: allSelectableWords,
+    correctWords: correctWords,
+    correctWordIndexes: correctWordIndexes,
+    textWithPlaceholders: printableQuestion.match(/[^\s]+/g)
+      .reduce(function(textWithPlaceholders, word, index) {
+        word = removeTrailingPunctuation(
+          removeLeadingPunctuation(word));
+        
+        return textWithPlaceholders.replace(word, '%' + index);
+      }, printableQuestion)
+  };
+};

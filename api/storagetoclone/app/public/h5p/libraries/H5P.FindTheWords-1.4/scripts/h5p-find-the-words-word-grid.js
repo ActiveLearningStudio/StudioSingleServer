@@ -388,16 +388,14 @@
     const desX = e.pageX - $(canvas).offset().left;
     const desY = e.pageY - Math.abs(offsetTop);
     const context = canvas.getContext('2d');
-    var random_color3 = randomColor();
+
     // Draw the current marking
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-    //context.fillStyle = 'rgba(107,177,125,0.3)';
-     context.fillStyle = 'rgba('+random_color3+')';
+    context.fillStyle = 'rgba(107,177,125,0.3)';
     context.beginPath();
     context.lineCap = 'round';
     context.moveTo(srcPos[0] - (eSize / 8), srcPos[1] + (offsetTop / 8));
-    //context.strokeStyle = 'rgba(107,177,125,0.4)';
-    context.strokeStyle = 'rgba('+random_color3+')';
+    context.strokeStyle = 'rgba(107,177,125,0.4)';
     context.lineWidth = Math.floor(eSize / 2);
     context.lineTo(desX - (eSize / 8), desY + (offsetTop / 8));
     context.stroke();
@@ -519,20 +517,15 @@
     const lineWidth = Math.floor(this.elementSize / 4);
 
     let startingAngle;
-    var random_color1 = randomColor();
-    var random_color2 = randomColor();
+
     // set the drawing property values
     context.lineWidth = 2;
-    //context.strokeStyle = 'rgba(107,177,125,0.9)';
-    //context.fillStyle = 'rgba(107,177,125,0.3)';
-    context.strokeStyle = 'rgba('+random_color1+')';
-    context.fillStyle = 'rgba('+random_color1+')';
+    context.strokeStyle = 'rgba(107,177,125,0.9)';
+    context.fillStyle = 'rgba(107,177,125,0.3)';
 
     if (!this.options.gridActive) {
-      //context.strokeStyle = 'rgba(51, 102, 255,0.9)';
-      //context.fillStyle = 'rgba(51, 102, 255,0.1)';
-      context.strokeStyle =  'rgba('+random_color2+')';
-      context.fillStyle =  'rgba('+random_color2+')';
+      context.strokeStyle = 'rgba(51, 102, 255,0.9)';
+      context.fillStyle = 'rgba(51, 102, 255,0.1)';
       context.setLineDash([8, 4]);
     }
 
@@ -687,7 +680,6 @@
 
     that.wordGrid.forEach(function (row, index1) {
       row.forEach(function (element, index2) {
-            ctx1.fillStyle = "red";
         ctx1.fillText(element.toUpperCase(), index2 * that.elementSize + 2 * marginResp, index1 * that.elementSize + (offsetTop) );
       });
     });
@@ -794,9 +786,3 @@
   return FindTheWords.WordGrid;
 
 }) (H5P.FindTheWords, H5P.EventDispatcher, H5P.jQuery);
-
-
-function randomColor(){
-    const color = ["255,0,0,0.3", "0,255,0,0.3", "0,0,255,0.3", "192,192,192,0.3", "255,255,0,0.3", "255,0,255,0.3"];
-    return color[Math.floor(Math.random() * color.length)];
-}

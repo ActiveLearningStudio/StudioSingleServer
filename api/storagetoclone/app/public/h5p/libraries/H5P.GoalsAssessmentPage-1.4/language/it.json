@@ -33,6 +33,18 @@
     {
       "label": "Aggiungi ulteriori informazioni di aiuto",
       "description": "Qui puoi aggiungere ulteriori informazioni di aiuto per l'utente"
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

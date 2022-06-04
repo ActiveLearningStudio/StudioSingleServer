@@ -15,6 +15,11 @@ CKEDITOR.plugins.add('insertfiles', {
   init: function(editor) {
     editor.addCommand('insertfiles', new CKEDITOR.dialogCommand('insertfiles'));
 
+    let basePathCurriki = CKEDITOR.basePath;
+    let arr = basePathCurriki.split('storage');
+    let currikiBrowsePath = arr[0] + 'api/ckeditor/browseFiles?type=Files';
+    editor.config.filebrowserBrowseUrl = currikiBrowsePath;
+    
     editor.ui.addButton('Insertfiles', {
       label: editor.lang.insertfiles.button,
       command: 'insertfiles',

@@ -11,6 +11,10 @@
     "advancedtext": "文字",
     "dropzone": "拖曳區",
     "selectAll": "全選",
-    "deselectAll": "取消全選"
+    "deselectAll": "取消全選",
+    "deleteTaskTitle": "删除任务",
+    "cancel": "取消",
+    "confirm": "确认",
+    "ok": "我知道了"
   }
 }

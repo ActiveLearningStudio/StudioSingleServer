@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Title"
+      "label": "Títol"
     },
     {
       "fields": [
@@ -18,7 +18,7 @@
               "label": "(root relative)"
             },
             {
-              "label": "other"
+              "label": "altres"
             }
           ]
         },

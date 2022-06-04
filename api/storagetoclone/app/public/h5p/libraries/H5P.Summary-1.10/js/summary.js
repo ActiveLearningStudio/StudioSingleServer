@@ -124,6 +124,18 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
         answers: this.answers
       };
     };
+
+    /**
+     * Overrides the set activity started method of the superclass (H5P.EventDispatcher) and calls it
+     * at the same time.
+     */
+    this.setActivityStarted = (function (original) {
+      return function () {
+        original.call(that);
+        that.resetStopWatch(that.progress);
+        that.startStopWatch(that.progress);
+      };
+    })(this.setActivityStarted);
   }
 
   Summary.prototype = Object.create(Question.prototype);
@@ -359,6 +371,7 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
       else {
         that.announceAnswer(false);
+        that.stopStopWatch(panelId);
         // Remove event handler (prevent repeated clicks) and mouseover effect
         $el.off('click');
         $el.addClass('summary-failed');
@@ -390,8 +403,10 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       }
 
       // Trigger overall answered xAPI event when finished
-      if (finished) {
+      if (finished && that.isRoot()) {
         that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'answered');
+        that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'completed');
+        that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'submitted-curriki');
       }
     };
 
@@ -623,6 +638,9 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
       that.read(scoreBarLabel);
     }, 3000);
 
+    // trigger question finished to show continue button in IV
+    that.trigger('question-finished');
+
     that.trigger('resize');
   };
 
@@ -732,6 +750,17 @@ H5P.Summary = (function ($, Question, XApiEventBuilder, StopWatch) {
   Summary.prototype.stopStopWatch = function (index) {
     if(this.stopWatches[index]){
       this.stopWatches[index].stop();
+    }
+  };
+
+  /**
+   * Resets a stopwatch for indexed slide
+   *
+   * @param {number} [index]
+   */
+  Summary.prototype.resetStopWatch = function (index) {
+    if(this.stopWatches[index]){
+      this.stopWatches[index].reset();
     }
   };
 

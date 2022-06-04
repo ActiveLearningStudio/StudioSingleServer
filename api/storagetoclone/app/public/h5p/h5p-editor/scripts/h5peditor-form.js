@@ -38,7 +38,7 @@ ns.Form = function (library, startLanguages, defaultLanguage) {
     if (library.indexOf('H5P.CoursePresentation') === -1 &&
         library.indexOf('H5P.BranchingScenario') === -1 &&
         library.indexOf('H5P.InteractiveVideo') === -1) {
-      ns.FullscreenBar(this.$form, library);
+      self.$title = ns.FullscreenBar(this.$form, library);
     }
   }
 
@@ -438,6 +438,31 @@ ns.Form.prototype.processSemantics = function (semantics, defaultParams, metadat
 
   // Create real children
   ns.processSemanticsChunk(semantics, this.params, this.$form.children('.tree'), this);
+
+  // set editor title based on content title
+  this.setTitle();
+
+};
+
+/**
+ * Sets the content title in editor and listen changes for title input and change accordingly
+ */
+ns.Form.prototype.setTitle = function () {
+  var self = this;
+  const setTitle = function () {
+    const titleField = H5PEditor.findField('title', this);
+    if (titleField && titleField.$input && titleField.$input.val() !== undefined) {
+      let title = titleField.$input.val();
+      title = (title.length > 48 ? title.substr(0, 45) + '...' : title);
+      self.$title.text(title);
+    }
+  };
+  if (this.$title) {
+    // set initial title
+    setTitle.call(this.metadataForm);
+    // add listener to set title on change
+    this.metadataForm.on('titlechange', setTitle);
+  }
 };
 
 /**

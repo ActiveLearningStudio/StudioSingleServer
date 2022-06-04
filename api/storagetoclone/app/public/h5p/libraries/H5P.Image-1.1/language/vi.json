@@ -1,7 +1,7 @@
 {
   "semantics": [
     {
-      "label": "Image"
+      "label": "Hình"
     },
     {
       "label": "Alternative text",
@@ -13,7 +13,7 @@
     },
     {
       "label": "Image content name",
-      "default": "Image"
+      "default": "Hình"
     }
   ]
 }

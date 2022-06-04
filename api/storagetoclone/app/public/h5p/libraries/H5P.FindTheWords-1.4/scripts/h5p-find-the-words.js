@@ -25,10 +25,10 @@ H5P.FindTheWords = (function ($, UI) {
     const vocabulary = options.wordList
       .split(',')
       .map(function (word) {
-        return word.trim();
+        return word.trim().replace(/ +/g, '');
       })
       .filter(function (word, pos, self) {
-        return self.indexOf(word) === pos;
+        return self.indexOf(word) === pos && word.length > 0;
       });
 
     this.options = $.extend(true, {
@@ -39,6 +39,12 @@ H5P.FindTheWords = (function ($, UI) {
       maxAttempts: 5,
       l10n: {
         wordListHeader: 'Find the words'
+      },
+      currikisettings:{
+        disableSubmitButton: false,
+        currikil10n: {
+          submitAnswer: 'Submit'
+        }
       }
     }, options);
 
@@ -177,12 +183,41 @@ H5P.FindTheWords = (function ($, UI) {
     this.$progressBar = UI.createScoreBar(this.vocabulary.words.length, 'scoreBarLabel');
 
     // buttons section
-    that.$submitButton = that.createButton('submit', 'check', that.options.l10n.check, that.gameSubmitted);
+    /*
+    that.$viewSummaryButton = that.createButton('show-summary', 'View summary', 'View summary' , function () {   
+      var  xAPIAnsEvent = this.createXAPIEventTemplate('answered');
+      this.addQuestionToXAPI(xAPIAnsEvent);
+      this.addResponseToXAPI(xAPIAnsEvent);
+      this.trigger(xAPIAnsEvent);
+      
+      var user_response = xAPIAnsEvent.data.statement.result.response;
+      var total_score = that.getMaxScore();
+      var scored_result = that.getScore();
+      var confirmationDialog = new H5P.ConfirmationDialog({
+              headerText: 'Find the words summary',
+              dialogText: that.showSummary(total_score,scored_result,user_response),
+              cancelText: 'Cancel',
+              confirmText: "Submit Answers"
+            });
+            confirmationDialog.on('confirmed', function () {
+               that.triggerXAPIScored(scored_result,total_score, 'submitted-curriki');
+              H5P.jQuery('.h5p-question-check-answer').click();
+              
+            });
+            confirmationDialog.appendTo(parent.document.body);
+            confirmationDialog.show();
+    });
+    */
+
+    that.$checkButton = that.createButton('check', 'check', "Check", that.gameSubmitted);
     if (this.options.behaviour.enableShowSolution) {
       this.$showSolutionButton = this.createButton('solution', 'eye', this.options.l10n.showSolution, that.showSolutions);
     }
     if (this.options.behaviour.enableRetry) {
       this.$retryButton = this.createButton('retry', 'undo', this.options.l10n.tryAgain, that.resetTask);
+    }
+    if(!that.options.currikisettings.disableSubmitButton && typeof this.parent == "undefined") {
+      that.$submitButton = that.createButton('submit', 'submit', that.options.currikisettings.currikil10n.submitAnswer, that.answersSubmitted);
     }
 
     // container elements
@@ -199,6 +234,30 @@ H5P.FindTheWords = (function ($, UI) {
     this.$feedbackContainer = $('<div class="feedback-container"/>');
     this.$buttonContainer = $('<div class="button-container" />');
   };
+
+
+  FindTheWords.prototype.showSummary = function (total_score,scored_result,user_response) {
+    var summary_html = "";
+    var user_response_ary = user_response.split("[,]");
+    if(user_response_ary.length > 0  && user_response_ary[0] != ""){
+       var table_content = '<tbody>';
+       var is_correct = "Correct";
+       for (var m =0; m < user_response_ary.length; m++){
+        table_content += '<tr>';
+        table_content += '<td>'+user_response_ary[m]+'</td>';
+        table_content += '<td>'+is_correct+'</td>';
+        table_content += '</tr>';
+
+      }
+      var summary_html = '<div class="custom-summary-section"><div class="h5p-summary-table-pages"><table class="h5p-score-table-custom" style="min-height:100px;width:100%"><thead><tr><th>Ans</th><th>Correct</th></tr></thead>'+table_content+'</table></div></div>';
+      var table_content_overall_score = '<tbody>';
+      var overall_summary_html = '<div class="custom-score-section"><b>Overall Score: </b>You got '+scored_result+' of '+total_score+' points.</div>';
+      var summary_html = summary_html.concat(overall_summary_html);
+    }else{
+      var summary_html = "You did not attempt activity yet.";
+    }
+    return summary_html;
+  }
 
   /**
    * createButton - creating all buttons used in this game.
@@ -257,7 +316,7 @@ H5P.FindTheWords = (function ($, UI) {
     this.timer.stop();
     this.$progressBar.setScore(this.numFound);
     this.$feedback.html(scoreText);
-    this.$submitButton = this.$submitButton.detach();
+    this.$checkButton = this.$checkButton.detach();
     this.grid.disableGrid();
 
     if (totalScore !== this.numFound) {
@@ -270,6 +329,10 @@ H5P.FindTheWords = (function ($, UI) {
       this.$retryButton.appendTo(this.$buttonContainer);
     }
 
+    if(!this.options.currikisettings.disableSubmitButton && typeof this.parent == "undefined") {
+      this.$submitButton.appendTo(this.$buttonContainer);
+    }
+
     this.$feedbackContainer.addClass('feedback-show'); //show feedbackMessage
     this.$feedback.focus();
 
@@ -277,6 +340,12 @@ H5P.FindTheWords = (function ($, UI) {
     this.addQuestionToXAPI(xAPIEvent);
     this.addResponseToXAPI(xAPIEvent);
     this.trigger(xAPIEvent);
+
+    // trigger completed XAPI
+    var completedEvent = this.createXAPIEventTemplate('completed');
+    completedEvent.setScoredResult(this.getScore(), this.getMaxScore(), this, true, this.getScore() === this.getMaxScore());
+    completedEvent.data.statement.result.duration = 'PT' + (Math.round(this.timer.getTime() / 10) / 100) + 'S';
+    this.trigger(completedEvent);
 
     this.trigger('resize');
   };
@@ -291,6 +360,10 @@ H5P.FindTheWords = (function ($, UI) {
     this.$showSolutionButton.detach();
     this.$vocabularyContainer.focus();
     this.trigger('resize');
+    if (!this.isSubmitted && !this.options.currikisettings.disableSubmitButton) {
+      this.$submitButton.appendTo(this.$buttonContainer);
+    }
+    this.removeSubmitAnswerFeedback();
   };
 
   /**
@@ -298,14 +371,19 @@ H5P.FindTheWords = (function ($, UI) {
    */
   FindTheWords.prototype.resetTask = function () {
     this.numFound = 0;
+    this.isSubmitted = false;
     this.timer.reset();
     this.counter.reset();
     this.$progressBar.reset();
     this.$puzzleContainer.empty();
     this.vocabulary.reset();
+    this.removeSubmitAnswerFeedback();
 
     if (this.$showSolutionButton) {
       this.$showSolutionButton.detach();
+    }
+    if(this.$submitButton) {
+      this.$submitButton.detach();
     }
 
     this.$retryButton.detach();
@@ -317,11 +395,29 @@ H5P.FindTheWords = (function ($, UI) {
     this.grid.enableGrid();
     this.registerGridEvents();
 
-    this.$submitButton.appendTo(this.$buttonContainer);
+    this.$checkButton.appendTo(this.$buttonContainer);
+    //this.$viewSummaryButton.appendTo(this.$buttonContainer);
     this.$puzzleContainer.focus();
 
     this.trigger('resize');
   };
+
+  FindTheWords.prototype.answersSubmitted = function () {
+    this.isSubmitted = true;
+    this.$submitButton = this.$submitButton.detach();
+    // trigger submitted-curriki XAPI
+    this.triggerXAPIScored(this.getScore(), this.getMaxScore(), 'submitted-curriki');
+    var $submit_message = '<div class="submit-answer-feedback" style = "color: red">Result has been submitted successfully</div>';
+    this.$feedbackContainer.after($submit_message);
+  };
+
+  /**
+   * Remove submit answer feedback div
+   */
+  FindTheWords.prototype.removeSubmitAnswerFeedback = function () {
+    H5P.jQuery('.submit-answer-feedback').remove();
+  };
+
 
   /**
    * Check whether user is able to play the game.
@@ -377,6 +473,16 @@ H5P.FindTheWords = (function ($, UI) {
     definition.interactionType = 'choice';
     definition.correctResponsesPattern = [];
     definition.correctResponsesPattern[0] = this.vocabulary.words.join([',']);
+    definition.choices = [];
+    this.vocabulary.words.forEach((value, index) => {
+      definition.choices[index] = {
+        id: value.toString(),
+        description: {
+          'en-US': value.toString()
+        }
+      }
+    });
+
   };
 
   /**
@@ -391,6 +497,7 @@ H5P.FindTheWords = (function ($, UI) {
 
     xAPIEvent.setScoredResult(score, maxScore, this, true, success);
     xAPIEvent.data.statement.result.response = response;
+    xAPIEvent.data.statement.result.duration = 'PT' + (Math.round(this.timer.getTime() / 10) / 100) + 'S';
   };
 
   /**
@@ -445,7 +552,8 @@ H5P.FindTheWords = (function ($, UI) {
     this.$feedback.appendTo(this.$feedbackContainer);
     this.$progressBar.appendTo(this.$feedbackContainer);
 
-    this.$submitButton.appendTo(this.$buttonContainer);
+    //this.$viewSummaryButton.appendTo(this.$buttonContainer);
+    this.$checkButton.appendTo(this.$buttonContainer);
 
     //append status and feedback and button containers to footer
     this.$statusContainer.appendTo(this.$footerContainer);

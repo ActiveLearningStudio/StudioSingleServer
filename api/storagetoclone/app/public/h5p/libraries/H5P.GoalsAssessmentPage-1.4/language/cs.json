@@ -13,7 +13,7 @@
     {
       "label": "Text se středním hodnocením",
       "description": "Text pro střední hodnocení.",
-      "default": "Naučeno něco"
+      "default": "Něco naučeno"
     },
     {
       "label": "Text s vysokým hodnocením",
@@ -33,6 +33,18 @@
     {
       "label": "Vyplnit další informace v nápovědě",
       "description": "Zde můžete vyplnit další užitečné informace pro uživatele."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

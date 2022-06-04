@@ -2,7 +2,7 @@
   "semantics": [
     {
       "label": "Текст на въпроса",
-      "description": "The question that the user will make a choice based upon."
+      "description": "Въпросът, според който потребителят ще направи избор."
     },
     {
       "label": "Възможности",

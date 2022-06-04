@@ -1,21 +1,21 @@
 {
-  "title": "Greeting card",
+  "title": "Greeting Card",
   "description": "Displays a greeting card",
   "majorVersion": 1,
   "minorVersion": 0,
-  "patchVersion": 0,
+  "patchVersion": 9,
   "runnable": 1,
-  "author": "Amendor AS",
-  "license": "cc-by-sa",
+  "author": "Joubel",
+  "license": "MIT",
   "machineName": "H5P.GreetingCard",
-  "coreApi": {
-    "majorVersion": 1,
-    "minorVersion": 0
-  },
   "preloadedJs": [
-    { "path": "greetingcard.js" }
+    {
+      "path": "greetingcard.js"
+    }
   ],
   "preloadedCss": [
-    {"path": "greetingcard.css"}
+    {
+      "path": "greetingcard.css"
+    }
   ]
 }

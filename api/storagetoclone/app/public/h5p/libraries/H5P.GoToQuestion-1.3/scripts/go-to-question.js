@@ -223,6 +223,7 @@ H5P.GoToQuestion = (function ($, EventDispatcher, UI) {
         // No animation, but let the choices stay for a while
         setTimeout(function () {
           // Done
+          triggerXAPIInteracted(choiceParams.text);
           self.trigger('chosen', choiceParams.goTo);
           setTimeout(resetChoices, 0);
         }, 500);
@@ -245,7 +246,7 @@ H5P.GoToQuestion = (function ($, EventDispatcher, UI) {
       // Update elements
       $chosenText.html(chosenText).insertBefore($continueMsg);
       $continueMsg.html(continueMsg);
-      $continueButton.appendTo($wrapper).on('click', createContinueHandler(goTo)).focus();
+      $continueButton.appendTo($wrapper).on('click', createContinueHandler(chosenText, goTo)).focus();
 
       // Makes it easy to re-style the task in this state
       $wrapper.addClass(GoToQuestion.htmlClass + '-continuestate');
@@ -257,8 +258,9 @@ H5P.GoToQuestion = (function ($, EventDispatcher, UI) {
      * @private
      * @param {number} goTo
      */
-    var createContinueHandler = function (goTo) {
+    var createContinueHandler = function (chosenText, goTo) {
       return function () {
+        triggerXAPIInteracted(chosenText);
         self.trigger('chosen', goTo);
         // Use timeout to avoid flickering
         setTimeout(function () {
@@ -284,6 +286,57 @@ H5P.GoToQuestion = (function ($, EventDispatcher, UI) {
 
       // Add to DOM
       $container.addClass(GoToQuestion.htmlClass).html('').append($wrapper);
+      // for XAPI duration
+      self.activityStartTime = Date.now();
+    };
+
+    /**
+     * Trigger XAPI Interacted statement
+     * @param selectedChoiceText    - selected choice text
+     */
+    var triggerXAPIInteracted = function (selectedChoiceText) {
+      if (self.parent) {
+        var interactedEvent = self.parent.createXAPIEventTemplate('interacted');
+
+        var choices = [];
+        var selectedChoiceId = 0;
+        for (var i = 0; i < parameters.choices.length; i++) {
+          var choiceText = parameters.choices[i].text;
+          var choice = Object.assign({}, {
+            'description': {
+              'en-US': choiceText
+            },
+            'id': String(i)
+          });
+          choices.push(choice);
+          if (selectedChoiceText === choiceText) {
+            selectedChoiceId = String(i);
+          }
+        }
+
+        Object.assign(interactedEvent.data.statement, {
+          result: {
+            response: selectedChoiceId
+          }
+        });
+        Object.assign(interactedEvent.data.statement.object.definition, {
+          type: 'http://adlnet.gov/expapi/activities/cmi.interaction',
+          name: {
+            'en-US': "Crossroads"
+          },
+          interactionType: "choice",
+          choices: choices
+        });
+
+        // set user spent duration
+        if (self && self.activityStartTime) {
+          var duration = Math.round((Date.now() - self.activityStartTime) / 10) / 100;
+          // xAPI spec allows a precision of 0.01 seconds
+          interactedEvent.data.statement.result.duration = 'PT' + duration + 'S';
+        }
+
+        self.parent.trigger(interactedEvent);
+      }
     };
   }
 
@@ -372,6 +425,5 @@ H5P.GoToQuestion = (function ($, EventDispatcher, UI) {
     // Object had all props
     return true;
   };
-
   return GoToQuestion;
 })(H5P.jQuery, H5P.EventDispatcher, H5P.JoubelUI);

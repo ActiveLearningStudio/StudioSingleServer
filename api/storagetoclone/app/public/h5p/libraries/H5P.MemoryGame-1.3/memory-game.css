@@ -188,6 +188,7 @@
   clear: left;
   padding: 0 1em;
   margin: 0.25em 0 1em 0;
+  color: black;
 }
 .h5p-memory-game .h5p-status > dt {
   float: left;

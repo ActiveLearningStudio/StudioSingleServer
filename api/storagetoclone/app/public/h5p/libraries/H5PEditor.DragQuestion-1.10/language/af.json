@@ -1,16 +1,20 @@
 {
-  "libraryStrings":{
-    "insertElement":"Add :type",
-    "done":"Done",
-    "remove":"Remove",
-    "image":"Image",
-    "text":"Text",
-    "noTaskSize":"Please specify task size first.",
-    "confirmRemoval":"Are you sure you wish to remove this element?",
-    "backgroundOpacityOverridden":"The background opacity is overridden",
-    "advancedtext":"Text",
-    "dropzone":"Drop Zone",
-    "selectAll":"Select all",
-    "deselectAll":"Deselect all"
+  "libraryStrings": {
+    "insertElement": "Voeg :type by",
+    "done": "Klaar",
+    "remove": "Verwyder",
+    "image": "Beeld",
+    "text": "Teks",
+    "noTaskSize": "Spesifiseer asb. eerste die taakgrote.",
+    "confirmRemoval": "Is jy seker jy wil hierdie element verwyder?",
+    "backgroundOpacityOverridden": "Die agtergrond deursigtigheid word oorheers",
+    "advancedtext": "Teks",
+    "dropzone": "Valsone",
+    "selectAll": "Kies Alles",
+    "deselectAll": "Ontkies alles",
+    "deleteTaskTitle": "Deleting task",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

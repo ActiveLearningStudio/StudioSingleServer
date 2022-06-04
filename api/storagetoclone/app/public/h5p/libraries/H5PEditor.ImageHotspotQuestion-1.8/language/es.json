@@ -1,11 +1,11 @@
 {
-  "libraryStrings":{
-    "noImage":"sin imagen",
-    "noImageTitle":"titulo sin imagen",
-    "done":"hecho",
-    "back":"atrás",
-    "remove":"eliminar",
-    "rectangle":"rectángulo",
-    "circle":"círculo"
+  "libraryStrings": {
+    "noImage": "Usted debe seleccionar una imagen de fondo antes de añadir hotspots.",
+    "noImageTitle": "Sin Imagen de Fondo",
+    "done": "Hecho",
+    "back": "Regresar",
+    "remove": "Eliminar hotspot",
+    "rectangle": "Crear rectángulo",
+    "circle": "Crear círculo"
   }
 }

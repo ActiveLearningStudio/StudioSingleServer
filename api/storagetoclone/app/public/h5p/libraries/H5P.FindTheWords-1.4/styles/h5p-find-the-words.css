@@ -3,8 +3,6 @@
   margin:0 auto;
   width: 100%;
   font-family: Helvetica, Arial, sans-serif;
-  background: url(sky.jpeg) no-repeat center center fixed; 
-  background-size: cover;
 }
 
 .h5p-find-the-words .h5p-play-area {
@@ -16,11 +14,9 @@
 .h5p-task-description {
   font-family: Helvetica, Arial, sans-serif;
   color: #000000;
-  background-color: #a05db4;
   font-size: 1.125em;
   padding: 8px;
   border-bottom: 1px solid #eeeeee;
-   margin: 5px;
 }
 
 .h5p-find-the-words .game-container {
@@ -47,7 +43,7 @@
 }
 
 .h5p-find-the-words .vocabulary-container {
-  //background-color: #eeeeee;
+  background-color: #eeeeee;
   text-align: left;
 }
 

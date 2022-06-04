@@ -8,7 +8,14 @@ H5PUpgrades['H5P.ImageSequencing'] = (function () {
         parameters.behaviour = {
           enableSolution: true,
           enableRetry: true,
-          enableResume: true
+          enableResume: true,
+        };
+        parameters.currikisettings = {
+          disableSubmitButton: false,
+          placeholder: false,
+          currikil10n: {
+            submitAnswer: 'Submit'
+          }
         };
 
         parameters.l10n.showSolution = 'Show Solution';

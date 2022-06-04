@@ -11,6 +11,7 @@ H5P.Link = (function ($) {
    * @param {Object} parameters
    */
   function Link(parameters) {
+    var self = this;
     // Add default parameters
     parameters = $.extend(true, {
       title: 'New link',
@@ -39,6 +40,36 @@ H5P.Link = (function ($) {
                     this.click();
                   }
                 });
+
+      // trigger consumed xapi on click
+      $container.on('click', function() {
+        triggerXAPIConsumed();
+      });
+    };
+
+    /**
+     * Trigger the 'consumed' xAPI event
+     *
+     */
+    var triggerXAPIConsumed = function () {
+      var xAPIEvent = self.createXAPIEventTemplate({
+        id: 'http://activitystrea.ms/schema/1.0/consume',
+        display: {
+          'en-US': 'consumed'
+        }
+      }, {
+        result: {
+          completion: true
+        }
+      });
+
+      Object.assign(xAPIEvent.data.statement.object.definition, {
+        name:{
+          'en-US': parameters.title
+        }
+      });
+
+      self.trigger(xAPIEvent);
     };
 
     /**

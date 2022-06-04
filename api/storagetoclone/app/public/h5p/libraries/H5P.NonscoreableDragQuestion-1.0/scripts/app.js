@@ -932,7 +932,6 @@
       });
       draggable.on('interacted', function () {
         self.answered = true;
-        self.triggerXAPI('interacted');
       });
       draggable.on('leavingDropZone', function (event) {
         self.dropZones[event.data.dropZone].removeAlignable(event.data.$);
@@ -1103,6 +1102,12 @@
     setTimeout(function () {
       self.trigger('resize');
     }, 200);
+
+    // for xapi duration
+    if (self.activityStartTime === undefined) {
+      self.activityStartTime = Date.now();
+    }
+
   };
   
   /**
@@ -1211,7 +1216,7 @@
   C.prototype.addResponseToXAPI = function (xAPIEvent) {
     var maxScore = 1;
     var score = 1;
-    var success = score == maxScore ? true : false;
+    var success = score === maxScore ? true : false;
     console.log(xAPIEvent.data);
     xAPIEvent.setScoredResult(score, maxScore, this, true, success);
     xAPIEvent.data.statement.result.response = this.getUserXAPIResponse();
@@ -1629,6 +1634,11 @@
     this.hideButton('try-again');
     this.removeFeedback();
     this.setExplanation();
+
+    // reset activity start time
+    if (this.activityStartTime) {
+      this.activityStartTime = Date.now();
+    }
   };
   
   /**
@@ -1690,7 +1700,8 @@
    * @returns {Boolean}
    */
   C.prototype.getAnswerGiven = function () {
-    return !this.options.behaviour.showSolutionsRequiresInput || this.answered || this.blankIsCorrect;
+    //return !this.options.behaviour.showSolutionsRequiresInput || this.answered || this.blankIsCorrect;
+    return this.answered || this.blankIsCorrect;
   };
   
   /**

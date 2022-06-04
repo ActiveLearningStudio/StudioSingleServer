@@ -1,16 +1,20 @@
 {
-  "libraryStrings":{
-    "insertElement":"Add :type",
-    "done":"Done",
-    "remove":"Remove",
-    "image":"Image",
-    "text":"Text",
-    "noTaskSize":"Please specify task size first.",
-    "confirmRemoval":"Are you sure you wish to remove this element?",
-    "backgroundOpacityOverridden":"The background opacity is overridden",
-    "advancedtext":"Text",
-    "dropzone":"Drop Zone",
-    "selectAll":"Select all",
-    "deselectAll":"Deselect all"
+  "libraryStrings": {
+    "insertElement": "Lägg till :type",
+    "done": "Färdig",
+    "remove": "Ta bort",
+    "image": "Bild",
+    "text": "Text",
+    "noTaskSize": "Ange uppgiftens storlek först.",
+    "confirmRemoval": "Är du säker på att du vill ta bort detta element?",
+    "backgroundOpacityOverridden": "Bakgrundens opacitet är ignorerad",
+    "advancedtext": "Text",
+    "dropzone": "Målområde",
+    "selectAll": "Välj alla",
+    "deselectAll": "Välj bort alla",
+    "deleteTaskTitle": "Raderar uppgift",
+    "cancel": "Avbryt",
+    "confirm": "Bekräfta",
+    "ok": "OK"
   }
 }

@@ -51,6 +51,9 @@ H5PEditor.FullscreenBar = (function ($) {
     $bar.append(proceedButton);
     $bar.append(fullscreenButton);
     $mainForm.prepend($bar);
+
+    // for setting content title
+    return $title;
   }
 
   /**

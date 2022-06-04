@@ -8,8 +8,8 @@
     "popupTitle": "עריכת :type",
     "done": "הסתיים",
     "loading": "טוען...",
-    "remove": "להסיר",
-    "removeInteraction": "האם להסיר אינטראקציה זו?",
+    "remove": "הסרה",
+    "removeInteraction": "האם למחוק אינטראקציה זו?",
     "addBookmark": "הוספת סימניה ב: @timecode",
     "newBookmark": "סימניה חדשה",
     "bookmarkAlreadyExists": "הסימניות כבר קיימות כאן. יש להעביר את המיקום בציר־הזמן כדי להוסיף סימניה במיקום אחר.",
@@ -38,13 +38,17 @@
     "tourStepSummaryText": "חידון סיכום לא־מחייב זה יופיע בסוף הסרטון.",
     "fullScoreRequiredPause": "האפשרות \"ציון מלא נדרש\" זמינה כאשר האפשרות \"השהייה\" מופעלת.",
     "fullScoreRequiredRetry": "האפשרות \"ציון מלא נדרש\" זמינה כאשר האפשרות \"ניסיון נוסף\" מופעלת",
-    "fullScoreRequiredTimeFrame": "כבר קיימת אינטראקציה שדורשת ציון מלא באינטראקציה זו. <br> תידרשו לענות רק על אחת מהאינטראקציות .",
+    "fullScoreRequiredTimeFrame": "כבר קיימת אינטראקציה שדורשת ציון מלא באינטראקציה זו. <br /> תידרשו לענות רק על אחת מהאינטראקציות .",
     "addEndscreen": "הוספת עמוד סיום והגשה ב: @timecode",
     "endscreen": "עמוד סיום והגשה",
     "endscreenAlreadyExists": "עמוד סיום והגשה כבר קיים פה. יש להעביר את סמן ציר־הזמן למקום חדש כדי להוסיף עמוד־סיום חדש או סימניה במיקום אחר.",
     "tooltipBookmarks": "הקליקו להוספת סימניה בנקודת הזמן הנוכחית של הסרטון",
     "tooltipEndscreens": "הקליקו להוספת מסך הגשה בנקודת הזמן הנוכחית של הסרטון",
-    "expandBreadcrumbButtonLabel": "Go back",
-    "collapseBreadcrumbButtonLabel": "Close navigation"
+    "expandBreadcrumbButtonLabel": "חזרה לאחור",
+    "collapseBreadcrumbButtonLabel": "סגירת ניווט",
+    "deleteInteractionTitle": "Deleting interaction",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

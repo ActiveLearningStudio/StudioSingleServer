@@ -329,5 +329,5 @@ H5P.XAPIEvent.allowedXAPIVerbs = [
   'accessed-embed',
   'accessed-copyright',
   'submitted-curriki',
-'skipped' 
+  'skipped'
 ];

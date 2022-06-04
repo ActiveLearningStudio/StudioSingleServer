@@ -33,6 +33,18 @@
     {
       "label": "Попълнете допълнителна помощна информация",
       "description": "Тук можете да попълните допълнителна полезна информация за ученика."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

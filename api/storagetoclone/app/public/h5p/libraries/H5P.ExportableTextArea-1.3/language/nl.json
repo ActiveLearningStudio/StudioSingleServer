@@ -2,15 +2,15 @@
   "semantics": [
     {
       "label": "Label",
-      "description": "Label/heading for answer when user exports all answers"
+      "description": "Label/kop voor antwoord wanneer gebruiker alle antwoorden exporteert"
     },
     {},
     {
-      "label": "Export not supported label",
-      "default": "Export not supported on your device"
+      "label": "Export niet ondersteund label",
+      "default": "Export wordt niet ondersteund op jouw apparaat"
     },
     {
-      "label": "Include comments in the exported document"
+      "label": "Reacties insluiten in het geëxporteerde document"
     }
   ]
 }

@@ -11,9 +11,10 @@ H5P.Shape = (function ($) {
    *
    * @param {Object} params Behavior settings
    * @param {Number} id Content identification
+   * @param {Object} content data
    * @returns {C} self
    */
-  function C(params, id) {
+  function C(params, id, contentData) {
     H5P.EventDispatcher.call(this);
     this.params = $.extend(true, {
       type: 'rectangle',
@@ -26,6 +27,10 @@ H5P.Shape = (function ($) {
       }
     }, params);
     this.contentId = id;
+    this.contentData = contentData;
+    if (contentData && contentData.hasOwnProperty("metadata")) {
+      this.title = contentData.metadata.title;
+    }
   }
 
   C.prototype = Object.create(H5P.EventDispatcher.prototype);
@@ -41,6 +46,14 @@ H5P.Shape = (function ($) {
     this.$shape = $('<div class="h5p-shape-element h5p-shape-' + this.params.type + '"></div>');
     this.styleShape();
     this.$shape.appendTo(this.$inner);
+    // for CP trigger only on slide open for others trigger on attachs
+    if (this.contentData.hasOwnProperty("parent") && this.contentData.parent.hasOwnProperty("presentation")) {
+      this.on('trigger-consumed', function () {
+        this.triggerXAPIConsumed();
+      });
+    } else {
+      this.triggerXAPIConsumed();
+    }
   };
 
   /**
@@ -83,6 +96,31 @@ H5P.Shape = (function ($) {
     }
 
     this.$shape.css(css);
+  };
+
+  /**
+   * Trigger the 'consumed' xAPI event
+   *
+   */
+  C.prototype.triggerXAPIConsumed = function () {
+    var xAPIEvent = this.createXAPIEventTemplate({
+      id: 'http://activitystrea.ms/schema/1.0/consume',
+      display: {
+        'en-US': 'consumed'
+      }
+    }, {
+      result: {
+        completion: true
+      }
+    });
+
+    Object.assign(xAPIEvent.data.statement.object.definition, {
+      name:{
+        'en-US': this.title || 'Shapes'
+      }
+    });
+
+    this.trigger(xAPIEvent);
   };
 
   return C;

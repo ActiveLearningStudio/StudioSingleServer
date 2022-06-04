@@ -33,6 +33,7 @@ H5P.ArithmeticQuiz = (function ($) {
         time: 'Time: @time',
         resultPageHeader: 'Finished!',
         retryButton: 'Retry',
+        viewSummaryButton: 'View Summary',
         startButton: 'Start',
         go: 'GO!',
         correctText: 'Correct',
@@ -46,7 +47,13 @@ H5P.ArithmeticQuiz = (function ($) {
         multiplicationOperator: 'times',
         divisionOperator: 'divided by',
         equalitySign: 'equal',
-        slideOfTotal: 'Slide :num of :total'
+        slideOfTotal: 'Slide :num of :total',
+      },
+      currikisettings: {
+        disableSubmitButton: false,
+        currikil10n: {
+          submitAnswer: "Submit"
+        }
       }
     }, options);
     self.currentWidth = 0;
@@ -54,7 +61,26 @@ H5P.ArithmeticQuiz = (function ($) {
     self.gamePage = new H5P.ArithmeticQuiz.GamePage(self.options.quizType, self.options, id);
     
     self.gamePage.on('last-slide', function (e) {
-      self.triggerXAPIScored(e.data.score, e.data.numQuestions, 'answered');
+      //self.triggerXAPIScored(e.data.score, e.data.numQuestions, 'answered');
+      const customProgressedEvent = self.createXAPIEventTemplate('submitted-curriki');
+      localStorage.setItem("XAPIEventObject",JSON.stringify(customProgressedEvent.data.statement.object));
+      localStorage.setItem("XAPIEventContext",JSON.stringify(customProgressedEvent.data.statement.context));
+      
+      const customEvent =
+      this.createXAPIEventTemplate("answered");
+      if (customEvent.data.statement.object) {
+        customEvent.setScoredResult(
+          e.data.score,
+          e.data.numQuestions
+        );
+
+        customEvent.data.statement.object.definition["description"] = {
+          "en-US":customEvent.data.statement.object.definition.name['en-US'], //  this.contentData.metadata.title
+        };
+        customEvent.data.statement.result["response"] = localStorage.getItem("userInputwa");
+        customEvent.data.statement.result.duration = 'PT' + (Math.round(e.data.duration / 10) / 100) + 'S';
+        this.trigger(customEvent);
+      }
     });
 
     self.gamePage.on('started-quiz', function () {

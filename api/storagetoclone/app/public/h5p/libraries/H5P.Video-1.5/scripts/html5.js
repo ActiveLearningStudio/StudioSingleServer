@@ -66,10 +66,6 @@ H5P.VideoHtml5 = (function ($) {
      * @private
      */
     const setInitialSource = function () {
-      if (qualities[currentQuality] === undefined) {
-        return;
-      }
-
       if (H5P.setSource !== undefined) {
         H5P.setSource(video, qualities[currentQuality].source, self.contentId)
       }
@@ -182,15 +178,8 @@ H5P.VideoHtml5 = (function ($) {
     video.setAttribute('playsinline', '');
     video.setAttribute('preload', 'metadata');
 
-    // Remove buttons in Chrome's video player:
-    let controlsList = 'nodownload';
-    if (options.disableFullscreen) {
-      controlsList += ' nofullscreen';
-    }
-    if (options.disableRemotePlayback) {
-      controlsList += ' noremoteplayback';
-    }
-    video.setAttribute('controlsList', controlsList);
+    // Remove download button in Chrome's video player:
+    video.setAttribute('controlsList', 'nodownload');
 
     // Set options
     video.disableRemotePlayback = (options.disableRemotePlayback ? true : false);

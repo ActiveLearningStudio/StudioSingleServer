@@ -11,6 +11,10 @@
     "advancedtext": "Текст",
     "dropzone": "Зона за пускане",
     "selectAll": "Изберете всички",
-    "deselectAll": "Отмаркирайте всички избрани"
+    "deselectAll": "Отмаркирайте всички избрани",
+    "deleteTaskTitle": "Deleting task",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

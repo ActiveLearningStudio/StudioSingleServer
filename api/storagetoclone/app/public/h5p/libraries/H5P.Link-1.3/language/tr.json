@@ -1,12 +1,12 @@
 {
   "semantics": [
     {
-      "label": "Title"
+      "label": "Başlık"
     },
     {
       "fields": [
         {
-          "label": "Protocol",
+          "label": "Protokol",
           "options": [
             {
               "label": "http://"
@@ -15,10 +15,10 @@
               "label": "https://"
             },
             {
-              "label": "(root relative)"
+              "label": "Köke bağlı link (Sitenin etki alan adından başlayan)"
             },
             {
-              "label": "other"
+              "label": "Diğer"
             }
           ]
         },

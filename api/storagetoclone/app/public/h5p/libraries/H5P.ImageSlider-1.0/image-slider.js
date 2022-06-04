@@ -33,6 +33,8 @@ H5P.ImageSlider = (function ($) {
     this.currentSlideId = 0;
     this.imageSlides = [];
     this.imageSlideHolders = [];
+    this.completed = false;
+    this.consumedSlides = [];
     this.determineAspectRatio();
 
     for (var i = 0; i < this.options.imageSlides.length; i++) {
@@ -116,6 +118,12 @@ H5P.ImageSlider = (function ($) {
    */
   C.prototype.attach = function ($container) {
     this.$container = $container;
+
+    if(this.isRoot()) {
+      // Mark as consumed
+      this.triggerConsumed();
+    }
+
     // Set class on container to identify it as a greeting card
     // container.  Allows for styling later.
     $container.addClass("h5p-image-slider").addClass('h5p-image-slider-using-mouse');
@@ -143,6 +151,7 @@ H5P.ImageSlider = (function ($) {
     this.$currentSlide = this.imageSlideHolders[0].addClass('h5p-image-slider-current');
 
     this.attachControls();
+    this.consumedSlides.push(this.currentSlideId);
   };
 
   /**
@@ -320,6 +329,15 @@ H5P.ImageSlider = (function ($) {
 
     this.updateNavButtons();
     this.updateProgressBar();
+
+    if(!this.consumedSlides.includes(this.currentSlideId)) {
+      this.consumedSlides.push(this.currentSlideId);
+    }
+
+    if(this.isRoot() && !this.completed && this.consumedSlides.length === this.imageSlides.length) {
+      this.completed = true;
+      this.triggerCompleted();
+    }
     return true;
   };
 
@@ -545,6 +563,35 @@ H5P.ImageSlider = (function ($) {
         callback.call(this, event);
       }
     });
+  };
+
+
+  /**
+   * Trigger the 'consumed' xAPI event when this commences
+   *
+   * (Will be more sophisticated in future version)
+   */
+  C.prototype.triggerConsumed = function () {
+    var xAPIEvent = this.createXAPIEventTemplate({
+      id: 'http://activitystrea.ms/schema/1.0/consume',
+      display: {
+        'en-US': 'consumed'
+      }
+    });
+    this.trigger(xAPIEvent);
+  };
+
+  /**
+   * Trigger the 'completed' xAPI event when this commences
+   *
+   * (Will be more sophisticated in future version)
+   */
+  C.prototype.triggerCompleted = function () {
+    var xAPIEvent = this.createXAPIEventTemplate('completed');
+    xAPIEvent.data.statement.result = {
+        'completion': true
+    };
+    this.trigger(xAPIEvent);
   };
 
   return C;

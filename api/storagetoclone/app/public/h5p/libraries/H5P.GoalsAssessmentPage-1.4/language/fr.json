@@ -33,6 +33,18 @@
     {
       "label": "Complétez l'information supplémentaire utile",
       "description": "Ici vous pouvez saisir l'information complémentaire utile pour l'utilisateur."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

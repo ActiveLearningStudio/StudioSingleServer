@@ -10,7 +10,7 @@ H5P.ArithmeticQuiz.ResultPage = (function ($, UI) {
    * @param  {Object} t Translation objects
    * @fires H5P.Event
    */
-  function ResultPage(maxScore, t){
+  function ResultPage(maxScore, t, options){
     H5P.EventDispatcher.call(this);
     var self = this;
 
@@ -58,11 +58,72 @@ H5P.ArithmeticQuiz.ResultPage = (function ($, UI) {
       text: t.retryButton,
       'class': 'mq-control-button',
       click: function () {
+        $('.submit-button').show();
+        $('.custom-submit-message').hide();
         self.trigger('retry');
         self.update(0, '00:00');
         self.scoreBar.reset();
       }
     }).appendTo(this.$feedbackContainer);
+    if (!options.currikisettings.disableSubmitButton) {
+    UI.createButton({
+      text: options.currikisettings.currikil10n.submitAnswer,
+      'class': 'mq-control-button submit-button',
+      click: function () {
+        H5P.jQuery('.h5p-baq-result-page-score-status').append($('<div>', {
+          'class': 'h5p-baq-result-page-header custom-submit-message',
+          'html':"Result has been submitted successfully"
+        }));
+        var score = Number($('.h5p-joubelui-score-number-counter').html());
+        
+        // trigger completed
+
+        var time_elem = H5P.jQuery('time').html();
+        var time_spent = time_elem.replace("Time: ", "");
+
+        let minutes = parseInt(time_spent.split(':')[0], 10);
+        let seconds = parseInt(time_spent.split(':')[1], 10);
+        
+        //const dateTimewa = 'PT' + minutes + 'M' + seconds + 'S'; //PT6.25S
+        //const dateTimewa = 'PT6.25S';
+        const customProgressedEvent = self.createXAPIEventTemplate('completed');
+        customProgressedEvent.data.statement.object = JSON.parse(localStorage.getItem("XAPIEventObject"));
+        customProgressedEvent.data.statement.context = JSON.parse(localStorage.getItem("XAPIEventContext"));
+        
+        
+      
+        if (customProgressedEvent.data.statement.object) {
+          customProgressedEvent.setScoredResult(
+            score,
+            maxScore
+          );
+
+          customProgressedEvent.data.statement.result["response"] = localStorage.getItem("userInputwa");
+          //customProgressedEvent.data.statement.result.duration = dateTimewa;
+          self.trigger(customProgressedEvent);
+        }
+
+        // trigger submitted-curriki
+
+        const customProgressedEventCompleted = self.createXAPIEventTemplate('submitted-curriki');
+        customProgressedEventCompleted.data.statement.object = JSON.parse(localStorage.getItem("XAPIEventObject"));
+        customProgressedEventCompleted.data.statement.context = JSON.parse(localStorage.getItem("XAPIEventContext"));;
+      
+      
+        if (customProgressedEventCompleted.data.statement.object) {
+          customProgressedEventCompleted.setScoredResult(
+            score,
+            maxScore
+          );
+
+          customProgressedEventCompleted.data.statement.result["response"] = localStorage.getItem("userInputwa");
+          self.trigger(customProgressedEventCompleted);
+        }
+
+        $(this).hide();
+      }
+    }).appendTo(this.$feedbackContainer);
+  }
 
     this.$resultAnnouncer = $('<div>', {
       'class': 'h5p-baq-live-feedback',

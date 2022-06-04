@@ -159,8 +159,23 @@ ns.Library.prototype.appendTo = function ($wrapper) {
     return true;
   };
 
+  var enableExistingActivityBrowse = function () {
+    const blacklist = [
+      "H5P.InteractiveBook",
+    ];
+    var librarySelector = ns.findLibraryAncestor(that.parent);
+    if (librarySelector.currentLibrary === undefined) 
+      return true;
+
+    var library = ns.libraryFromString(librarySelector.currentLibrary);
+    if (blacklist.includes(library.machineName))
+      return false;
+
+    return true;
+  };
+
   if (window.localStorage && enableCopyAndPaste()) {
-    html += ns.createCopyPasteButtons();
+    html += ns.createCopyPasteButtons(enableExistingActivityBrowse());
   }
 
   html += '<div class="libwrap"></div>';
@@ -185,6 +200,20 @@ ns.Library.prototype.appendTo = function ($wrapper) {
     });
     this.$pasteButton = this.$myField.find('.h5peditor-paste-button')
       .click(that.pasteContent.bind(this));
+
+    // Launch search modal for existing activities
+    this.$existingActivityButton = this.$myField.find('.h5peditor-existing-activity-button').click(function () {
+      const data = {
+        libraries: that.field.options,
+        callback: (activityData) => {
+          H5P.setClipboard(activityData);
+          (that.pasteContent.bind(that)());
+        }
+      };
+      const event = new CustomEvent('launchExistingActivitySearch', { detail: data } );
+      window.parent.dispatchEvent(event);
+      return;
+    });
   }
   ns.LibraryListCache.getLibraries(that.field.options, that.librariesLoaded, that);
 };

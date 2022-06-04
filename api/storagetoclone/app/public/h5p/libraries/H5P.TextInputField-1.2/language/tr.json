@@ -1,40 +1,40 @@
 {
   "semantics": [
     {
-      "label": "Description of inputfield",
-      "description": "Description of what the user should input."
+      "label": "Giriş alanının açıklaması",
+      "description": "Kullanıcının ne girmesi gerektiğinin açıklaması."
     },
     {
-      "label": "Placeholder text",
-      "description": "A placeholder text for the user."
+      "label": "Yer tutucu metin",
+      "description": "Kullanıcı için bir yer tutucu metin."
     },
     {
-      "label": "Maximum text length",
-      "description": "Maximum number of characters for the text."
+      "label": "Maksimum metin uzunluğu",
+      "description": "Metin için maksimum karakter sayısı."
     },
     {
-      "label": "Input field size",
-      "description": "The size of the input field in amount of lines it will cover.",
+      "label": "Giriş alanı boyutu",
+      "description": "Girdi alanının kapsayacağı satır sayısı cinsinden boyutu.",
       "options": [
         {
-          "label": "1 line"
+          "label": "1 satır"
         },
         {
-          "label": "3 lines"
+          "label": "3 satır"
         },
         {
-          "label": "10 lines"
+          "label": "10 satır"
         }
       ]
     },
     {
-      "label": "Required field",
-      "description": "Check to make this field required, the user must answer all required fields to be able to export a document."
+      "label": "Gerekli alan",
+      "description": "Bu alanı zorunlu kılmak için işaretleyin, kullanıcının bir belgeyi dışa aktarabilmesi için tüm gerekli alanları yanıtlaması gerekir."
     },
     {
-      "label": "Remaining characters",
-      "default": "Remaining characters: @chars",
-      "description": "Message for remaining characters. You can use @chars which will be replaced by the corresponding number."
+      "label": "Kalan karakterler",
+      "default": "Kalan karakterler: @chars",
+      "description": "Kalan karakterler için mesaj. İlgili numara ile değiştirilecek ifade için  @chars kullanabilirsiniz."
     }
   ]
 }

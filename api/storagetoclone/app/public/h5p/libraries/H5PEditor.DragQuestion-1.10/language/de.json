@@ -11,6 +11,10 @@
     "advancedtext": "Text",
     "dropzone": "Ablagezone",
     "selectAll": "Alles auswählen",
-    "deselectAll": "Auswahl aufheben"
+    "deselectAll": "Auswahl aufheben",
+    "deleteTaskTitle": "Lösche Aufgabe",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "ok": "Ok"
   }
 }

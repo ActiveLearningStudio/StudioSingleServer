@@ -36,7 +36,12 @@ H5P.MarkTheWords.XapiGenerator = (function ($) {
         response: getUserSelections(markTheWords)
       };
 
+      var userResultText = {
+        responsetext: getUserSelectionsWords(markTheWords)
+      };
+
       $.extend(xAPIEvent.getVerifiedStatementValue(['result']), userResult);
+      $.extend(xAPIEvent.getVerifiedStatementValue(['result']), userResultText);
 
       return xAPIEvent;
     };
@@ -49,6 +54,7 @@ H5P.MarkTheWords.XapiGenerator = (function ($) {
    * @return {Object} Object definition
    */
   function createDefinition(markTheWords) {
+    // console.log("checking control createDefinition");
     var definition = {};
     definition.description = {
       'en-US': replaceLineBreaks(markTheWords.params.taskDescription)
@@ -60,6 +66,8 @@ H5P.MarkTheWords.XapiGenerator = (function ($) {
     definition.extensions = {
       'https://h5p.org/x-api/line-breaks': markTheWords.getIndexesOfLineBreaks()
     };
+    definition.getCorrectResponsesPatternText = [getCorrectResponsesPatternText(markTheWords)];
+    // console.log(definition.getCorrectResponsesPatternText);
     return definition;
   }
 
@@ -112,6 +120,19 @@ H5P.MarkTheWords.XapiGenerator = (function ($) {
       }, []).join('[,]');
   }
 
+  function getUserSelectionsWords(markTheWords) {
+    return markTheWords.selectableWords
+      .reduce(function (prev, word, index) {
+        if (word.isSelected()) {
+          // var wordText= '"'+word.getText()+'"';
+          var wordText= word.getText();
+          prev.push(wordText);
+        }
+        return prev;
+      }, []).join('[,]');
+  }
+
+
   /**
    * Get correct response pattern from correct words
    *
@@ -123,6 +144,16 @@ H5P.MarkTheWords.XapiGenerator = (function ($) {
       .reduce(function (prev, word, index) {
         if (word.isAnswer()) {
           prev.push(index);
+        }
+        return prev;
+      }, []).join('[,]');
+  }
+
+  function getCorrectResponsesPatternText(markTheWords) {
+    return markTheWords.selectableWords
+      .reduce(function (prev, word, index) {
+        if (word.isAnswer()) {
+          prev.push(word.getText());
         }
         return prev;
       }, []).join('[,]');

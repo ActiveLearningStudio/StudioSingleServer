@@ -86,7 +86,7 @@ H5P.IVHotspot = (function ($, EventDispatcher) {
         class: 'h5p-ivhotspot-invisible',
         text: alternativeTextContent
       }).appendTo($container);
-
+      console.log('$a->', $a);
       if (parameters.texts.label !== undefined) {
         var $label = $('<p>', {
           class: 'h5p-ivhotspot-interaction-title',
@@ -96,13 +96,43 @@ H5P.IVHotspot = (function ($, EventDispatcher) {
         if (!parameters.texts.showLabel) {
           $label.addClass('h5p-ivhotspot-invisible');
         }
-
+       
         else if (parameters.texts.labelColor) {
-          $a.css('color', parameters.texts.labelColor);
+          $a.find('p').attr("style", `color: ${parameters.texts.labelColor} !important`);
         }
       }
+
+      $a.on('click', function() {
+        triggerXAPIConsumed();
+      })
+    };
+
+    /**
+     * Trigger the 'consumed' xAPI event
+     *
+     */
+    var triggerXAPIConsumed = function () {
+      var xAPIEvent = self.createXAPIEventTemplate({
+        id: 'http://activitystrea.ms/schema/1.0/consume',
+        display: {
+          'en-US': 'consumed'
+        }
+      }, {
+        result: {
+          completion: true
+        }
+      });
+
+      Object.assign(xAPIEvent.data.statement.object.definition, {
+        name:{
+          'en-US': parameters.texts.label !== undefined ? parameters.texts.label : 'Navigation Hotspot'
+        }
+      });
+
+      self.trigger(xAPIEvent);
     };
   }
+
 
   /**
    * Use a global counter to separate instances of iv-hotspots,

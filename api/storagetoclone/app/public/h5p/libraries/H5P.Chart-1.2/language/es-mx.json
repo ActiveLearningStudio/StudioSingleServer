@@ -1,39 +1,39 @@
 {
-  "semantics":[
+  "semantics": [
     {
-      "label":"Tipo de gráfico",
-      "options":[
+      "label": "Tipo de gráfico",
+      "options": [
         {
-          "label":"Gráfico circular"
+          "label": "Gráfico de Pastel"
         },
         {
-          "label":"Gráfico de barras"
+          "label": "Gráfico de Barras"
         }
       ]
     },
     {
-      "label":"Elementos de datos",
-      "entity":"opción",
-      "field":{
-        "label":"Elemento de datos",
-        "fields":[
+      "label": "Elementos de datos",
+      "entity": "opción",
+      "field": {
+        "label": "Elemento de datos",
+        "fields": [
           {
-            "label":"Nombre"
+            "label": "Nombre"
           },
           {
-            "label":"Valor"
+            "label": "Valor"
           },
           {
-            "label":"Color"
+            "label": "Color"
           },
           {
-            "label":"Color de letra"
+            "label": "Color de letra"
           }
         ]
       }
     },
     {
-      "label": "Texto leido por herramienta de lectura definiendo la figura como un gráfico.",
+      "label": "Texto leído por Lectores de texto en voz alta definiendo la figura como un gráfico.",
       "default": "Gráfico"
     }
   ]

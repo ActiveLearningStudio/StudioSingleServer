@@ -17,6 +17,7 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
     that.isShowSolution = false;
     that.isGamePaused = false;
     that.isAttempted = false;
+    that.isSubmitted = false;
     that.score = 0;
 
     that.params = $.extend(true, {}, {
@@ -24,6 +25,12 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
         showSolution: "ShowSolution",
         resume: "Resume",
         audioNotSupported: "Audio Error"
+      },
+      currikisettings:{
+        disableSubmitButton: false,
+        currikil10n: {
+          submitAnswer: 'Submit'
+        }
       }
     }, parameters);
 
@@ -63,22 +70,26 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
       definition.correctResponsesPattern = [];
       definition.choices = [];
 
+      // set the choices
       that.sequencingCards.forEach(function (card, index) {
-        definition.choices[index] = {
-          'id': 'item_' + card.uniqueId + '',
-          'description': {
-            'en-US':  card.imageDesc
+          definition.choices[index] = {
+            'id': 'item_' + card.seqNo + '',
+            'description': {
+              'en-US': card.imageDesc
+            }
           }
-        };
+        });
 
+      // set correct response pattern
+      that.sequencingCards.slice().sort(function (a, b) {
+        return a.seqNo - b.seqNo;
+      }).forEach(function (card, index) {
         if (index === 0) {
-          definition.correctResponsesPattern[0] = 'item_' + card.uniqueId + '[,]';
-        }
-        else if (index === that.sequencingCards.length - 1) {
-          definition.correctResponsesPattern[0] += 'item_' + card.uniqueId;
-        }
-        else {
-          definition.correctResponsesPattern[0] += 'item_' + card.uniqueId + '[,]';
+          definition.correctResponsesPattern[0] = 'item_' + card.seqNo + '[,]';
+        } else if (index === that.sequencingCards.length - 1) {
+          definition.correctResponsesPattern[0] += 'item_' + card.seqNo;
+        } else {
+          definition.correctResponsesPattern[0] += 'item_' + card.seqNo + '[,]';
         }
       });
     };
@@ -103,6 +114,7 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
 
       xAPIEvent.setScoredResult(score, maxScore, that, true, success);
       xAPIEvent.data.statement.result.response = response;
+      xAPIEvent.data.statement.result.duration = 'PT' + (Math.round(that.timer.getTime() / 10) / 100) + 'S';
     };
 
     // implementing question contract.
@@ -156,9 +168,11 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
       that.isRefresh = true;
       that.isShowSolution = false;
       that.isGamePaused = false;
+      that.isSubmitted = false;
 
       that.score = 0;
       that.$progressBar.reset();
+      that.removeSubmitAnswerFeedback();
 
       that.$list.detach();
       if (that.$resumeButton) {
@@ -167,14 +181,20 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
       if (that.$retryButton) {
         that.$retryButton = that.$retryButton.detach();
       }
+      if(that.$submitButton) {
+        that.$submitButton = that.$submitButton.detach();
+      }
+      if (that.params.behaviour.enableSolution) {
+        that.$showSolutionButton = that.$showSolutionButton.detach();
+      }
       that.$feedbackContainer.removeClass('sequencing-feedback-show');
 
 
       that.buildCardsDOM();
-      that.$submitButton.appendTo(that.$buttonContainer);
-      if (that.params.behaviour.enableSolution) {
+      that.$checkButton.appendTo(that.$buttonContainer);
+/*      if (that.params.behaviour.enableSolution) {
         that.$showSolutionButton.appendTo(that.$buttonContainer);
-      }
+      }*/
       that.rebuildDOM();
       that.activateSortableFunctionality();
       that.$list.focus();
@@ -263,9 +283,12 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
 
       that.$progressBar = UI.createScoreBar(that.numCards, 'scoreBarLabel');
 
-      that.$submitButton = that.createButton('submit', 'check', that.params.l10n.checkAnswer, that.gameSubmitted);
+      that.$checkButton = that.createButton('check', 'check', that.params.l10n.checkAnswer, that.gameSubmitted);
       if (that.params.behaviour.enableSolution) {
         that.$showSolutionButton = that.createButton('solution', 'eye', that.params.l10n.showSolution, that.showSolutions);
+      }
+      if(!that.params.currikisettings.disableSubmitButton) {
+        that.$submitButton = that.createButton('submit', 'submit', that.params.currikisettings.currikil10n.submitAnswer, that.answersSubmitted);
       }
       if (that.params.behaviour.enableRetry) {
         that.$retryButton = that.createButton('retry', 'undo', that.params.l10n.tryAgain, that.resetTask);
@@ -360,10 +383,8 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
         .replace('@total', that.numCards);
       that.$feedback.html(scoreText);
 
-      that.$submitButton = that.$submitButton.detach();
-      if (that.$showSolutionButton) {
-        that.$showSolutionButton = that.$showSolutionButton.detach();
-      }
+      that.$checkButton = that.$checkButton.detach();
+
 
       if (that.score !== that.numCards) {
         if (that.params.behaviour.enableRetry) {
@@ -372,7 +393,15 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
         if (that.params.behaviour.enableResume) {
           that.$resumeButton.appendTo(that.$buttonContainer);
         }
+        if (that.params.behaviour.enableSolution) {
+          that.$showSolutionButton.appendTo(that.$buttonContainer);
+        }
       }
+
+      if (!that.params.currikisettings.disableSubmitButton) {
+        that.$submitButton.appendTo(that.$buttonContainer);
+      }
+
       that.$feedbackContainer.addClass('sequencing-feedback-show'); //show feedbackMessage
       that.$feedback.focus();
 
@@ -391,7 +420,28 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
       that.addQuestionToXAPI(xAPIEvent);
       that.addResponseToXAPI(xAPIEvent);
       that.trigger(xAPIEvent);
+
+
+
+      // trigger completed XAPI
+      let completedEvent = that.createXAPIEventTemplate('completed');
+      completedEvent.setScoredResult(that.getScore(), that.getMaxScore(), that, true, that.score === that.numCards);
+      completedEvent.data.statement.result.duration = 'PT' + (Math.round(that.timer.getTime() / 10) / 100) + 'S';
+      that.trigger(completedEvent);
+
       that.trigger('resize');
+    };
+
+    that.answersSubmitted = function () {
+      that.isSubmitted = true;
+      that.$submitButton = that.$submitButton.detach();
+      if (that.params.behaviour.enableRetry) {
+        that.$retryButton.appendTo(that.$buttonContainer);
+      }
+      // trigger submitted-curriki XAPI
+      that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'submitted-curriki');
+      //var $submit_message = '<div class="submit-answer-feedback" style = "color: red">Result has been submitted successfully</div>';
+      // that.$feedbackContainer.after($submit_message);
     };
 
     /**
@@ -404,8 +454,9 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
       that.stopAudio();
 
       that.$list.detach();
-      that.$submitButton= that.$submitButton.detach();
+      that.$checkButton= that.$checkButton.detach();
       that.$showSolution = that.$showSolutionButton.detach();
+      that.removeSubmitAnswerFeedback();
 
       // need to arrange the list in correct order
       that.sequencingCards.sort(function (a, b) {
@@ -415,6 +466,9 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
       that.buildCardsDOM();
       if (that.params.behaviour.enableRetry) {
         that.$retryButton.appendTo(that.$buttonContainer);
+      }
+      if (!that.isSubmitted && !that.params.currikisettings.disableSubmitButton) {
+        that.$submitButton.appendTo(that.$buttonContainer);
       }
       that.rebuildDOM();
       that.$list.focus();
@@ -431,6 +485,13 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
       that.counter.reset();
       H5P.shuffleArray(that.sequencingCards);
       that.refreshTask();
+    };
+
+    /**
+     * Remove submit answer feedback div
+     */
+    that.removeSubmitAnswerFeedback = function () {
+      H5P.jQuery('.submit-answer-feedback').remove();
     };
 
     /**
@@ -553,10 +614,10 @@ H5P.ImageSequencing = (function (EventDispatcher, $, UI) {
         that.$progressBar.appendTo(that.$feedbackContainer);
 
         //add elements to buttonContainer
-        that.$submitButton.appendTo(that.$buttonContainer);
-        if (that.params.behaviour.enableSolution) {
+        that.$checkButton.appendTo(that.$buttonContainer);
+/*        if (that.params.behaviour.enableSolution) {
           that.$showSolutionButton.appendTo(that.$buttonContainer);
-        }
+        }*/
 
         //append status and feedback and button containers to footer
         that.$statusContainer.appendTo(that.$footerContainer);

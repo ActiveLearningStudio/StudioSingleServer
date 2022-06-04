@@ -4,7 +4,7 @@
   "description": "Library that displays an area where the user may input text, which is exportable as a doc-file",
   "majorVersion": 1,
   "minorVersion": 3,
-  "patchVersion": 9,
+  "patchVersion": 11,
   "coreApi": {
     "majorVersion": 1,
     "minorVersion": 19

@@ -4,9 +4,12 @@ var H5P = H5P || {};
  * Constructor.
  *
  * @param {object} params Options for this library.
+ * @param {number} id
+ * @param {object} contentData
  */
-H5P.ContinuousText = function (params) {
+H5P.ContinuousText = function (params, id, contentData) {
   this.text = params.text === undefined ? '<div class="ct"><em>New text</em></div>' : '<div class="ct">'+params.text+'</div>';
+  this.contentData = contentData;
 };
 
 /**
@@ -16,6 +19,44 @@ H5P.ContinuousText = function (params) {
  */
 H5P.ContinuousText.prototype.attach = function ($wrapper) {
   $wrapper.addClass('h5p-ct').html(this.text);
+  this.handleXAPI();
+};
+
+/**
+ * trigger XAPI based on activity if activity is CP then trigger after slide consumed else trigger on attach
+ */
+H5P.ContinuousText.prototype.handleXAPI = function () {
+  // for CP trigger only on slide open for others trigger on attach
+  if (this.contentData.hasOwnProperty("parent") && this.contentData.parent.hasOwnProperty("presentation")) {
+    this.on('trigger-consumed', function () {
+      this.triggerConsumed();
+    });
+  } else {
+    this.triggerConsumed();
+  }
+};
+
+
+H5P.ContinuousText.prototype.triggerConsumed = function () {
+  var title = this.contentData.hasOwnProperty("metadata") && this.contentData.metadata.hasOwnProperty("title") ? this.contentData.metadata.title : "Continuous Text";
+  var xAPIEvent = this.createXAPIEventTemplate({
+    id: 'http://activitystrea.ms/schema/1.0/consume',
+    display: {
+      'en-US': 'consumed'
+    }
+  }, {
+    result: {
+      completion: true
+    }
+  });
+
+  Object.assign(xAPIEvent.data.statement.object.definition, {
+    name:{
+      'en-US': title
+    }
+  });
+
+  this.trigger(xAPIEvent);
 };
 
 H5P.ContinuousText.Engine = (function() {

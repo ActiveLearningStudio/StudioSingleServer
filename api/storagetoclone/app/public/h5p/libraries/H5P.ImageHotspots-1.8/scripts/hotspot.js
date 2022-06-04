@@ -21,7 +21,8 @@
     this.id = id;
     this.isSmallDeviceCB = isSmallDeviceCB;
     this.options = options;
-    console.log(this)
+    this.consumed = false;
+    this.parent = parent;
 
     // A utility variable to check if a Predefined icon or an uploaded image should be used.
     var iconImageExists = (options.iconImage !== undefined && options.iconType === 'image');
@@ -140,6 +141,9 @@
     // Create popup content:
     var $popupBody = $('<div/>', {'class': 'h5p-image-hotspot-popup-body'});
     self.loadingPopup = true;
+    self.consumed = true;
+
+    this.parent.checkAllConsumed();
 
     this.actionInstances = [];
     var waitForLoaded = [];

@@ -1,9 +1,10 @@
 var H5P = H5P || {};
 
-H5P.IFrameEmbed = function (options, contentId) {
+H5P.IFrameEmbed = function (options, contentId, contentData) {
   var $ = H5P.jQuery;
   var $iframe = null;
   this.$ = $(this);
+  var self = this;
 
   options = H5P.jQuery.extend({
     width: "500px",
@@ -18,6 +19,7 @@ H5P.IFrameEmbed = function (options, contentId) {
   }
 
   this.attach = function ($wrapper) {
+    this.wrapper = $wrapper;
     // Set up an iframe with the correct source, and append
     // it to '$wrapper'.
 
@@ -32,6 +34,14 @@ H5P.IFrameEmbed = function (options, contentId) {
       }
     }
 
+    // Mark as consumed
+    this.triggerConsumed();
+
+    if(this.isRoot()) {
+      // Mark as completed
+      this.triggerCompleted();
+    }
+
     $iframe = $('<iframe/>', {
       src: iFrameSource,
       scrolling: 'no',
@@ -41,7 +51,7 @@ H5P.IFrameEmbed = function (options, contentId) {
         width: options.width,
         height: options.height,
         display: 'block'
-      }
+      },
     });
 
     $wrapper.html('');
@@ -88,8 +98,62 @@ H5P.IFrameEmbed = function (options, contentId) {
     };
   };
 
+
+  // resize height of iframe to fit content
+  if (options.resizeSupported) {
+    var resizeIframe = setInterval(function () {
+      var $content = $iframe.contents();
+      if ($content && $content.find('html').length > 0 && $iframe.height() !== $iframe.contents().find('html').height()) {
+        $iframe.css({
+          height: $iframe.contents().find('html').height()
+        });
+      }
+    }, 500);
+    setTimeout(function( ) { clearInterval( resizeIframe ); }, 5 * 60 * 1000);
+  }
+
+
   // This is a fix/hack to make touch work in iframe on mobile safari,
   // like if the iframe is listening to touch events on the iframe's
   // window object. (like in PHET simulations)
   window.addEventListener("touchstart", function () {});
+
+  /**
+   * Trigger the 'consumed' xAPI event when this commences
+   *
+   * (Will be more sophisticated in future version)
+   */
+  this.triggerConsumed = function () {
+    var xAPIEvent = this.createXAPIEventTemplate({
+      id: 'http://activitystrea.ms/schema/1.0/consume',
+      display: {
+        'en-US': 'consumed'
+      }
+    });
+    this.trigger(xAPIEvent);
+  };
+
+  /**
+   * Trigger the 'completed' xAPI event when this commences
+   *
+   * (Will be more sophisticated in future version)
+   */
+  this.triggerCompleted = function () {
+    var xAPIEvent = this.createXAPIEventTemplate('completed');
+    xAPIEvent.data.statement.result = {
+      'completion': true
+    };
+    this.trigger(xAPIEvent);
+  };
+
+  /**
+   * Get title, e.g. for xAPI.
+   *
+   * @return {string} Title.
+   */
+  this.getTitle = function () {
+    return H5P.createTitle((contentData && contentData.metadata && contentData.metadata.title) ? contentData.metadata.title : 'Iframe Embedder');
+  };
+
+
 };

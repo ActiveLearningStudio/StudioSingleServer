@@ -9,7 +9,7 @@ H5P.Essay = function ($, Question) {
   var SOLUTION_INTRODUCTION = 'h5p-essay-solution-introduction';
   var SOLUTION_SAMPLE = 'h5p-essay-solution-sample';
   var SOLUTION_SAMPLE_TEXT = 'h5p-essay-solution-sample-text';
-
+  
   // The H5P feedback right now only expects true (green)/false (red) feedback, not neutral feedback
   var FEEDBACK_EMPTY= '<span class="h5p-essay-feedback-empty">...</span>';
 
@@ -46,13 +46,20 @@ H5P.Essay = function ($, Question) {
         checkAnswer: 'Check',
         tryAgain: 'Retry',
         showSolution: 'Show solution',
+        viewSummary: "View Summary",
         feedbackHeader: 'Feedback',
         solutionTitle: 'Sample solution',
         remainingChars: 'Remaining characters: @chars',
         notEnoughChars: 'You must enter at least @chars characters!',
         messageSave: 'saved',
         ariaYourResult: 'You got @score out of @total points',
-        ariaNavigatedToSolution: 'Navigated to newly included sample solution after textarea.'
+        ariaNavigatedToSolution: 'Navigated to newly included sample solution after textarea.',
+        currikisettings: {
+          disableSubmitButton: false,
+          currikil10n: {
+            submitAnswer: "Submit"
+          }
+        },
       },
       config);
     this.contentId = contentId;
@@ -157,6 +164,9 @@ H5P.Essay = function ($, Question) {
 
     // Register Buttons
     this.addButtons();
+
+    // Init activity start time for XAPI
+    this.activityStartTime = Date.now();
   };
 
   /**
@@ -173,16 +183,36 @@ H5P.Essay = function ($, Question) {
       that.internalShowSolutionsCall = false;
     }, false, {}, {});
 
+    // Show submit button
+    
+    if (!that.params.currikisettings.disableSubmitButton && typeof that.parent == "undefined") {
+    
+        that.addButton('submit-answer', that.params.currikisettings.currikil10n.submitAnswer,  function () {
+          
+          that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'completed');
+          that.triggerXAPIScored(that.getScore(), that.getMaxScore(), 'submitted-curriki');
+          that.hideButton('submit-answer');
+          // var $submit_message = '<div class="submit-answer-feedback" style = "color: red">Result has been submitted successfully</div>';
+          // H5P.jQuery('.h5p-question-content').append($submit_message);
+          }, false
+        );
+    }
+    
+
     // Check answer button
     that.addButton('check-answer', that.params.checkAnswer, function () {
+      console.log('202');
       // Show message if the minimum number of characters has not been met
       if (that.inputField.getText().length < that.params.behaviour.minimumLength) {
         var message = that.params.notEnoughChars.replace(/@chars/g, that.params.behaviour.minimumLength);
         that.inputField.setMessageChars(message, true);
         that.read(message);
+        console.log('207');
         return;
       }
-
+      
+      
+      console.log('212');
       that.inputField.disable();
       /*
        * Only set true on "check". Result computation may take some time if
@@ -195,14 +225,64 @@ H5P.Essay = function ($, Question) {
       if (that.params.behaviour.enableSolutionsButton === true) {
         that.showButton('show-solution');
       }
+      console.log('225');
+      if (that.params.currikisettings.disableSubmitButton === false && typeof that.parent == "undefined") {
+          that.showButton('submit-answer');
+      }
       that.hideButton('check-answer');
     }, true, {}, {});
 
+    
+
     // Retry button
     that.addButton('try-again', that.params.tryAgain, function () {
+      H5P.jQuery('.submit-answer-feedback').remove();
       that.resetTask();
     }, false, {}, {});
+
+    // Show view summary button
+    /*that.addButton('view-summary', that.params.viewSummary, function () {
+      var user_response = that.params.solution.sample;
+      var xAPIAnsEvent = that.getXAPIAnswerEvent();
+      var correct_response = xAPIAnsEvent.data.statement.result.response;
+      var answer_given = that.getInput();   
+      var total_score = that.getMaxScore();
+      var scored_result = that.getScore();
+      var confirmationDialog = new H5P.ConfirmationDialog({
+              headerText: 'Essay summary',
+              dialogText: that.showSummary(answer_given,total_score,scored_result,user_response,correct_response,that),
+              cancelText: 'Cancel',
+              confirmText: "Submit Answers"
+            });
+            confirmationDialog.on('confirmed', function () {
+              // that.triggerXAPIScored(0, 1, 'submitted-curriki');
+              H5P.jQuery('.h5p-question-check-answer').click();
+              
+            });
+
+            confirmationDialog.appendTo(parent.document.body);
+            confirmationDialog.show();
+    }, true, {}, {});*/
   };
+
+  Essay.prototype.showSummary = function (answer_given,total_score,scored_result,user_response,correct_response,that) {
+
+    if(answer_given == ''){
+        var summary_html = "You did not attempt activity yet.";
+    }else{
+       var user_response_filtered = that.htmlDecode(user_response);
+       // console.log(user_response_filtered);
+       // console.log(correct_response);
+       var summary_html = '<div class="custom-summary-section"><b>User Answer: </b>'+user_response_filtered+'</div><br>';
+       var correct_option_list_html = '<div class="custom-correct-sec-list"><b>Correct Answer: </b>'+correct_response+'</div><br>';
+       var overall_summary_html = '<div class="custom-score-section"><b>Overall Score: </b>You got '+scored_result+' of '+total_score+' points.</div>';
+       var summary_html = summary_html.concat(correct_option_list_html);
+       var summary_html = summary_html.concat(overall_summary_html);
+    }
+    
+    // var summary_html = '<div class="custom-summary-section"><div class="h5p-summary-table-pages"><table class="h5p-score-table-custom" style="min-height:100px;width:100%"><thead><tr><th>Correct Ans</th><th>Missed Qus</th><th>Wrong Attempt</th><th>Score</th></tr></thead>'+table_content+'</table></div></div>';
+    return summary_html;
+  }
 
   /**
    * Get the user input from DOM.
@@ -289,6 +369,7 @@ H5P.Essay = function ($, Question) {
     this.hideSolution();
 
     this.hideButton('show-solution');
+    this.hideButton('submit-answer');
     this.hideButton('try-again');
     this.showButton('check-answer');
 
@@ -296,15 +377,18 @@ H5P.Essay = function ($, Question) {
     this.inputField.focus();
 
     this.isAnswered = false;
+
+    // Reset activity start time for XAPI
+    this.activityStartTime = Date.now();
   };
-  console.log('300');
+  
   /**
    * Get xAPI data.
    * @return {Object} xAPI statement.
    * @see contract at {@link https://h5p.org/documentation/developers/contracts#guides-header-6}
    */
   Essay.prototype.getXAPIData = function () {
-    console.log('307');
+    
     return {
       statement: this.getXAPIAnswerEvent().data.statement
     };
@@ -607,10 +691,7 @@ H5P.Essay = function ($, Question) {
 
     var raw_score = this.getScore();
     var max_score = this.getMaxScore();
-
-    if(max_score === raw_score) {
-      max_score += 1;
-    }
+    
     xAPIEvent.setScoredResult(raw_score, max_score, this, true, this.isPassed());
     xAPIEvent.data.statement.result.response = this.inputField.getText();
 

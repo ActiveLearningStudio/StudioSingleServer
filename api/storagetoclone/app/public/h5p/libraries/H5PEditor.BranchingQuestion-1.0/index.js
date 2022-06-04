@@ -1,6 +1,6 @@
 var H5PEditor = H5PEditor || {};
 
-H5PEditor.widgets.branchingQuestion = H5PEditor.BranchingQuestion = (function ($, EventDispatcher) {
+H5PEditor.BranchingQuestion = (function ($, EventDispatcher, Branch) {
 
   function BranchingQuestionEditor(parent, field, params, setValue) {
     const self = this;
@@ -104,7 +104,7 @@ H5PEditor.widgets.branchingQuestion = H5PEditor.BranchingQuestion = (function ($
         description.setAttribute('id', feedbackDescriptionId);
         description.classList.add('h5p-feedback-description');
         description.classList.add('h5peditor-field-description');
-        description.textContent = 'It is recommended to provide feedback that motivates and also provides guidance. Leave all fields empty if you don\'t want the user to get feedback after choosing this alternative/viewing this content.';
+        description.textContent = BranchingQuestionEditor.t('feedbackDescription');
 
         feedbackGroup.querySelector('.title').setAttribute('aria-describedby', feedbackDescriptionId);
 
@@ -196,5 +196,11 @@ H5PEditor.widgets.branchingQuestion = H5PEditor.BranchingQuestion = (function ($
     };
   }
 
+  BranchingQuestionEditor.t = function (key, placeholders) {
+    return H5PEditor.t('H5PEditor.BranchingQuestion', key, placeholders);
+  };
+
   return BranchingQuestionEditor;
 })(H5P.jQuery, H5P.EventDispatcher);
+
+H5PEditor.widgets.branchingQuestion = H5PEditor.BranchingQuestion;

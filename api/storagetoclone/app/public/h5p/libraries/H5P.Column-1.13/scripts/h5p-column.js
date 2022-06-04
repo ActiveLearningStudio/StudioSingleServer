@@ -11,7 +11,7 @@ H5P.Column = (function (EventDispatcher) {
   function Column(params, id, data) {
     /** @alias H5P.Column# */
     var self = this;
-    console.log(params);
+
     // We support events by extending this class
     EventDispatcher.call(self);
 
@@ -25,7 +25,6 @@ H5P.Column = (function (EventDispatcher) {
 
     // Column wrapper element
     var wrapper;
-    var iter = 0;
 
     // H5P content in the column
     var instances = [];
@@ -59,6 +58,10 @@ H5P.Column = (function (EventDispatcher) {
         var event = tasksResultEvent[i];
         raw += event.getScore();
         max += event.getMaxScore();
+      }
+
+      if(max === 0) {
+        max += 1;
       }
 
       self.triggerXAPIScored(raw, max, 'completed');
@@ -119,13 +122,10 @@ H5P.Column = (function (EventDispatcher) {
         // Prevent video from growing endlessly since height is unlimited.
         content.params.visuals.fit = false;
       }
-      console.log(content);
+
       // Create content instance
       var instance = H5P.newRunnable(content, id, undefined, true, contentData);
-      console.log(instance);
-      if(instance == undefined) {
-        return false;
-      }
+
       // Bubble resize events
       bubbleUp(instance, 'resize', self);
 
@@ -144,7 +144,7 @@ H5P.Column = (function (EventDispatcher) {
           self.trigger('resize');
         });
       }
-      console.log(instance);
+
       // Keep track of all instances
       instances.push(instance);
       instanceContainers.push({
@@ -152,8 +152,7 @@ H5P.Column = (function (EventDispatcher) {
         container: container,
         instanceIndex: instances.length - 1,
       });
-      console.log(instances);
-      
+
       // Add to DOM wrapper
       wrapper.appendChild(container);
     };
@@ -256,7 +255,25 @@ H5P.Column = (function (EventDispatcher) {
     };
 
     /**
-     * Creates a wrapper and the column content the first time the column
+     * Check the instances all are only if read only return false and not show summary
+     * if instance contain scorable or open response then return true
+     * @returns {boolean}
+     */
+    var showSummary = function () {
+      var hasNonReadOnlyActivities = false;
+      for (const inst of instances) {
+        const machineName = inst.libraryInfo.machineName;
+        if (readOnlyActivities.includes(machineName)
+            || (['H5P.InteractiveVideo', 'H5P.CoursePresentation'].includes(machineName) && !Column.isTask(inst))) {
+          continue;
+        }
+        hasNonReadOnlyActivities = true;
+      }
+      return hasNonReadOnlyActivities;
+    };
+
+    /**
+     * Creates a` wrapper and the column content the first time the column
      * is attached to the DOM.
      *
      * @private
@@ -265,17 +282,28 @@ H5P.Column = (function (EventDispatcher) {
       // Create wrapper
       wrapper = document.createElement('div');
 
-      
-      process_pagination('dir');
-      
-      
+      // Go though all contents
+      for (var i = 0; i < params.content.length; i++) {
+        var content = params.content[i];
 
-      
+        // In case the author has created an element without selecting any
+        // library
+        if (content.content === undefined) {
+          continue;
+        }
 
-       
-      if(typeof data.parent == "undefined") {
+        if (params.useSeparators) { // (check for global override)
+
+          // Add separator between contents
+          addSeparator(content.content.library.split(' ')[0], content.useSeparator);
+        }
+
+        // Add content
+        addRunnable(content.content, grabContentData(i));
+      }
+      if(typeof data.parent == "undefined" && showSummary()) {
         H5P.JoubelUI.createButton({
-          class: "view-summary ",
+          class: "view-summary h5p-column-summary",
           html: 'View Summary',
           on: {
               click: function () {
@@ -294,7 +322,7 @@ H5P.Column = (function (EventDispatcher) {
                     //self.$createGoalButton.focus();
                     var rawwa = 0;
                     var maxwa = 0;
-                    //console.log(tasksResultEvent);
+                    console.log(tasksResultEvent);
                     for (var m = 0; m < tasksResultEvent.length; m++) {
                       var eventwa = tasksResultEvent[m];
                       if(typeof eventwa != "undefined"){
@@ -303,19 +331,19 @@ H5P.Column = (function (EventDispatcher) {
                       }
                       
                     }
-                    if(maxwa === rawwa) {
+                    if(maxwa === 0) {
                       maxwa += 1;
                     }
                     self.triggerXAPIScored(rawwa, maxwa, 'submitted-curriki');
-                    //console.log(skipped);
+                    console.log(skipped);
                     for(skip_rec of skipped) {
-                      //console.log('skipped');
+                      console.log('skipped');
                       //skip_rec.triggerXAPIScored(rawwa, maxwa, 'skipped');
                       const customProgressedEvent = skip_rec.createXAPIEventTemplate('skipped');
             
                       if (customProgressedEvent.data.statement.object) {
                         //customProgressedEvent.data.statement.object.definition['name'] = {'en-US': skip_rec.contentData.metadata.title};
-                        //console.log(customProgressedEvent);
+                        console.log(customProgressedEvent);
                         //section.instance.triggerXAPIScored(0,1,customProgressedEvent);
                         skip_rec.trigger(customProgressedEvent);
                       }
@@ -326,100 +354,14 @@ H5P.Column = (function (EventDispatcher) {
                   confirmationDialog.appendTo(parent.document.body);
                   confirmationDialog.show();
                   //H5P.jQuery(window.parent).scrollTop(0); 
-                  H5P.jQuery(".h5p-confirmation-dialog-popup").css("top", "80%");
+                  H5P.jQuery(".h5p-confirmation-dialog-popup").css("top", "80%"); 
               },
           },
-          appendTo: document.body,
+          appendTo: wrapper,
       });
-
-
-
-            H5P.JoubelUI.createButton({
-              class: "view-summary ",
-              html: 'Show More Activities',
-              on: {
-                  click: function () {
-                    //console.log(iter);
-                    //console.log(params.content.length);
-                    instanceContainers = [];
-                    if(iter >= params.content.length) {
-                      alert('No more activites to load');
-                      return false;
-                    }
-                    console.log(instances); 
-                    
-                      //console.log(iter);
-                      console.log(params);
-                      console.log(instances);
-                      //console.log(container);
-                     
-
-                      process_pagination('asd');
-                      instanceContainers.filter(function (container) { return !container.hasAttached })
-                      .forEach(function (container) {
-                        
-                        instances[container.instanceIndex]
-                          .attach(H5P.jQuery(container.container));
-              
-                        // Remove any fullscreen buttons
-                        disableFullscreen(instances[container.instanceIndex]);
-                        
-                      }); 
-                      self.trigger('resize');
-                    
-                  },
-              },
-              appendTo: document.body,
-          });
       }
       
     };
-
-    function process_pagination(from) { 
-      var counter = 0;
-      // Go though all contents
-      //console.log(iter);
-      if(typeof data.parent != "undefined") {
-          iter = 0;
-      }
-      if(from == "asd"){
-       //console.log(instances); return false;
-      }
-      for (var i = iter; i < params.content.length; i++) {
-        var content = params.content[i];
-        //console.log(i);
-        if(counter == 2 && typeof data.parent == "undefined") {
-          //console.log('In break');
-          iter = iter+2;
-          
-         
-          break;
-        }
-        //console.log(i +" done");
-
-        // In case the author has created an element without selecting any
-        // library
-        if (content.content === undefined) {
-          continue;
-        }
-
-        if (params.useSeparators) { // (check for global override)
-
-          // Add separator between contents
-          addSeparator(content.content.library.split(' ')[0], content.useSeparator);
-        }
-        console.log(grabContentData(iter));
-        // Add content
-        addRunnable(content.content, grabContentData(iter));
-        counter++;
-      }
-      if(i >= params.content.length) {
-        iter = iter+2;
-      }
-      if(counter != 2) {
-        iter = iter + counter;
-      }
-    }
 
     
 
@@ -447,6 +389,20 @@ H5P.Column = (function (EventDispatcher) {
 
       // Add to DOM
       $container.addClass('h5p-column').html('').append(wrapper);
+
+      // If none of the children instances is a task, fire off a completed
+      // xAPI event
+      setTimeout(() => {
+        console.log('Checking if any of the column children are tasks...');
+        for (var i = 0; i < instances.length; i++) {
+          if(Column.isTask(instances[i])) {
+            console.log('Found task.');
+            return;
+          }
+        }
+        console.log('No tasks found. Marking activity as completed.');
+        completed();
+      }, 1000);
     };
 
     /**
@@ -614,11 +570,19 @@ H5P.Column = (function (EventDispatcher) {
       
         var i=0;
         for(const inst of instances) {
-          
+          // Do not show read only activities in summary
+          const machineName = inst.libraryInfo.machineName;
+          if (readOnlyActivities.includes(machineName)
+              || (['H5P.InteractiveVideo', 'H5P.CoursePresentation'].includes(machineName) && !Column.isTask(inst)) ) {
+            i++;
+            continue;
+          }
+
           var param_content = params.content[i];
           var content_type = param_content.content.metadata.contentType;
           
-          if( typeof inst.getAnswerGiven == "function" && !inst.getAnswerGiven()){
+          /*if( typeof inst.getAnswerGiven == "function" && (inst.getAnswerGiven() != undefined || !inst.getAnswerGiven())) {
+            console.log('563');
             skipped.push(inst);
             table_content += printSkippedTr(param_content.content.metadata.title);
             
@@ -636,7 +600,7 @@ H5P.Column = (function (EventDispatcher) {
                   i++;
                   continue;
                 }
-          }
+          }*/
 
         if(typeof inst.getScore == "undefined") {
             var cust_score = 0;
@@ -646,15 +610,15 @@ H5P.Column = (function (EventDispatcher) {
           var cust_score = inst.getScore();
           var cust_max_score = inst.getMaxScore();
         }
-        table_content += '<tr >';
+        table_content += '<tr>';
         table_content += '<td>'+param_content.content.metadata.title+'</td>';
-        table_content += '<td style="text-align: right !important;">'+cust_score+'/'+cust_max_score+'</td>';
+        table_content += '<td style="text-align:right;">'+cust_score+'/'+cust_max_score+'</td>';
         table_content += '</tr>';
         i++;
       } 
       table_content += '</tbody>';
      
-      var summary_html = '<div class="custom-summary-section"><div class="h5p-summary-table-pages"><table class="h5p-score-table-custom" style="min-height:100px;width:100%;"><thead><tr><th>Content</th><th style="text-align: right !important;">Score/Total</th></tr></thead>'+table_content+'</table></div></div>';
+      var summary_html = '<div class="custom-summary-section"><div class="h5p-summary-table-pages"><table class="h5p-score-table-custom" style="min-height:100px;width:100%;"><thead><tr><th>Content</th><th style="text-align:right;">Score/Total</th></tr></thead>'+table_content+'</table></div></div>';
       
       return summary_html;
       
@@ -667,9 +631,9 @@ H5P.Column = (function (EventDispatcher) {
      */
     function printSkippedTr(title) {
       
-          var table_content = '<tr >';
+          var table_content = '<tr>';
           table_content += '<td>'+title+'  (Skipped) </td>';
-          table_content += '<td style="text-align: right !important;">0/0</td>';
+          table_content += '<td style="text-align:right;">0/0</td>';
           table_content += '</tr>';
          return table_content;
          
@@ -685,14 +649,14 @@ H5P.Column = (function (EventDispatcher) {
       if(type == "Interactive Video") {
         for (const iv_interaction of instances.interactions) {
           if(typeof iv_interaction.getLastXAPIVerb() != "undefined") {
-            //console.log(iv_interaction.getLastXAPIVerb());
+            console.log(iv_interaction.getLastXAPIVerb());
             return true;
           }
         }
         return false;
 
       }else if(type == "Course Presentation") {
-        //console.log(instances.slidesWithSolutions);
+        console.log(instances.slidesWithSolutions);
         for (const slide of instances.slidesWithSolutions) {
           if(typeof slide === "undefined" || slide == ""){
             continue;
@@ -704,7 +668,7 @@ H5P.Column = (function (EventDispatcher) {
             }else if(typeof item.getAnswerGiven == 'undefined'  ) {
               var flag = 0;
               item.interactions.forEach(function(pp,mm){ 
-                  //console.log(pp.getLastXAPIVerb());
+                  console.log(pp.getLastXAPIVerb());
                   if(pp.getLastXAPIVerb() !== undefined) {
                       flag = 1;
                   }
@@ -721,7 +685,7 @@ H5P.Column = (function (EventDispatcher) {
         for (const elem of instances.state.questionnaireElements) {
       
           if(elem.answered){
-            //console.log(elem.answered);
+            console.log(elem.answered);
             return true;
           }
         
@@ -820,6 +784,34 @@ H5P.Column = (function (EventDispatcher) {
     'H5P.InteractiveVideo',
     'H5P.CoursePresentation',
     'H5P.DocumentationTool'
+  ];
+
+
+  /**
+   * Definition of which content types are read only
+   */
+  var readOnlyActivities = [
+    'H5P.Accordion',
+    'H5P.Agamotto',
+    'H5P.Audio',
+    'H5P.AudioRecorder',
+    'H5P.Chart',
+    'H5P.Collage',
+    'H5P.Dialogcards',
+    'H5P.GuessTheAnswer',
+    'H5P.Table',
+    'H5P.IFrameEmbed',
+    'H5P.Image',
+    'H5P.ImageHotspots',
+    'H5P.Link',
+    'H5P.MemoryGame',
+    'H5P.Timeline',
+    'H5P.TwitterUserFeed',
+    'H5P.Video',
+    'H5P.PhetInteractiveSimulation',
+    'H5P.DocumentationTool',
+    'H5P.AdvancedText',
+    'H5P.DocumentsUpload'
   ];
 
   /**

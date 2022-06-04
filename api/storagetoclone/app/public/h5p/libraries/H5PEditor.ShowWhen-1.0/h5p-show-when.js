@@ -11,7 +11,7 @@ H5PEditor.ShowWhen = (function ($) {
   function LibraryHandler(field, equals) {
     this.satisfied = function () {
       var value;
-      if (field.currentLibrary !== undefined) {
+      if (field.currentLibrary !== undefined && field.params.library) {
         value = field.currentLibrary.split(' ')[0];
       }
       return (equals.indexOf(value) !== -1);
@@ -64,7 +64,7 @@ H5PEditor.ShowWhen = (function ($) {
         }
       }
 
-      return false;
+      return (type === TYPE_AND);
     };
   }
 

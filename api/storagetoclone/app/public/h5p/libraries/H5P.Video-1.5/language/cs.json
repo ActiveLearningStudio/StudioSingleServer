@@ -82,7 +82,7 @@
           "default": "Neplatné ID YouTube."
         },
         {
-          "label": "Neznámé YouTube ID",
+          "label": "Neznámé ID YouTube",
           "default": "Video s daným ID YouTube nelze najít."
         },
         {

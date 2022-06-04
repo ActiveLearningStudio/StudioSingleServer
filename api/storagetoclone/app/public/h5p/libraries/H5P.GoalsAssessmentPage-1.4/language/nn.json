@@ -33,6 +33,18 @@
     {
       "label": "Fyll inn tilleggsinformasjon om utføring til brukaren",
       "description": "Her kan du fylla inn ekstra nyttig informasjon om korleis brukaren skal nytte denne sida."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

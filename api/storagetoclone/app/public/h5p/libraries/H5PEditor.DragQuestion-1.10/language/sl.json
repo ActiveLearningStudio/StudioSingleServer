@@ -11,6 +11,10 @@
     "advancedtext": "Besedilo",
     "dropzone": "Spustno polje",
     "selectAll": "Izberi vse",
-    "deselectAll": "Odznači vse"
+    "deselectAll": "Odznači vse",
+    "deleteTaskTitle": "Deleting task",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "ok": "Ok"
   }
 }

@@ -1,7 +1,7 @@
 {
   "libraryStrings": {
-    "previousStep": "Paso anterior",
-    "nextStep": "Paso siguiente",
+    "previousStep": "Paso Anterior",
+    "nextStep": "Paso Siguiente",
     "step": "Paso :index"
   }
 }

@@ -11,7 +11,7 @@
       "default": "Crear documento"
     },
     {
-      "label": "Botón Enviar texto",
+      "label": "Botón texto Enviar",
       "description": "Texto que será mostrado en el botón \"Enviar\".",
       "default": "Enviar"
     },
@@ -35,11 +35,11 @@
       "default": "Más información"
     },
     {
-      "label": "Escriba información de ayuda adicional",
+      "label": "Escribir información de ayuda adicional",
       "description": "Aquí puede escribir información adicional útil para el usuario."
     },
     {
-      "label": "Texto Falta entrada requerida",
+      "label": "Texto para Falta entrada requerida",
       "description": "Un mensaje de error que será mostrado si uno o más campos de entrada no han sido llenados. @pages será remplazado con los títulos de páginas afectadas.",
       "default": "Las páginas siguientes contienen campos requeridos que necesitan ser llenados para poder revisar o enviar este documento: @pages"
     }

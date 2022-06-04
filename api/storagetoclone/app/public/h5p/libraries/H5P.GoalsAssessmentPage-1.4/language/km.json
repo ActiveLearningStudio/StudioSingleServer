@@ -1,4 +1,3 @@
-  
 {
   "semantics": [
     {
@@ -34,6 +33,18 @@
     {
       "label": "Fill in additional help information",
       "description": "Here you can fill in additional helpful information for the user."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

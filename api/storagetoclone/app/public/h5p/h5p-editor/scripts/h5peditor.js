@@ -402,7 +402,7 @@ ns.getParentLibrary = function (parent) {
  * @param {string} [machineName] Machine name of library that is being processed
  * @returns {undefined}
  */
-ns.processSemanticsChunk = function (semanticsChunk, params, $wrapper, parent, machineName) {
+ns.processSemanticsChunk = function (semanticsChunk, params, $wrapper, parent, machineName) { 
   var ancestor;
   parent.children = [];
 
@@ -1110,8 +1110,11 @@ ns.bindImportantDescriptionEvents = function (widget, fieldName, parent) {
  *
  * @returns {string} HTML
  */
-ns.createCopyPasteButtons = function () {
+ns.createCopyPasteButtons = function (fromSelector = false) {
+  const existingButton = '<button class="h5peditor-existing-activity-button" title="Existing Activity">Existing Activity</button>';
+
   return '<div class="h5peditor-copypaste-wrap">' +
+           (fromSelector ? existingButton : '') +
            '<button class="h5peditor-copy-button disabled" title="' + H5PEditor.t('core', 'copyToClipboard') + '" disabled>' + ns.t('core', 'copyButton') + '</button>' +
            '<button class="h5peditor-paste-button disabled" title="' + H5PEditor.t('core', 'pasteFromClipboard') + '" disabled>' + ns.t('core', 'pasteButton') + '</button>' +
          '</div><div class="h5peditor-clearfix"></div>';

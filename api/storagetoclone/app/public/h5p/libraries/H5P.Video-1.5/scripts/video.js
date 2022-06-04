@@ -9,12 +9,14 @@ H5P.Video = (function ($, ContentCopyrights, MediaCopyright, handlers) {
    * @param {Object} parameters.visuals Visual options
    * @param {Object} parameters.playback Playback options
    * @param {Object} parameters.a11y Accessibility options
-   * @param {Boolean} [parameters.startAt] Start time of video 
+   * @param {Boolean} [parameters.startAt] Start time of video
    * @param {Number} id Content identifier
+   * @param {Object} extras Content Details
    */
-  function Video(parameters, id) {
+  function Video(parameters, id, extras) {
     var self = this;
     self.contentId = id;
+    self.extras = extras;
 
     // Ref youtube.js - ipad & youtube - issue
     self.pressToPlay = false;
@@ -46,9 +48,7 @@ H5P.Video = (function ($, ContentCopyrights, MediaCopyright, handlers) {
 
     parameters.a11y = parameters.a11y || [];
     parameters.playback = parameters.playback || {};
-    parameters.visuals = $.extend(true, parameters.visuals, {
-      disableFullscreen: false
-    });
+    parameters.visuals = parameters.visuals || {};
 
     /** @private */
     var sources = [];
@@ -97,6 +97,8 @@ H5P.Video = (function ($, ContentCopyrights, MediaCopyright, handlers) {
           $container.text(parameters.l10n.noSources);
         }
       }
+      // handle xapi consumed
+      self.handleXAPI();
     };
 
     /**
@@ -114,25 +116,70 @@ H5P.Video = (function ($, ContentCopyrights, MediaCopyright, handlers) {
       self.trigger('resize');
     });
 
+    /**
+     * Get title, e.g. for xAPI.
+     *
+     * @return {string} Title.
+     */
+    self.getTitle = function () {
+      return H5P.createTitle((self.extras && self.extras.metadata && self.extras.metadata.title) ? self.extras.metadata.title : 'Video');
+    };
+
+    /**
+     * trigger XAPI based on activity if activity is CP then trigger after slide consumed else trigger on attach
+     */
+    self.handleXAPI = function () {
+      // for CP trigger only on slide open for others trigger on attach
+      if (self.extras.hasOwnProperty("parent") && self.extras.parent.hasOwnProperty("presentation")) {
+        self.on('trigger-consumed', function () {
+          self.triggerXAPIConsumed();
+        });
+      } else {
+        self.triggerXAPIConsumed();
+      }
+    };
+
+    /**
+     * Trigger the 'consumed' xAPI event
+     *
+     */
+    self.triggerXAPIConsumed = function () {
+      var xAPIEvent = self.createXAPIEventTemplate({
+        id: 'http://activitystrea.ms/schema/1.0/consume',
+        display: {
+          'en-US': 'consumed'
+        }
+      }, {
+        result: {
+          completion: true
+        }
+      });
+
+      Object.assign(xAPIEvent.data.statement.object.definition, {
+        name:{
+          'en-US': self.getTitle()
+        }
+      });
+
+      self.trigger(xAPIEvent);
+    };
+
     // Find player for video sources
     if (sources.length) {
-      const options = {
-        controls: parameters.visuals.controls,
-        autoplay: parameters.playback.autoplay,
-        loop: parameters.playback.loop,
-        fit: parameters.visuals.fit,
-        poster: parameters.visuals.poster === undefined ? undefined : parameters.visuals.poster,
-        startAt: parameters.startAt || 0,
-        tracks: tracks,
-        disableRemotePlayback: parameters.visuals.disableRemotePlayback === true,
-        disableFullscreen: parameters.visuals.disableFullscreen === true
-      }
-
       var html5Handler;
       for (var i = 0; i < handlers.length; i++) {
         var handler = handlers[i];
         if (handler.canPlay !== undefined && handler.canPlay(sources)) {
-          handler.call(self, sources, options, parameters.l10n);
+          handler.call(self, sources, {
+            controls: parameters.visuals.controls,
+            autoplay: parameters.playback.autoplay,
+            loop: parameters.playback.loop,
+            fit: parameters.visuals.fit,
+            poster: parameters.visuals.poster === undefined ? undefined : parameters.visuals.poster,
+            startAt: parameters.startAt || 0,
+            tracks: tracks,
+            disableRemotePlayback: (parameters.visuals.disableRemotePlayback || false)
+          }, parameters.l10n);
           handlerName = handler.name;
           return;
         }
@@ -145,7 +192,31 @@ H5P.Video = (function ($, ContentCopyrights, MediaCopyright, handlers) {
 
       // Fallback to trying HTML5 player
       if (html5Handler) {
-        html5Handler.call(self, sources, options, parameters.l10n);
+        html5Handler.call(self, sources, {
+          controls: parameters.visuals.controls,
+          autoplay: parameters.playback.autoplay,
+          loop: parameters.playback.loop,
+          fit: parameters.visuals.fit,
+          poster: parameters.visuals.poster === undefined ? undefined : parameters.visuals.poster,
+          startAt: parameters.startAt || 0,
+          tracks: tracks,
+          disableRemotePlayback: (parameters.visuals.disableRemotePlayback || false)
+        }, parameters.l10n);
+      }
+    } else if(parameters.brightcoveVideoID) {
+      BrightcoveHandler = handlers.find(fn =>  fn.name ==='Brightcove');
+      if (BrightcoveHandler !== undefined) {
+        BrightcoveHandler.call(self, sources, {
+          controls: parameters.visuals.controls,
+          autoplay: parameters.playback.autoplay,
+          loop: parameters.playback.loop,
+          fit: parameters.visuals.fit,
+          poster: parameters.visuals.poster === undefined ? undefined : parameters.visuals.poster,
+          startAt: parameters.startAt || 0,
+          tracks: tracks,
+          disableRemotePlayback: (parameters.visuals.disableRemotePlayback || false),
+          brightcoveVideoID: parameters.brightcoveVideoID
+        }, parameters.l10n);
       }
     }
   }

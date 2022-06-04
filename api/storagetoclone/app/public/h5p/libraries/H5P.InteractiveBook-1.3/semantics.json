@@ -86,6 +86,13 @@
           "options": [
             "H5P.Column 1.13"
           ]
+        },
+        {
+          "name": "lockPage",
+          "type": "boolean",
+          "label": "Lock Page",
+          "description": "Lock Page untill user complete activities on previous page",
+          "default": false
         }
       ]
     }

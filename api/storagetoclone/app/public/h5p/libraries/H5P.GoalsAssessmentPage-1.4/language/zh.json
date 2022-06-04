@@ -33,6 +33,18 @@
     {
       "label": "幫助說明文字",
       "description": "用來告知用戶以協助其瞭解使用方式的說明內容。"
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

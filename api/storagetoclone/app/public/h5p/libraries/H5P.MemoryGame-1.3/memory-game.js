@@ -15,7 +15,7 @@ H5P.MemoryGame = (function (EventDispatcher, $) {
    * @param {Object} parameters
    * @param {Number} id
    */
-  function MemoryGame(parameters, id) {
+  function MemoryGame(parameters, id, contentData) {
     /** @alias H5P.MemoryGame# */
     var self = this;
 
@@ -120,9 +120,25 @@ H5P.MemoryGame = (function (EventDispatcher, $) {
 
       // Create and trigger xAPI event 'completed'
       var completedEvent = self.createXAPIEventTemplate('completed');
+      if (completedEvent.data.statement.object) {
+        completedEvent.data.statement.object.definition["name"] = {
+          "en-US": contentData.metadata.title,
+        };
+      }
       completedEvent.setScoredResult(1, 1, self, true, true);
       completedEvent.data.statement.result.duration = 'PT' + (Math.round(timer.getTime() / 10) / 100) + 'S';
       self.trigger(completedEvent);
+
+      // Create and trigger xAPI event 'answered'
+      var answeredEvent = self.createXAPIEventTemplate('answered');
+      if (answeredEvent.data.statement.object) {
+        answeredEvent.data.statement.object.definition["name"] = {
+          "en-US": contentData.metadata.title,
+        };
+      }
+      answeredEvent.setScoredResult(1, 1, self, true, true);
+      answeredEvent.data.statement.result.duration = 'PT' + (Math.round(timer.getTime() / 10) / 100) + 'S';
+      self.trigger(answeredEvent);
 
       if (parameters.behaviour && parameters.behaviour.allowRetry) {
         // Create retry button
@@ -229,7 +245,9 @@ H5P.MemoryGame = (function (EventDispatcher, $) {
         card.makeTabbable();
 
         popup.close();
-        self.triggerXAPI('interacted');
+        // trigger xAPI event 'interacted'
+        triggerXAPIInteracted(self, contentData);
+
         // Keep track of time spent
         timer.play();
 
@@ -421,7 +439,8 @@ H5P.MemoryGame = (function (EventDispatcher, $) {
      * @param {H5P.jQuery} $container
      */
     self.attach = function ($container) {
-      this.triggerXAPI('attempted');
+      // trigger xAPI event 'attempted'
+      triggerXAPIAttempted(self, contentData);
       // TODO: Only create on first attach!
       $wrapper = $container.addClass('h5p-memory-game').html('');
       if (invertShades === -1) {
@@ -560,6 +579,37 @@ H5P.MemoryGame = (function (EventDispatcher, $) {
                    parseInt(color.substr(3, 2), 16) * 587 +
                    parseInt(color.substr(5, 2), 16) * 144) / 1000);
   };
+
+  /**
+   * trigger XAPI 'interacted'
+   * @param self
+   * @param contentData
+   */
+  var triggerXAPIAttempted = function(self, contentData) {
+    var xAPIEvent = self.createXAPIEventTemplate('attempted');
+    Object.assign(xAPIEvent.data.statement.object.definition, {
+      name:{
+        'en-US': contentData.metadata.title
+      }
+    });
+    self.trigger(xAPIEvent);
+  };
+
+  /**
+   * trigger XAPI 'interacted'
+   * @param self
+   * @param contentData
+   */
+  var triggerXAPIInteracted = function(self, contentData) {
+    var xAPIEvent = self.createXAPIEventTemplate('interacted');
+    Object.assign(xAPIEvent.data.statement.object.definition, {
+      name:{
+        'en-US': contentData.metadata.title
+      }
+    });
+    self.trigger(xAPIEvent);
+  };
+
 
   return MemoryGame;
 })(H5P.EventDispatcher, H5P.jQuery);

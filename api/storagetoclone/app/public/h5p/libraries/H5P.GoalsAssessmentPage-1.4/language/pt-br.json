@@ -33,6 +33,18 @@
     {
       "label": "Preencha as informações adicionais de ajuda",
       "description": "Aqui você pode inserir informações úteis adicionais para o usuário."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

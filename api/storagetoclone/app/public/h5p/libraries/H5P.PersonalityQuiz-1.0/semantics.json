@@ -285,5 +285,21 @@
         "description": "Determines the color of the progress bar",
         "default": "38B755",
         "widget": "colorSelector"
-    }
+    },
+    {
+        "label": "Show Submit Answers Button",
+        "name": "showSubmitAnswersButton",
+        "type": "boolean",
+        "default": true,
+        "importance": "high",
+        "optional": true
+      },
+      {
+        "label": "Text for Submit Answers Button",
+        "name": "submitAnswers",
+        "type": "text",
+        "default": "Submit Answers",
+        "importance": "low",
+        "common": true
+      }
 ]

@@ -1,16 +1,16 @@
 {
   "semantics": [
     {
-      "label": "Label",
-      "description": "Label/heading for answer when user exports all answers"
+      "label": "תווית",
+      "description": "תווית/כותר לתשובה כאשר המשתמש מייצא את כל התשובות"
     },
     {},
     {
-      "label": "Export not supported label",
-      "default": "Export not supported on your device"
+      "label": "תווית לא נתמכת בייצוא",
+      "default": "ייצוא לא נתמך על מכשירך"
     },
     {
-      "label": "Include comments in the exported document"
+      "label": "כולל הערות במסמך המיוצא"
     }
   ]
 }

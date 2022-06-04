@@ -31,8 +31,20 @@
       "default": "Más información"
     },
     {
-      "label": "LLene con información de ayuda adicional",
+      "label": "Llene con información de ayuda adicional",
       "description": "Aquí puede escribir información útil adicional para el usuario."
+    },
+    {
+      "label": "Legend header",
+      "default": "Possible ratings:"
+    },
+    {
+      "label": "Goal header",
+      "default": "Goals"
+    },
+    {
+      "label": "Rating header",
+      "default": "Rating"
     }
   ]
 }

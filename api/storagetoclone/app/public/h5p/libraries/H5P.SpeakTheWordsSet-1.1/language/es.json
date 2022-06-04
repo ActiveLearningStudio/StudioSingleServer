@@ -4,7 +4,7 @@
       "label": "Introducción",
       "fields": [
         {
-          "label": "Mostrar introdución"
+          "label": "Mostrar introducción"
         },
         {
           "label": "Imagen de la introducción"
@@ -34,7 +34,7 @@
       }
     },
     {
-      "label": "Realimentación Global",
+      "label": "Retroalimentación Global",
       "fields": [
         {
           "widgets": [
@@ -42,18 +42,18 @@
               "label": "Predeterminado"
             }
           ],
-          "label": "Definir realimentación personalizada para cualquier rango de puntaje",
-          "description": "Haga cick en el botón para \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje promedio, 91-100% ¡Magnífico puntaje!",
+          "label": "Definir retroalimentación personalizada para cualquier rango de puntaje",
+          "description": "Haga clic en el botón \"Añadir rango\" para añadir cuantos rangos necesite. Ejemplo: 0-20% Mal puntaje, 21-91% Puntaje Promedio, 91-100% ¡Magnífico Puntaje!",
           "entity": "rango",
           "field": {
             "fields": [
               {
-                "label": "Rango de Puntaje"
+                "label": "Rango del Puntaje"
               },
               {},
               {
-                "label": "Realimentación para rango definido de puntaje",
-                "placeholder": "Escriba la realimentación"
+                "label": "Retroalimentación para rango de puntaje definido",
+                "placeholder": "Complete la retroalimentación"
               }
             ]
           }
@@ -80,7 +80,7 @@
           "default": "Reintentar"
         },
         {
-          "label": "Etiqueta accesibilidad Pregunta siguiente ",
+          "label": "Etiqueta accesibilidad Pregunta siguiente",
           "default": "Pregunta siguiente"
         },
         {
@@ -89,15 +89,15 @@
         },
         {
           "label": "Título Barra Navegación",
-          "description": "Títulos para preguntas en barra de navegación. \":num\" será remplazado con el número de imagen actual.",
-          "default": "Imagen :num"
+          "description": "Títulos para preguntas en barra de navegación. \":num\" será remplazado con el número de página actual.",
+          "default": "Página:num"
         },
         {
-          "label": "Etiqueta accesibilidad Imagen contestada",
+          "label": "Etiqueta accesibilidad Página contestada",
           "default": "Contestada"
         },
         {
-          "label": "Etiqueta accesibilidad Imagen activa",
+          "label": "Etiqueta accesibilidad página activa",
           "default": "Actualmente activa"
         }
       ]

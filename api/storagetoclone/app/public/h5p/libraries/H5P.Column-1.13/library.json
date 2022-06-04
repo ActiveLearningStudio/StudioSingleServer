@@ -25,6 +25,9 @@
   "preloadedCss": [
     {
       "path": "styles/h5p-column.css"
+    },
+    {
+      "path": "styles/custom-column-layout.css"
     }
   ]
 }

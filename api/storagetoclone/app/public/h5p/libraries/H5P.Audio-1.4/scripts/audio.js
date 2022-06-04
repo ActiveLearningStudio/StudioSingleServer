@@ -35,6 +35,11 @@ H5P.Audio = (function ($) {
       pauseAudio: "Pause audio"
     }, params);
 
+    // Required if e.g. used in CoursePresentation as area to click on
+    if (this.params.playerMode === 'transparent') {
+      this.params.fitToWrapper = true;
+    }
+
     this.on('resize', this.resize, this);
   }
 
@@ -156,10 +161,23 @@ H5P.Audio = (function ($) {
  * @param {jQuery} $wrapper Our poor container.
  */
 H5P.Audio.prototype.attach = function ($wrapper) {
+  var self = this;
   $wrapper.addClass('h5p-audio-wrapper');
 
   // Check if browser supports audio.
   var audio = document.createElement('audio');
+  /* trigger interacted on play event */
+  audio.onplay = function() {
+    var xAPIEvent = self.createXAPIEventTemplate('interacted');
+    var title = self.extras && self.extras.hasOwnProperty("metadata") && self.extras.metadata.hasOwnProperty("title") ?self.extras.metadata.title : 'Audio';
+    Object.assign(xAPIEvent.data.statement.object.definition, {
+      name:{
+        'en-US': title
+      }
+    });
+    self.trigger(xAPIEvent);
+  };
+
   if (audio.canPlayType === undefined) {
     // Try flash
     this.attachFlash($wrapper);
@@ -216,6 +234,10 @@ H5P.Audio.prototype.attach = function ($wrapper) {
   else {
     audio.autoplay = this.params.autoplay === undefined ? false : this.params.autoplay;
     $wrapper.html(audio);
+  }
+
+  if (audio.controls) {
+    $wrapper.addClass('h5p-audio-controls');
   }
 
   // Set time to saved time from previous run

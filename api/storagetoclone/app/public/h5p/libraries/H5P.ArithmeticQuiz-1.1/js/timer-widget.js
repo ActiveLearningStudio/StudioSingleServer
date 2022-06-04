@@ -156,6 +156,16 @@ H5P.ArithmeticQuiz.TimerWidget = (function ($) {
 
 
     /**
+     * get the current time
+     *
+     * @return {number} The time in ms
+     */
+    this.getTime = function () {
+      return getTime();
+    };
+
+
+    /**
      * Reset timer
      */
     this.reset = function () {

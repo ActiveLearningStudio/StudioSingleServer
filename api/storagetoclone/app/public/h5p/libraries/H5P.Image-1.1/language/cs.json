@@ -5,7 +5,7 @@
     },
     {
       "label": "Alternativní text",
-      "description": "Povinné. Pokud prohlížeč nemůže načíst obrázek, zobrazí se místo toho tento text. Také se používá \"text-to-speech\" readers."
+      "description": "Povinné. Pokud prohlížeč nemůže načíst obrázek, zobrazí se místo toho tento text. Také se používá \"text-to-speech\" čtečka."
     },
     {
       "label": "Najeďte kurzorem na text",
