@@ -74,34 +74,31 @@ Note that, we should create three A Records in Route 53 for currikistudio (main,
 
 Example:
 
-    example.curriki.org 		132.226.36.47
+    example.curriki.org 		    132.226.36.47
     example-tsugi.curriki.org 		132.226.36.47
     example-trax.curriki.org 		132.226.36.47
 
 This step is necessary to generate lets encrypt certificate which will be discussed later in this section
 
 ## Studio Installation
-Before installing the Databases, follow the below steps
 
 
 
-Then, run following commands
+Go to the root level of the VM and clone the this repo:
 
-Go to the root level of the VM and clone the “ActiveLearningStudio-docker-db” repository:
+> git clone https://github.com/ActiveLearningStudio/StudioSingleServer curriki
 
-`	`git clone https://github.com/ActiveLearningStudio/ActiveLearningStudio-docker-db.git curriki-db
+    cd curriki
+    cp .env.example .env
 
-cd curriki-db
+Change the content of .env like database ports / passwords according to your own choice
 
-cp .env.example .env
+Create folders for database persistent storage as below
 
-sudo mkdir -p /mnt/DBData/currikiprod1-mysqldata
-
-sudo mkdir -p /mnt/DBData/currikiprod1-postgresdata
-
-sudo mkdir -p /mnt/DBData/pgadmin1-data
-
-sudo docker-compose up -d
+    sudo mkdir -p /mnt/DBData/currikiprod1-mysqldata
+    sudo mkdir -p /mnt/DBData/currikiprod1-postgresdata
+    sudo mkdir -p /mnt/DBData/pgadmin1-data
+    sudo docker-compose up -d
 ##
 ## Application VM: CurrikiStudio Application (TODO)
 
