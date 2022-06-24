@@ -39,13 +39,13 @@ You must create these A records in AWS Route 53 like below:
 
 Login to the AWS Management Console and Search for Route53 Service.
 
-![](image1.png)
+![](images/image1.png)
 
-![](record-1.png)
+![](images/record-1.png)
 
-![](record-2.png)
+![](images/record-2.png)
 
-![](record-3.png)
+![](images/record-3.png)
 
 Click on the Hosted Zones and then select the desired Domain Name to add the “A entry”.
 
