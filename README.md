@@ -19,25 +19,33 @@ Following applications are the part of CurrikiStudio
 
 ## Minimum Requirements
 - One Linux VMs (8GB RAM 4 VCPUs, Storage 80GB)
+- Ubuntu, Amaozon Linux, Oracle Linux (Windows not supported)
 
-Tried on Ubuntu, Amaozon Linux, Oracle Linux. This list will grow after testing
+
 ## Pre-Requisites
 Docker version 19 or above
+
 ## Infrastructure
 
-Before installing the application, we need DNS entries.  For that, Lets Encrypt generate SSL
+Before installing the application, we need DNS entries. 
 
 For Lets Encrypt to work, add DNS records:
 
 Copy public IP of the VM and put inside the DNS records like this.
 
-Say for example, if the public IP of your VM is 132.226.36.47
+Say for example, if the public IP of your VM is 132.226.36.47, and your domain (where you want to install studio) is .example.com
 
 You must create these A records in AWS Route 53 like below:
 
 Login to the AWS Management Console and Search for Route53 Service.
 
 ![](image1.png)
+
+![](record-1.png)
+
+![](record-2.png)
+
+![](record-3.png)
 
 Click on the Hosted Zones and then select the desired Domain Name to add the “A entry”.
 
@@ -55,11 +63,11 @@ Note that, we should create three A Records in Route 53 for currikistudio, tsugi
 
 Example:
 
-example.currikistudio.org 		132.226.36.47
+example.curriki.org 		132.226.36.47
 
-example-tsugi.currikistudio.org 		132.226.36.47
+example-tsugi.curriki.org 		132.226.36.47
 
-example-trax.currikistudio.org 		132.226.36.47
+example-trax.curriki.org 		132.226.36.47
 
 This step is necessary to generate lets encrypt certificate which will be discussed later in this section
 ## Database VM: Postgres + MySQL
