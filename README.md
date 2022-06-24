@@ -51,8 +51,6 @@ Click on the “Create Record” Button
 
 From the below Screenshot, enter the A record name, Value (Public IP of the VM) and leave the other values to the default.
 
-![](images/image3.png)
-
 Main Record
 
 ![](images/record-3.png)
