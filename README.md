@@ -2,6 +2,8 @@ Active Learning Studio Setup Instructions
 
 # Introduction
 CurrikiStudio enables you to create interactive learning content and publish them anywhere like Google Classroom, LMSs etc.
+This repo makes it easy to install currikistudio as docker containers in cloud VM (AWS, Azure, GCP, Linode etc)
+
 # Components
 ## Applications
 Following applications are the part of CurrikiStudio
@@ -10,25 +12,22 @@ Following applications are the part of CurrikiStudio
 1. Backend API
 1. Tsugi for LTI
 1. Trax LRS
+2. 
 ## Databases
-1. External Postgres (For API, For LRS)
-1. External MySQL (For Tsugi)
+1. Postgres (For API, For LRS)
+1. MySQL (For Tsugi)
+
 ## Minimum Requirements
-- Two Linux VMs
-- 8GB RAM 4 VCPUs
+- One Linux VMs (8GB RAM 4 VCPUs, Storage 80GB)
 
 Tried on Ubuntu, Amaozon Linux, Oracle Linux. This list will grow after testing
 ## Pre-Requisites
 Docker version 19 or above
 ## Infrastructure
-Our Minimal Infrastructure is composed of two Linux VMs. All are running docker containers inside those
 
-- Database VM: Postgres + MySQL
-- Application VM: CurrikiStudio Application
+Before installing the application, we need DNS entries.  For that, Lets Encrypt generate SSL
 
-Before installing the application, we need DNS entries.  For that, lets encrypt generate SSL
-
-For lets encrypt to work, add DNS records:
+For Lets Encrypt to work, add DNS records:
 
 Copy public IP of the VM and put inside the DNS records like this.
 
