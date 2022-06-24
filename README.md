@@ -33,21 +33,17 @@ For Lets Encrypt to work, add DNS records:
 
 Copy public IP of the VM and put inside the DNS records like this.
 
-Say for example, if the public IP of your VM is 132.226.36.47, and your domain (where you want to install studio) is .example.com
+Say for example, if the public IP of your VM is 132.226.36.47, and your domain (where you want to install studio) is .curriki.org
 
-You must create these A records in AWS Route 53 like below:
+You must create these A records in your DNS provider like below:
+
+### AWS Route 53 example
 
 Login to the AWS Management Console and Search for Route53 Service.
+Click on the Hosted Zones and then select the desired Domain Name to add the “A entry”.
+
 
 ![](images/image1.png)
-
-![](images/record-1.png)
-
-![](images/record-2.png)
-
-![](images/record-3.png)
-
-Click on the Hosted Zones and then select the desired Domain Name to add the “A entry”.
 
 Click on the “Create Record” Button 
 
@@ -57,9 +53,24 @@ From the below Screenshot, enter the A record name, Value (Public IP of the VM) 
 
 ![](images/image3.png)
 
+Main Record
+
+![](images/record-3.png)
+
+Tsugi Record
+
+![](images/record-2.png)
+
+Trax Record
+
+![](images/record-1.png)
+
+
+
+
 Click on the Create Record Button to finish creating the A Record for DNS.
 
-Note that, we should create three A Records in Route 53 for currikistudio, tsugi, and trax
+Note that, we should create three A Records in Route 53 for currikistudio (main, site tsugi, and trax)
 
 Example:
 
@@ -70,35 +81,11 @@ example-tsugi.curriki.org 		132.226.36.47
 example-trax.curriki.org 		132.226.36.47
 
 This step is necessary to generate lets encrypt certificate which will be discussed later in this section
-## Database VM: Postgres + MySQL
+
+## Studio Installation
 Before installing the Databases, follow the below steps
 
-Install docker
 
-Login to the terminal and switch to the root user.
-
-sudo apt-get update -y
-
-sudo apt-get install git -y
-
-sudo apt-get install apt-transport-https Ca-certificates curl gnupg -y
-
-curl -fsSL <https://download.docker.com/linux/ubuntu/gpg> | sudo gpg --dearmor -o/usr/share/keyrings/docker-archive-keyring.	gpg
-
-sudo apt install docker.io -y
-
-sudo systemctl start docker
-
-sudo systemctl enable docker
-
-cd ..
-
-Install docker compose
-`	`sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-`	`sudo chmod +x /usr/local/bin/docker-compose
-
-`	`sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 Then, run following commands
 
@@ -454,3 +441,44 @@ Now, let us run again the following steps:
 `	`source .env
 
 Once it is done. Your application will be deployed on the DNS provided like example.currikistudio.org
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+## Docker Installation
+  
+ Install docker
+
+Login to the terminal and switch to the root user.
+
+sudo apt-get update -y
+
+sudo apt-get install git -y
+
+sudo apt-get install apt-transport-https Ca-certificates curl gnupg -y
+
+curl -fsSL <https://download.docker.com/linux/ubuntu/gpg> | sudo gpg --dearmor -o/usr/share/keyrings/docker-archive-keyring.	gpg
+
+sudo apt install docker.io -y
+
+sudo systemctl start docker
+
+sudo systemctl enable docker
+
+cd ..
+
+Install docker compose
+`	`sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+`	`sudo chmod +x /usr/local/bin/docker-compose
+
+`	`sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
