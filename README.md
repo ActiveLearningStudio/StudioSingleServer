@@ -9,10 +9,10 @@ This repo makes it easy to install currikistudio as docker containers in cloud V
 Following applications are the part of CurrikiStudio
 
 1. React Frontend application
-1. Backend API
-1. Tsugi for LTI
-1. Trax LRS
-2. 
+2. Backend API
+3. Tsugi for LTI
+4. Trax LRS
+
 ## Databases
 1. Postgres (For API, For LRS)
 1. MySQL (For Tsugi)
