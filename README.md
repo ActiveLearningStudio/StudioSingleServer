@@ -74,11 +74,9 @@ Note that, we should create three A Records in Route 53 for currikistudio (main,
 
 Example:
 
-example.curriki.org 		132.226.36.47
-
-example-tsugi.curriki.org 		132.226.36.47
-
-example-trax.curriki.org 		132.226.36.47
+    example.curriki.org 		132.226.36.47
+    example-tsugi.curriki.org 		132.226.36.47
+    example-trax.curriki.org 		132.226.36.47
 
 This step is necessary to generate lets encrypt certificate which will be discussed later in this section
 
