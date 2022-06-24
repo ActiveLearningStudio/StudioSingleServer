@@ -273,12 +273,14 @@ Once it is done. Your application will be deployed on the DNS provided like exam
 Login to the terminal and switch to the root user.
 
     sudo apt-get update -y
-    sudo apt-get install git -y
-    sudo apt-get install apt-transport-https Ca-certificates curl gnupg -y
-    curl -fsSL <https://download.docker.com/linux/ubuntu/gpg> | sudo gpg --dearmor -o/usr/share/keyrings/docker-archive-keyring.	gpg
+    sudo apt-get install apt-transport-https ca-certificates curl gnupg -y
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     sudo apt install docker.io -y
-    sudo systemctl start docker
+    sudo systemctl restart docker
     sudo systemctl enable docker
+    sudo curl -L https://github.com/docker/compose/releases/download/1.28.4/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 cd ..
 
