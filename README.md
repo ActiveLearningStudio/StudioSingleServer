@@ -52,9 +52,9 @@ For Lets Encrypt to work, add DNS records:
 
 Copy public IP of the VM and put inside the DNS records like this.
 
-Say for example, if the public IP of your VM is 132.226.36.47, and your domain (where you want to install studio) is .curriki.org
+Say for example, if the public IP of your VM is 132.226.36.47, and your domain (where you want to install studio) is example.curriki.org
 
-You must create these A records in your DNS provider like below:
+You must create three A records in your DNS provider like below:
 
 ### AWS Route 53 example
 
