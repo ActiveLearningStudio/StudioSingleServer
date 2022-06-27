@@ -172,14 +172,21 @@ Files list to replace
 
 Now, run the below command 
 
-    sh init-letsencrypt.sh
+##Generate SSL
+
+    chmod +x init-letsencrypt.sh
+    ./init-letsencrypt.sh
+
+Deploy application
+    
     docker swarm init
     set -a 
     source .env
     env docker stack deploy -c docker-compose.yaml currikistack
 
+Application can take 10 minutes to deploy
 
-Once it is done. Your application will be deployed on the DNS provided like example.currikistudio.org
+Once it is done. Your application will be deployed on the DNS provided like example.curriki.org
 
   
   
