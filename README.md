@@ -119,11 +119,10 @@ Change the content of ./.env like database ports / passwords according to your o
 Example:
 
     TAG=latest
-    DB_HOST=currikiprod1-postgres
-    DB_PORT=5432
-    DB_DATABASE=dbstudio
-    DB_USERNAME=root
-    DB_PASSWORD=password
+    POSTGRES_EXPOSED_PORT=5432
+    POSTGRES_DB=dbstudio
+    POSTGRES_USER=root
+    POSTGRES_PASSWORD=password
     MYSQL_DATABASE=dbstudio
     MYSQL_USER=curriki
     MYSQL_PASSWORD=password
