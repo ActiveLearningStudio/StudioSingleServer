@@ -110,6 +110,7 @@ Go to the root level of the VM and clone the this repo:
     cp api/.env.example api/.env
     cp client/.env.example client/.env
     cp client/.env.example client/.env.local
+    cp trax-lrs/.env.example trax-lrs/.env
     cp tsugi/config.example.php tsugi/config.php
     cp tsugi/mod/curriki/config.example.php tsugi/mod/curriki/config.php
 
