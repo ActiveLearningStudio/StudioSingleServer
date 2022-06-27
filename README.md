@@ -113,7 +113,7 @@ Go to the root level of the VM and clone the this repo:
     cp tsugi/config.example.php tsugi/config.php
     cp tsugi/mod/curriki/config.example.php tsugi/mod/curriki/config.php
 
-Change the content of .env like database ports / passwords according to your own choice
+Change the content of ./.env like database ports / passwords according to your own choice
 
 Example:
 
