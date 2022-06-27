@@ -110,10 +110,11 @@ Go to the root level of the VM and clone the this repo:
     cp api/.env.example api/.env
     cp client/.env.example client/.env
     cp client/.env.example client/.env.local
+    cp trax-lrs/.env.example trax-lrs/.env
     cp tsugi/config.example.php tsugi/config.php
     cp tsugi/mod/curriki/config.example.php tsugi/mod/curriki/config.php
 
-Change the content of .env like database ports / passwords according to your own choice
+Change the content of ./.env like database ports / passwords according to your own choice
 
 Example:
 
@@ -163,9 +164,12 @@ Files list to replace
 1. ./init-lets-encrypt.sh
 2. ./data/nginx/prod-conf/app.conf
 3. ./data/nginx/certbot-conf/app.conf
-4. ./curriki/api/.env
-5. ./curriki/client/.env
-6. ./curriki/client/.env.local
+4. ./api/.env
+5. ./client/.env
+6. ./client/.env.local
+7. ./trax-lrs/.env
+8. ./tsugi/config.php
+9. ./tsugi/mod/curriki/config.php
 
 
 
