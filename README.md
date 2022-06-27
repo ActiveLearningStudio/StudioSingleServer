@@ -154,6 +154,7 @@ Replace these texts in the files below:
 12. substitute-tsugi-db-dbname=> tsugi
 13. substitute-mysql-db-user => curriki
 14. substitute-mysql-db-password => password
+15. substitute-tsugi-admin-password => admin123
 
 
 Files list to replace
