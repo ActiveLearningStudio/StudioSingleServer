@@ -136,6 +136,8 @@ Create folders for database persistent storage as below
     sudo mkdir -p /mnt/DBData/currikiprod1-mysqldata
     sudo mkdir -p /mnt/DBData/currikiprod1-postgresdata
     sudo mkdir -p /mnt/DBData/pgadmin1-data
+    sudo rm -rf api/storage
+    sudo mv api/storagetoclone api/storage
     
 
 Replace these texts in the files below:
