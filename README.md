@@ -164,9 +164,12 @@ Files list to replace
 1. ./init-lets-encrypt.sh
 2. ./data/nginx/prod-conf/app.conf
 3. ./data/nginx/certbot-conf/app.conf
-4. ./curriki/api/.env
-5. ./curriki/client/.env
-6. ./curriki/client/.env.local
+4. ./api/.env
+5. ./client/.env
+6. ./client/.env.local
+7. ./trax-lrs/.env
+8. ./tsugi/config.php
+9. ./tsugi/mod/curriki/config.php
 
 
 
