@@ -110,6 +110,20 @@ Go to the root level of the VM and clone the this repo:
 
 Change the content of .env like database ports / passwords according to your own choice
 
+Example:
+
+  TAG=latest
+  DB_HOST=currikiprod1-postgres
+  DB_PORT=5432
+  DB_DATABASE=dbstudio
+  DB_USERNAME=root
+  DB_PASSWORD=password
+  MYSQL_DATABASE=dbstudio
+  MYSQL_USER=curriki
+  MYSQL_PASSWORD=password
+  MYSQL_ROOT_PASSWORD=password
+  MYSQL_LOCAL_PORT=3306
+
 Create folders for database persistent storage as below
 
     sudo mkdir -p /mnt/DBData/currikiprod1-mysqldata
