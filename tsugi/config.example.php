@@ -33,7 +33,7 @@ $apphome = false;
 // } else {
 //     $wwwroot = "http://localhost/tsugi";
 // }
-$wwwroot = "http://substitute-terraform-tsugi-domain.com";
+$wwwroot = "https://substitute-terraform-tsugi-domain.com";
 // Once you are on a real server delete the above if statement
 // and set the wwwroot directly.  This must be the actual URL used
 // on the Internet for LTI signatures to compute correctly
