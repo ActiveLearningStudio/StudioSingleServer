@@ -142,9 +142,24 @@ Replace these texts in the files below:
 1. substitute-terraform-domain.com => example.curriki.org
 2. substitute-terraform-tsugi-domain.com => example-tsugi.curriki.org
 3. substitute-terraform-trax-domain.com => example-trax.curriki.org
+4. substitute-postgres-db-host => currikiprod1-postgres
+5. substitute-postgres-port => 5432
+6. substitute-postgres-db => dbcurriki
+7. substitute-postgres-user => root
+8. substitute-postgres-password => password
+9. substitute-mysql-db-host => currikiprod1-mysql
+10. substitute-postgres-db-host => currikiprod1-postgres
+11. substitute-postgres-port => 5432
+12. substitute-lrs-db-database => trax
+13. substitute-postgres-user => root
+14. substitute-postgres-password => password
+15. substitute-mysql-db-port => 3306
+16. substitute-tsugi-db-dbname=> tsugi
+17. substitute-mysql-db-user => curriki
+18. substitute-mysql-db-password => password
 
 
-Files list to replace ()
+Files list to replace
 1. ./init-lets-encrypt.sh
 2. ./data/nginx/prod-conf/app.conf
 3. ./data/nginx/certbot-conf/app.conf
