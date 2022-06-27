@@ -107,6 +107,11 @@ Go to the root level of the VM and clone the this repo:
 
     cd curriki
     cp .env.example .env
+    cp api/.env.example api/.env
+    cp client/.env.example client/.env
+    cp client/.env.example client/.env.local
+    cp tsugi/config.example.php tsugi/config.php
+    cp tsugi/mod/curriki/config.example.php tsugi/mod/curriki/config.php
 
 Change the content of .env like database ports / passwords according to your own choice
 
@@ -131,6 +136,23 @@ Create folders for database persistent storage as below
     sudo mkdir -p /mnt/DBData/currikiprod1-postgresdata
     sudo mkdir -p /mnt/DBData/pgadmin1-data
     
+
+Replace these texts in the files below:
+
+1. substitute-terraform-domain.com => example.curriki.org
+2. substitute-terraform-tsugi-domain.com => example-tsugi.curriki.org
+3. substitute-terraform-trax-domain.com => example-trax.curriki.org
+
+
+Files list to replace ()
+1. ./init-lets-encrypt.sh
+2. ./data/nginx/prod-conf/app.conf
+3. ./data/nginx/certbot-conf/app.conf
+4. ./curriki/api/.env
+5. ./curriki/client/.env
+6. ./curriki/client/.env.local
+
+
 
 1. Now, run the below command 
 
