@@ -266,7 +266,7 @@ Once it is done. Your application will be deployed on the DNS provided like exam
   
   
   
-## Docker Installation
+## Docker Installation (For Ubuntu 18.04, 20.04)
   
  Install docker
 
