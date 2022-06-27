@@ -182,7 +182,7 @@ Deploy application
     docker swarm init
     set -a 
     source .env
-    env docker stack deploy -c docker-compose.yaml currikistack
+    env docker stack deploy -c docker-compose.yml currikistack
 
 Application can take 10 minutes to deploy
 
