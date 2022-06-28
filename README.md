@@ -159,6 +159,7 @@ Replace these texts in the files below:
 
 
 Files list to replace
+
     1. ./init-lets-encrypt.sh
     2. ./data/nginx/prod-conf/app.conf
     3. ./data/nginx/certbot-conf/app.conf
