@@ -82,9 +82,6 @@ Trax Record
 
 ![](images/record-1.png)
 
-
-
-
 Click on the Create Record Button to finish creating the A Record for DNS.
 
 Note that, we should create three A Records in Route 53 for currikistudio (main, site tsugi, and trax)
